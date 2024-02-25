@@ -12,5 +12,5 @@ access_res_agama_all,access_res_agama_all,model_res_agama,base.group_user,1,0,0,
 access_res_agama_hr,access_res_agama_hr,model_res_agama,hr.group_hr_user,1,1,1,1
 access_status_pajak_all,access_status_pajak_all,model_status_pajak,base.group_user,1,0,0,0
 access_status_pajak_hr,access_status_pajak_hr,model_status_pajak,hr.group_hr_user,1,1,1,1
-access_training_needs_analysis,access_training_needs_analysis,model_training_needs_analysis,hr.group_hr_user,1,1,1,0
+access_training_needs_analysis,access_training_needs_analysis,model_training_needs_analysis,hr.group_hr_user,1,1,1,1
 access_training_employee_suggestion_wizard,access_training_employee_suggestion_wizard,model_training_employee_suggestion_wizard,base.group_user,1,1,1,1

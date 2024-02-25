@@ -6,6 +6,11 @@
     	    <field name="inherit_id" ref="hr.hr_employee_public_view_form"/>
     	    <field name='model'>hr.employee.public</field>
     	    <field name='arch' type='xml'>
+    	    	
+    	    	<!-- <field name="private_email" position='before'>
+    	    		<field name="kota_id"/>
+    	    	</field> -->
+
     	        <xpath expr="//page[@name='public']" position='after'>
     	        	<page name='training_certification' string="Training &amp; Sertifikat">
     	        		<field name="hr_certification_line" readonly='1'>

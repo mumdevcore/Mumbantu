@@ -22,3 +22,4 @@ class Employee(models.Model):
 	nama_ibu = fields.Char(string='Nama Ibu',)
 	no_npwp = fields.Char(string='No NPWP',)
 	status_pajak_id = fields.Many2one('status.pajak',string='Status Pajak',)
+	kota_id = fields.Many2one('vit.kota',string='Kota/Kabupaten',)

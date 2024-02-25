@@ -35,8 +35,8 @@
     	    <field name="arch" type="xml">
     	        <form string="description">
     	            <header>
-    	            	<button name="button_lulus" string="Lulus" type="object" class='oe_highlight' attrs="{'invisible' : ['|', ('state', '!=', 'in_progress'), ('kualifikasi_training', '=', 'eksternal')]}"/>
-    	            	<button name="button_tidak_lulus" string="Tidak Lulus" type="object" class='btn btn-danger' attrs="{'invisible' : ['|', ('state', '!=', 'in_progress'), ('kualifikasi_training', '=', 'eksternal')]}"/>
+    	            	<button name="button_lulus" string="Lulus" type="object" class='oe_highlight' attrs="{'invisible' : ['|', ('state', '!=', 'done'), ('kualifikasi_training', '=', 'eksternal')]}"/>
+    	            	<button name="button_tidak_lulus" string="Tidak Lulus" type="object" class='btn btn-danger' attrs="{'invisible' : ['|', ('state', '!=', 'done'), ('kualifikasi_training', '=', 'eksternal')]}"/>
     	            	<field name="state" widget='statusbar' statusbar_visible='draft,done'/>
     	            </header>
     	            <sheet>

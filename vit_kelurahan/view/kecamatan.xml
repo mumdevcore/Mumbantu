@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_kecamatan_tree" model="ir.ui.view">
+            <field name="name">kecamatan.tree</field>
+            <field name="model">vit.kecamatan</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Kecamatan">
+                    <field name="name"/>
+                    <field name="kota_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_kecamatan_form" model="ir.ui.view">
+            <field name="name">kecamatan.form</field>
+            <field name="model">vit.kecamatan</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Kecamatan" version="7.0">
+                    <group colspan="4">
+                        <field name="name"/>
+                        <field name="kota_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_kecamatan_view">
+            <field name="name">Kecamatan</field>
+            <field name="res_model">vit.kecamatan</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_kecamatan" name="Kecamatan" parent="contacts.menu_localisation" action="act_open_kecamatan_view"/>
+
+    </data>
+</odoo>

@@ -10,5 +10,6 @@ class EmployeePublic(models.Model):
 	email_pribadi = fields.Char(string='Email Pribadi', related='employee_id.email_pribadi', compute_sudo=True)
 	nomor_wa = fields.Char(string='No WA', related='employee_id.nomor_wa', compute_sudo=True)
 	inisial_jabatan = fields.Char(string='Inisial Jabatan', related='job_id.inisial',)
+	kota_id = fields.Many2one('vit.kota',string='Kota/Kabupaten', related='employee_id.kota_id')
 
 	hr_certification_line = fields.One2many('hr.certification', 'employee_id', string='HR Employee Certification',)

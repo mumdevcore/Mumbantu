@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_kelurahan_tree" model="ir.ui.view">
+            <field name="name">kelurahan.tree</field>
+            <field name="model">vit.kelurahan</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Kelurahan">
+                    <field name="name"/>
+                    <!--field name="zip"/-->
+                    <field name="kecamatan_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_kelurahan_form" model="ir.ui.view">
+            <field name="name">kelurahan.form</field>
+            <field name="model">vit.kelurahan</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Kelurahan" version="7.0">
+                    <group colspan="4">
+                        <field name="name"/>
+                        <!--field name="zip"/-->
+                        <field name="kecamatan_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_kelurahan_view">
+            <field name="name">Kelurahan</field>
+            <field name="res_model">vit.kelurahan</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_kelurahan" name="Kelurahan" parent="contacts.menu_localisation" action="act_open_kelurahan_view"/>
+    </data>
+</odoo>

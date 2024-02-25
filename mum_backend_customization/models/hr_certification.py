@@ -59,8 +59,14 @@ class HrCertification(models.Model):
 
 	@api.model
 	def create(self, vals):
-		# vals['name'] = 
+		sequence_code = vals.get('kualifikasi_training') == 'manajemen' and 'hr.certification.manajemen.seq' or 'hr.certification.eksternal.seq'
+		vals['name'] = self.env['ir.sequence'].next_by_code(sequence_code)
 		return super().create(vals)
+
+	def unlink(self):
+		for rec in self:
+			if rec.state == 'done':
+				raise ValidationError(_("Transaksi tidak dapat dihapus"))
 
 	def _compute_total_days(self):
 		for rec in self:

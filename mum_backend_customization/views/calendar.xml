@@ -11,6 +11,10 @@
 		    		<attribute name='invisible'>True</attribute>
 		    	</field>
 
+		    	<field name='user_id' position='attributes'>
+		    		<attribute name='optional'>show</attribute>
+		    	</field>
+
 		    	<field name="start" position='before'>
 		    		<field name="tipe_kegiatan"/>
 		    		<field name="trainer_partner_ids" widget="many2many_tags"/>
@@ -45,7 +49,7 @@
 				</field>
 
 				<xpath expr="//div[hasclass('oe_button_box')]" position='inside'>
-					<button name="action_view_hr_certification" type="object" class="oe_stat_button" icon="fa-pencil" attrs="{'invisible': [('hr_certification_count', '=', 0)]}">
+					<button name="action_view_hr_certification" type="object" class="oe_stat_button bg-warning" icon="fa-pencil" attrs="{'invisible': [('hr_certification_count', '=', 0)]}">
 						<div class="o_field_widget o_stat_info">
 							<span class="o_stat_value">
 								<field name="hr_certification_count" widget="statinfo" nolabel="1" string="Certifications"/>
@@ -68,6 +72,10 @@
 							<field name="total_days"/>
 							<field name="total_hours"/>
 							<field name="total_attendees"/>
+
+			              <field name='budget_plan'/>
+			              <field name='budget_realisation'/>
+			              <field name="currency_id" invisible='1'/>
 
 						</group>
 					</group>

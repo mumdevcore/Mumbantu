@@ -24,6 +24,8 @@
         'base', 
         'sequence_reset_period',
         'calendar',
+        'contacts',
+        'vit_kelurahan',
         'hr', 
         # 'hr_skills'
         ],

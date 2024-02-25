@@ -9,7 +9,7 @@ class HrCalendarCertification(models.Model):
 	# _name = 'hr.calendar.certification'
 	_inherit = 'calendar.event'
 
-	name = fields.Char(default='/')
+	name = fields.Char(default='/', copy=False)
 	tipe_calendar = fields.Selection([
 		('training_manajemen', 'Training Manajemen'),
 		('training_eksternal', 'Training Eksternal'),
@@ -18,6 +18,7 @@ class HrCalendarCertification(models.Model):
 	eksternal_group_ids = fields.Many2many('eksternal.group',string='Eksternal Groups',)
 	hr_certification_line = fields.One2many('hr.certification','calendar_id',string='Certification Details',)
 	hr_certification_count = fields.Integer(string='HR Certification Count', compute='_compute_hr_certification_count')
+	user_id = fields.Many2one(string='Dibuat oleh',)
 
 	tipe_kegiatan = fields.Selection([
 		('training', "Training"),
@@ -33,8 +34,9 @@ class HrCalendarCertification(models.Model):
 	total_attendees = fields.Integer(string='Total Peserta', tracking=True)
 	location = fields.Char(string='Lokasi Pelaksanaan',)
 	trainer_partner_ids = fields.Many2many('res.partner', "calendar_trainer_partner_rel",string='Trainer', tracking=True)
-	budget_plan = fields.Float(string='RAB', tracking=True)
-	budget_realisation = fields.Float(string='Realisasi Anggaran', tracking=True)
+	currency_id = fields.Many2one('res.currency',string='Currency', default=lambda s:s.env.company.currency_id)
+	budget_plan = fields.Monetary(string='RAB', tracking=True, currency_field='currency_id')
+	budget_realisation = fields.Monetary(string='Realisasi Anggaran', tracking=True, currency_field='currency_id')
 	notes = fields.Text(string='Keterangan',)
 	state = fields.Selection([
 		('draft', 'Draft'),
@@ -45,7 +47,7 @@ class HrCalendarCertification(models.Model):
 	@api.model
 	def create(self, vals):
 		if vals.get('tipe_calendar') in ('training_manajemen', 'training_eksternal'):
-			vals['name'] = self.env['ir.sequence'].next_by_code('hr.certification.seq', vals.get('start_date'))
+			vals['name'] = self.env['ir.sequence'].next_by_code('event.calendar.seq', fields.Date.to_date(vals.get('start_date')))
 		return super(HrCalendarCertification, self).create(vals)
 
 	def _compute_hr_certification_count(self):

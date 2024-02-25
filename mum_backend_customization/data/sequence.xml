@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-    	<record id="hr_certification_seq" model='ir.sequence'>
+    	<record id="event_calendar_seq" model='ir.sequence'>
     		<field name='name'>HR Certification Sequence</field>
-    		<field name="code">hr.certification.seq</field>
-            <field name='prefix'>SCH/%(range_year)s/%(range_month)s/</field>
+    		<field name="code">event.calendar.seq</field>
+            <field name="prefix"/>
+            <field name='suffix'>/%(range_month)s/%(range_year)s/MUM</field>
             <field name='padding'>3</field>
             <field eval="1" name="number_next"/>
             <field eval="1" name="number_increment"/>
@@ -15,7 +16,32 @@
         <record id="training_needs_analysis_seq" model='ir.sequence'>
             <field name='name'>Training Needs Analysis Sequence</field>
             <field name="code">training.needs.analysis.seq</field>
-            <field name='prefix'>TNA/%(range_year)s/%(range_month)s/</field>
+            <field name="prefix"/>
+            <field name='suffix'>/%(range_month)s/%(range_year)s/MUM-TNA</field>
+            <field name='padding'>3</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field name='use_date_range' eval='True'/>
+            <field name='range_reset'>monthly</field>
+        </record>
+
+         <record id="hr_certification_manajemen_seq" model='ir.sequence'>
+            <field name='name'>HR Certification Sequence</field>
+            <field name="code">hr.certification.manajemen.seq</field>
+            <field name="prefix"/>
+            <field name='suffix'>/%(range_month)s/%(range_year)s/MUM-TM</field>
+            <field name='padding'>3</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field name='use_date_range' eval='True'/>
+            <field name='range_reset'>monthly</field>
+        </record>
+
+        <record id="hr_certification_eksternal_seq" model='ir.sequence'>
+            <field name='name'>HR Certification Eksternal Sequence</field>
+            <field name="code">hr.certification.eksternal.seq</field>
+            <field name="prefix"/>
+            <field name='suffix'>/%(range_month)s/%(range_year)s/MUM-TE</field>
             <field name='padding'>3</field>
             <field eval="1" name="number_next"/>
             <field eval="1" name="number_increment"/>
