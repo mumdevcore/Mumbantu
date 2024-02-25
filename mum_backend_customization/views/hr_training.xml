@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<record model='ir.ui.view' id='hr_training_view_tree'>
+    	    <field name='name'>hr_training_view.tree</field>
+    	    <field name='model'>hr.training</field>
+    	    <field name='arch' type='xml'>
+    	        <tree string='HR Training' editable='bottom'>
+    	            <field name='name'/>
+    	            <field name='company_id'/>
+    	        </tree>
+    	    </field>
+    	</record>
+
+    	<record id="action_hr_training" model="ir.actions.act_window">
+    		<field name="name">Tema Training</field>
+    		<field name="res_model">hr.training</field>
+    		<field name="view_mode">tree</field>
+    	</record>
+
+    	<menuitem id="hr_training_menu" name="Tema Training" parent="configuration_menu" groups="hr.group_hr_user" action="action_hr_training"/>
+    </data>
+</odoo>

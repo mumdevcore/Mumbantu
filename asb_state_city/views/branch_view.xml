@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- <record model="ir.ui.view" id="client_branch_form">
+            <field name="name">client.branch.form</field>
+            <field name="model">client.branch</field>
+            <field name="inherit_id" ref="asb_membership.client_branch_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='contract_number']" position="after">
+              <label for="street" string="Address" class="oe_edit_only" attrs="{'readonly': [('is_editable', '=', False)]}"/>
+                <div class="o_address_format oe_edit_only" attrs="{'readonly': [('is_editable', '=', False)]}">
+                    <field name="country_id" class="o_address_state" style="width: 31%%" placeholder="Country" options="{'no_open': True, 'no_create': True}"/>
+                    <field name="state_id" class="o_address_state" style="width: 31%%" placeholder="State" options="{'no_open': True, 'no_create': True}" domain="[('country_id','=',country_id)]"/>
+                    <field name="city_id" style="width: 34%%" placeholder="City" options="{'no_open': True, 'no_create': True}" domain="[('state_id','=',state_id)]"/>
+                    <field name="kecamatan_id" class="o_address_state" style="width: 31%%" placeholder="Kecamatan" options="{'no_open': True, 'no_create': True}" domain="[('city_id','=',city_id)]" />
+                    <field name="kelurahan_id" class="o_address_state" style="width: 31%%" placeholder="Kelurahan" options="{'no_open': True, 'no_create': True}" domain="[('kecamatan_id','=',kecamatan_id)]" />
+                    <field name="zip" style="width: 34%%" placeholder="ZIP" />
+                    <field name="street" class="o_address_street" placeholder="Street..." />
+                </div>
+                <label for="street" string="Address" class="oe_read_only" attrs="{'readonly': [('is_editable', '=', False)]}"/>
+                <div class="o_address_format oe_read_only" attrs="{'readonly': [('is_editable', '=', False)]}">
+                    <field name="street" class="o_address_street" placeholder="Street..." />
+                    <field name="kelurahan_id" class="o_address_state" placeholder="Kelurahan" options="{'no_open': True, 'no_create': True}" domain="[('kecamatan_id','=',kecamatan_id)]" />
+                    <field name="kecamatan_id" class="o_address_state" placeholder="Kecamatan" options="{'no_open': True, 'no_create': True}" domain="[('city_id','=',city_id)]" />
+                    <field name="city_id" class="o_address_state" placeholder="City" options="{'no_open': True, 'no_create': True}" domain="[('state_id','=',state_id)]"/>
+                    <field name="state_id" class="o_address_state" placeholder="State" options="{'no_open': True, 'no_create': True}" domain="[('country_id','=',country_id)]"/>
+                    <field name="country_id" class="o_address_state" placeholder="Country" options="{'no_open': True, 'no_create': True}"/>
+                    <field name="zip" class="o_address_state" placeholder="ZIP" />
+                </div>
+                </xpath>
+            </field>
+        </record> -->
+
+    </data>
+
+</odoo>

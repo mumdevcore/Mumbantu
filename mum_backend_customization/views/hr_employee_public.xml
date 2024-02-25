@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<record model='ir.ui.view' id='hr_employee_public_view_form'>
+    	    <field name='name'>hr_employee_public_view.form</field>
+    	    <field name="inherit_id" ref="hr.hr_employee_public_view_form"/>
+    	    <field name='model'>hr.employee.public</field>
+    	    <field name='arch' type='xml'>
+    	        <xpath expr="//page[@name='public']" position='after'>
+    	        	<page name='training_certification' string="Training &amp; Sertifikat">
+    	        		<field name="hr_certification_line" readonly='1'>
+    	        			<tree>
+    	        				<field name="name"/>
+				    	    	<!-- <field name="employee_id"/> -->
+								<field name="tipe_kegiatan"/>
+								<field name="hr_training_id"/>
+								<field name="start_date"/>
+								<field name="end_date"/>
+								<field name="total_days" optional='hide'/>
+								<field name="total_hours" optional='hide'/>
+								<field name="total_attendees" optional='hide'/>
+								<field name="trainer_partner_ids" widget="many2many_tags"/>
+								<field name="location"/>
+								<field name="company_id" optional='hide'/>
+								<!-- <field name="budget_plan"/> -->
+								<!-- <field name="budget_realisation"/> -->
+								<field name="notes" optional='hide'/>
+    	        			</tree>
+    	        			<form>
+    	        				<sheet>
+			                    <!-- <div class='oe_button_box' name='button_box'>
+									<button name="action_view_revisions" type="object" class="oe_stat_button" icon="fa-file-archive-o" attrs="{'invisible': ['|', ('has_old_revisions', '=', False),('revision_count', '=', 0)]}">
+										<field name="revision_count" widget="statinfo" string="Prev. revisions"/>
+									</button>
+								</div> -->
+								<div class='oe_title'>
+									<label for='name' string="Nomor"/>
+									<h1>
+										<field name="name" readonly='1'/>
+									</h1>
+								</div>
+		    	                <group>
+		    	                	<group>
+						    	    	<field name="employee_id"/>
+										<field name="tipe_kegiatan"/>
+										<field name="hr_training_id"/>
+										<label for="start_date" string="Tanggal"/>
+										<div>
+											<field name="start_date" placeholder="Mulai" widget="daterange" class="oe_inline" options="{'related_end_date': 'end_date'}"/> 
+											s/d 
+											<field name="end_date" placeholder="Selesai" widget="daterange" class="oe_inline" options="{'related_start_date': 'start_date'}"/>
+										</div>
+										<field name="total_days" optional='hide'/>
+										<field name="total_hours" optional='hide'/>
+										<field name="total_attendees" optional='hide'/>
+		    	                	</group>
+		    	                	<group>
+										<field name="trainer_partner_ids" widget="many2many_tags"/>
+										<field name="location"/>
+										<field name="budget_plan"/>
+										<field name="budget_realisation"/>
+										<field name="notes" optional='hide'/>
+										<field name="company_id"/>
+		    	                	</group>
+		    	                </group>
+		    	            </sheet>
+    	        			</form>
+    	        		</field>
+    	        	</page>
+    	        </xpath>
+    	    </field>
+    	</record>
+    </data>
+</odoo>

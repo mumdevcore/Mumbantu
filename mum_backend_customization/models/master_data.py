@@ -1,0 +1,32 @@
+# Copyright YEAR(S), AUTHOR(S)
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+
+from odoo import fields, models, api, Command, _
+
+class HrTraining(models.Model):
+	_name = 'hr.training'
+	_description = 'HR Training Model'
+	_check_company_auto = True
+
+	name = fields.Char(string='Tema Training',)
+	company_id = fields.Many2one('res.company',string='Company', default=lambda self:self.env.company)
+
+class EksternalGroup(models.Model):
+	_name = 'eksternal.group'
+	_description = 'Eksternal Group Mitra Bisnis'
+	_check_company_auto = True
+
+	name = fields.Char(string='Name',)
+	company_id = fields.Many2one('res.company',string='Company', default=lambda self:self.env.company)
+
+class res_agama(models.Model):
+	_name = 'res.agama'
+	_description = 'Agama'
+
+	name = fields.Char(string='Agama',)
+
+class status_pajak(models.Model):
+	_name = 'status.pajak'
+	_description = 'Status Pajak'
+
+	name = fields.Char(string='Status Pajak',)

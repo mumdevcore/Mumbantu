@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<record model='ir.ui.view' id='hr_employee_view_form'>
+    	    <field name='name'>hr_employee_view.form</field>
+    	    <field name='model'>hr.employee</field>
+    	    <field name="inherit_id" ref="hr.view_employee_form"/>
+    	    <field name='arch' type='xml'>
+
+    	    	<xpath expr="//page[@name='personal_information']/group" position='inside'>
+    	    		<group string="Asuransi Kesehatan">
+						<field name="no_bpjstk"/>
+						<field name="no_bpjs_kesehatan"/>
+						<field name="no_asuransi"/>
+    	    		</group>
+    	    	</xpath>
+
+    	    	<field name="mobile_phone" position='after'>
+    	    		<field name="nomor_wa"/>
+    	    	</field>
+
+    	    	<field name="work_location_id" position='after'>
+    	    		<field name="inisial_jabatan"/>
+					<field name="tgl_bergabung"/>
+					<field name="tgl_resign"/>
+					<field name="no_npwp"/>
+    	    	</field>
+
+    	    	<field name="lang" position='before'>
+    	    		<field name="inisial"/>
+					<field name="email_pribadi"/>
+					<field name="agama_id"/>
+					<field name="nama_ibu"/>
+					<field name="status_pajak_id"/>
+    	    	</field>
+
+    	        <xpath expr="//page[@name='public']" position='after'>
+    	        	<page name='training_certification' string="Training &amp; Sertifikat">
+    	        		<field name="hr_certification_line" readonly='1'>
+    	        			<tree>
+    	        				<field name="name"/>
+				    	    	<!-- <field name="employee_id"/> -->
+								<field name="tipe_kegiatan"/>
+								<field name="hr_training_id"/>
+								<field name="start_date"/>
+								<field name="end_date"/>
+								<field name="total_days" optional='hide'/>
+								<field name="total_hours" optional='hide'/>
+								<field name="total_attendees" optional='hide'/>
+								<field name="trainer_partner_ids" widget="many2many_tags"/>
+								<field name="location"/>
+								<!-- <field name="budget_plan"/> -->
+								<!-- <field name="budget_realisation"/> -->
+								<field name="notes" optional='hide'/>
+								<field name="company_id" optional='hide'/>
+								<field name='state'/>
+    	        			</tree>
+    	        			<form>
+    	        				<sheet>
+			                    <!-- <div class='oe_button_box' name='button_box'>
+									<button name="action_view_revisions" type="object" class="oe_stat_button" icon="fa-file-archive-o" attrs="{'invisible': ['|', ('has_old_revisions', '=', False),('revision_count', '=', 0)]}">
+										<field name="revision_count" widget="statinfo" string="Prev. revisions"/>
+									</button>
+								</div> -->
+								<div class='oe_title'>
+									<label for='name' string="Nomor"/>
+									<h1>
+										<field name="name" readonly='1'/>
+									</h1>
+								</div>
+		    	                <group>
+		    	                	<group>
+						    	    	<!-- <field name="employee_id"/> -->
+										<field name="tipe_kegiatan"/>
+										<field name="hr_training_id"/>
+										<label for="start_date" string="Tanggal"/>
+										<div>
+											<field name="start_date" placeholder="Mulai" widget="daterange" class="oe_inline" options="{'related_end_date': 'end_date'}"/> 
+											s/d 
+											<field name="end_date" placeholder="Selesai" widget="daterange" class="oe_inline" options="{'related_start_date': 'start_date'}"/>
+										</div>
+										<field name="total_days" optional='hide'/>
+										<field name="total_hours" optional='hide'/>
+										<field name="total_attendees" optional='hide'/>
+		    	                	</group>
+		    	                	<group>
+										<field name="trainer_partner_ids" widget="many2many_tags"/>
+										<field name="location"/>
+										<field name="budget_plan"/>
+										<field name="budget_realisation"/>
+										<field name="notes"/>
+										<field name="company_id"/>
+		    	                	</group>
+		    	                </group>
+		    	            </sheet>
+    	        			</form>
+    	        		</field>
+    	        	</page>
+    	        </xpath>
+    	    </field>
+    	</record>
+    </data>
+</odoo>

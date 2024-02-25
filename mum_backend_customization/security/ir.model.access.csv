@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_training_hr_user,access_hr_training_hr_user,model_hr_training,hr.group_hr_user,1,1,1,1
+access_hr_certification_all,access_hr_certification_all,model_hr_certification,base.group_user,1,0,0,0
+access_hr_certification_hr_user,access_hr_certification_user,model_hr_certification,hr.group_hr_user,1,1,1,1
+access_certification_document_line_all,access_certification_document_line_all,model_certification_document_line,base.group_user,1,0,0,0
+access_certification_document_line_hr_user,access_certification_document_line_user,model_certification_document_line,hr.group_hr_user,1,1,1,1
+access_hr_training_all,access_hr_training_all,model_hr_training,base.group_user,1,0,0,0
+access_eksternal_group_all,access_eksternal_group_all,model_eksternal_group,,1,0,0,0
+access_eksternal_group_hr_user,access_eksternal_group_hr_user,model_eksternal_group,hr.group_hr_user,1,1,1,1
+access_calendar_add_member_wizard,access_calendar_add_member_wizard,model_calendar_add_member_wizard,hr.group_hr_user,1,1,1,1
+access_res_agama_all,access_res_agama_all,model_res_agama,base.group_user,1,0,0,0
+access_res_agama_hr,access_res_agama_hr,model_res_agama,hr.group_hr_user,1,1,1,1
+access_status_pajak_all,access_status_pajak_all,model_status_pajak,base.group_user,1,0,0,0
+access_status_pajak_hr,access_status_pajak_hr,model_status_pajak,hr.group_hr_user,1,1,1,1
+access_training_needs_analysis,access_training_needs_analysis,model_training_needs_analysis,hr.group_hr_user,1,1,1,0
+access_training_employee_suggestion_wizard,access_training_employee_suggestion_wizard,model_training_employee_suggestion_wizard,base.group_user,1,1,1,1

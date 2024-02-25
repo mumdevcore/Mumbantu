@@ -1,0 +1,514 @@
+id,kabupaten,code,name,state_id/id,active
+asb_state_city.res_state_city1,TRUE,res_state_city1,Kabupaten Aceh Barat,base.state_id_ac,FALSE
+asb_state_city.res_state_city2,TRUE,res_state_city2,Kabupaten Aceh Barat Daya,base.state_id_ac,FALSE
+asb_state_city.res_state_city3,TRUE,res_state_city3,Kabupaten Aceh Besar,base.state_id_ac,FALSE
+asb_state_city.res_state_city4,TRUE,res_state_city4,Kabupaten Aceh Jaya,base.state_id_ac,FALSE
+asb_state_city.res_state_city5,TRUE,res_state_city5,Kabupaten Aceh Selatan,base.state_id_ac,FALSE
+asb_state_city.res_state_city6,TRUE,res_state_city6,Kabupaten Aceh Singkil,base.state_id_ac,FALSE
+asb_state_city.res_state_city7,TRUE,res_state_city7,Kabupaten Aceh Tamiang,base.state_id_ac,FALSE
+asb_state_city.res_state_city8,TRUE,res_state_city8,Kabupaten Aceh Tengah,base.state_id_ac,FALSE
+asb_state_city.res_state_city9,TRUE,res_state_city9,Kabupaten Aceh Tenggara,base.state_id_ac,FALSE
+asb_state_city.res_state_city10,TRUE,res_state_city10,Kabupaten Aceh Timur,base.state_id_ac,FALSE
+asb_state_city.res_state_city11,TRUE,res_state_city11,Kabupaten Aceh Utara,base.state_id_ac,FALSE
+asb_state_city.res_state_city12,FALSE,res_state_city12,Kota Banda Aceh,base.state_id_ac,FALSE
+asb_state_city.res_state_city13,TRUE,res_state_city13,Kabupaten Bener Meriah,base.state_id_ac,FALSE
+asb_state_city.res_state_city14,TRUE,res_state_city14,Kabupaten Bireuen,base.state_id_ac,FALSE
+asb_state_city.res_state_city15,TRUE,res_state_city15,Kabupaten Gayo Lues,base.state_id_ac,FALSE
+asb_state_city.res_state_city16,FALSE,res_state_city16,Kota Lhokseumawe,base.state_id_ac,FALSE
+asb_state_city.res_state_city17,TRUE,res_state_city17,Kabupaten Nagan Raya,base.state_id_ac,FALSE
+asb_state_city.res_state_city18,TRUE,res_state_city18,Kabupaten Pidie,base.state_id_ac,FALSE
+asb_state_city.res_state_city19,TRUE,res_state_city19,Kabupaten Pidie Jaya,base.state_id_ac,FALSE
+asb_state_city.res_state_city20,FALSE,res_state_city20,Kota Sabang,base.state_id_ac,FALSE
+asb_state_city.res_state_city21,TRUE,res_state_city21,Kabupaten Simeulue,base.state_id_ac,FALSE
+asb_state_city.res_state_city22,FALSE,res_state_city22,Kota Subulussalam,base.state_id_ac,FALSE
+asb_state_city.res_state_city23,TRUE,res_state_city23,Kabupaten Gianyar,base.state_id_ba,FALSE
+asb_state_city.res_state_city24,TRUE,res_state_city24,Kabupaten Bangli,base.state_id_ba,FALSE
+asb_state_city.res_state_city25,TRUE,res_state_city25,Kabupaten Buleleng,base.state_id_ba,FALSE
+asb_state_city.res_state_city26,TRUE,res_state_city26,Kabupaten Tabanan,base.state_id_ba,FALSE
+asb_state_city.res_state_city27,TRUE,res_state_city27,Kabupaten Karangasem,base.state_id_ba,FALSE
+asb_state_city.res_state_city28,TRUE,res_state_city28,Kabupaten Badung,base.state_id_ba,FALSE
+asb_state_city.res_state_city29,TRUE,res_state_city29,Kabupaten Jembrana,base.state_id_ba,FALSE
+asb_state_city.res_state_city30,TRUE,res_state_city30,Kabupaten Klungkung,base.state_id_ba,FALSE
+asb_state_city.res_state_city31,FALSE,res_state_city31,Kota Denpasar,base.state_id_ba,FALSE
+asb_state_city.res_state_city32,TRUE,res_state_city32,Kabupaten Bangka Selatan,base.state_id_bb,FALSE
+asb_state_city.res_state_city33,TRUE,res_state_city33,Kabupaten Bangka Barat,base.state_id_bb,FALSE
+asb_state_city.res_state_city34,TRUE,res_state_city34,Kabupaten Belitung,base.state_id_bb,FALSE
+asb_state_city.res_state_city35,FALSE,res_state_city35,Kota Pangkal Pinang,base.state_id_bb,FALSE
+asb_state_city.res_state_city36,TRUE,res_state_city36,Kabupaten Bangka Tengah,base.state_id_bb,FALSE
+asb_state_city.res_state_city37,TRUE,res_state_city37,Kabupaten Bangka,base.state_id_bb,FALSE
+asb_state_city.res_state_city38,TRUE,res_state_city38,Kabupaten Belitung Timur,base.state_id_bb,FALSE
+asb_state_city.res_state_city39,TRUE,res_state_city39,Kabupaten Lebak,base.state_id_bt,FALSE
+asb_state_city.res_state_city40,TRUE,res_state_city40,Kabupaten Serang,base.state_id_bt,FALSE
+asb_state_city.res_state_city41,FALSE,res_state_city41,Kota Serang,base.state_id_bt,FALSE
+asb_state_city.res_state_city42,TRUE,res_state_city42,Kabupaten Tangerang,base.state_id_bt,FALSE
+asb_state_city.res_state_city43,FALSE,res_state_city43,Kota Tangerang,base.state_id_bt,FALSE
+asb_state_city.res_state_city44,TRUE,res_state_city44,Kabupaten Pandeglang,base.state_id_bt,FALSE
+asb_state_city.res_state_city45,FALSE,res_state_city45,Kota Tangerang Selatan,base.state_id_bt,FALSE
+asb_state_city.res_state_city46,FALSE,res_state_city46,Kota Cilegon,base.state_id_bt,FALSE
+asb_state_city.res_state_city47,TRUE,res_state_city47,Kabupaten Seluma,base.state_id_be,FALSE
+asb_state_city.res_state_city48,TRUE,res_state_city48,Kabupaten Bengkulu Tengah,base.state_id_be,FALSE
+asb_state_city.res_state_city49,FALSE,res_state_city49,Kota Bengkulu,base.state_id_be,FALSE
+asb_state_city.res_state_city50,TRUE,res_state_city50,Kabupaten Muko Muko,base.state_id_be,FALSE
+asb_state_city.res_state_city51,TRUE,res_state_city51,Kabupaten Rejang Lebong,base.state_id_be,FALSE
+asb_state_city.res_state_city52,TRUE,res_state_city52,Kabupaten Kaur,base.state_id_be,FALSE
+asb_state_city.res_state_city53,TRUE,res_state_city53,Kabupaten Bengkulu Selatan,base.state_id_be,FALSE
+asb_state_city.res_state_city54,TRUE,res_state_city54,Kabupaten Kepahiang,base.state_id_be,FALSE
+asb_state_city.res_state_city55,TRUE,res_state_city55,Kabupaten Lebong,base.state_id_be,FALSE
+asb_state_city.res_state_city56,TRUE,res_state_city56,Kabupaten Bengkulu Utara,base.state_id_be,FALSE
+asb_state_city.res_state_city57,TRUE,res_state_city57,Kabupaten Gunung Kidul,base.state_id_yo,FALSE
+asb_state_city.res_state_city58,FALSE,res_state_city58,Kota Yogyakarta,base.state_id_yo,FALSE
+asb_state_city.res_state_city59,TRUE,res_state_city59,Kabupaten Kulon Progo,base.state_id_yo,FALSE
+asb_state_city.res_state_city60,TRUE,res_state_city60,Kabupaten Sleman,base.state_id_yo,FALSE
+asb_state_city.res_state_city61,TRUE,res_state_city61,Kabupaten Bantul,base.state_id_yo,FALSE
+asb_state_city.res_state_city62,FALSE,res_state_city62,Jakarta Selatan,base.state_id_jk,FALSE
+asb_state_city.res_state_city63,FALSE,res_state_city63,Jakarta Utara,base.state_id_jk,FALSE
+asb_state_city.res_state_city64,FALSE,res_state_city64,Jakarta Pusat,base.state_id_jk,FALSE
+asb_state_city.res_state_city65,FALSE,res_state_city65,Jakarta Barat,base.state_id_jk,FALSE
+asb_state_city.res_state_city66,FALSE,res_state_city66,Jakarta Timur,base.state_id_jk,FALSE
+asb_state_city.res_state_city67,TRUE,res_state_city67,Kabupaten Kepulauan Seribu,base.state_id_jk,FALSE
+asb_state_city.res_state_city68,TRUE,res_state_city68,Kabupaten Boalemo,base.state_id_go,FALSE
+asb_state_city.res_state_city69,TRUE,res_state_city69,Kabupaten Pohuwato,base.state_id_go,FALSE
+asb_state_city.res_state_city70,TRUE,res_state_city70,Kabupaten Gorontalo Utara,base.state_id_go,FALSE
+asb_state_city.res_state_city71,TRUE,res_state_city71,Kabupaten Gorontalo,base.state_id_go,FALSE
+asb_state_city.res_state_city72,TRUE,res_state_city72,Kabupaten Bone Bolango,base.state_id_go,FALSE
+asb_state_city.res_state_city73,FALSE,res_state_city73,Kota Gorontalo,base.state_id_go,FALSE
+asb_state_city.res_state_city74,TRUE,res_state_city74,Kabupaten Tebo,base.state_id_ja,FALSE
+asb_state_city.res_state_city75,TRUE,res_state_city75,Kabupaten Tanjung Jabung Barat,base.state_id_ja,FALSE
+asb_state_city.res_state_city76,TRUE,res_state_city76,Kabupaten Merangin,base.state_id_ja,FALSE
+asb_state_city.res_state_city77,FALSE,res_state_city77,Kota Jambi,base.state_id_ja,FALSE
+asb_state_city.res_state_city78,TRUE,res_state_city78,Kabupaten Bungo,base.state_id_ja,FALSE
+asb_state_city.res_state_city79,FALSE,res_state_city79,Kota Sungaipenuh,base.state_id_ja,FALSE
+asb_state_city.res_state_city80,TRUE,res_state_city80,Kabupaten Muaro Jambi,base.state_id_ja,FALSE
+asb_state_city.res_state_city81,TRUE,res_state_city81,Kabupaten Kerinci,base.state_id_ja,FALSE
+asb_state_city.res_state_city82,TRUE,res_state_city82,Kabupaten Sarolangun,base.state_id_ja,FALSE
+asb_state_city.res_state_city83,TRUE,res_state_city83,Kabupaten Tanjung Jabung Timur,base.state_id_ja,FALSE
+asb_state_city.res_state_city84,TRUE,res_state_city84,Kabupaten Batanghari,base.state_id_ja,FALSE
+asb_state_city.res_state_city85,TRUE,res_state_city85,Kabupaten Indramayu,base.state_id_jb,FALSE
+asb_state_city.res_state_city86,TRUE,res_state_city86,Kabupaten Cirebon,base.state_id_jb,FALSE
+asb_state_city.res_state_city87,TRUE,res_state_city87,Kabupaten Cianjur,base.state_id_jb,FALSE
+asb_state_city.res_state_city88,TRUE,res_state_city88,Kabupaten Sukabumi,base.state_id_jb,FALSE
+asb_state_city.res_state_city89,FALSE,res_state_city89,Kota Sukabumi,base.state_id_jb,FALSE
+asb_state_city.res_state_city90,TRUE,res_state_city90,Kabupaten Purwakarta,base.state_id_jb,FALSE
+asb_state_city.res_state_city91,TRUE,res_state_city91,Kabupaten Garut,base.state_id_jb,FALSE
+asb_state_city.res_state_city92,TRUE,res_state_city92,Kabupaten Sumedang,base.state_id_jb,FALSE
+asb_state_city.res_state_city93,FALSE,res_state_city93,Kota Bandung,base.state_id_jb,FALSE
+asb_state_city.res_state_city94,TRUE,res_state_city94,Kabupaten Karawang,base.state_id_jb,FALSE
+asb_state_city.res_state_city95,TRUE,res_state_city95,Kabupaten Bogor,base.state_id_jb,FALSE
+asb_state_city.res_state_city96,FALSE,res_state_city96,Kota Tasikmalaya,base.state_id_jb,FALSE
+asb_state_city.res_state_city97,TRUE,res_state_city97,Kabupaten Bekasi,base.state_id_jb,FALSE
+asb_state_city.res_state_city98,TRUE,res_state_city98,Kabupaten Tasikmalaya,base.state_id_jb,FALSE
+asb_state_city.res_state_city99,FALSE,res_state_city99,Kota Depok,base.state_id_jb,FALSE
+asb_state_city.res_state_city100,TRUE,res_state_city100,Kabupaten Subang,base.state_id_jb,FALSE
+asb_state_city.res_state_city101,FALSE,res_state_city101,Kota Bogor,base.state_id_jb,FALSE
+asb_state_city.res_state_city102,TRUE,res_state_city102,Kabupaten Ciamis,base.state_id_jb,FALSE
+asb_state_city.res_state_city103,TRUE,res_state_city103,Kabupaten Majalengka,base.state_id_jb,FALSE
+asb_state_city.res_state_city104,TRUE,res_state_city104,Kabupaten Kuningan,base.state_id_jb,FALSE
+asb_state_city.res_state_city105,TRUE,res_state_city105,Kabupaten Bandung,base.state_id_jb,FALSE
+asb_state_city.res_state_city106,TRUE,res_state_city106,Kabupaten Bandung Barat,base.state_id_jb,FALSE
+asb_state_city.res_state_city107,TRUE,res_state_city107,Kabupaten Pangandaran,base.state_id_jb,FALSE
+asb_state_city.res_state_city108,FALSE,res_state_city108,Kota Bekasi,base.state_id_jb,FALSE
+asb_state_city.res_state_city109,FALSE,res_state_city109,Kota Banjar,base.state_id_jb,FALSE
+asb_state_city.res_state_city110,FALSE,res_state_city110,Kota Cirebon,base.state_id_jb,FALSE
+asb_state_city.res_state_city111,FALSE,res_state_city111,Kota Cimahi,base.state_id_jb,FALSE
+asb_state_city.res_state_city112,TRUE,res_state_city112,Kabupaten Wonogiri,base.state_id_jt,FALSE
+asb_state_city.res_state_city113,TRUE,res_state_city113,Kabupaten Batang,base.state_id_jt,FALSE
+asb_state_city.res_state_city114,TRUE,res_state_city114,Kabupaten Wonosobo,base.state_id_jt,FALSE
+asb_state_city.res_state_city115,TRUE,res_state_city115,Kabupaten Boyolali,base.state_id_jt,FALSE
+asb_state_city.res_state_city116,TRUE,res_state_city116,Kabupaten Klaten,base.state_id_jt,FALSE
+asb_state_city.res_state_city117,TRUE,res_state_city117,Kabupaten Demak,base.state_id_jt,FALSE
+asb_state_city.res_state_city118,TRUE,res_state_city118,Kabupaten Pekalongan,base.state_id_jt,FALSE
+asb_state_city.res_state_city119,TRUE,res_state_city119,Kabupaten Temanggung,base.state_id_jt,FALSE
+asb_state_city.res_state_city120,TRUE,res_state_city120,Kabupaten Grobogan,base.state_id_jt,FALSE
+asb_state_city.res_state_city121,TRUE,res_state_city121,Kabupaten Pati,base.state_id_jt,FALSE
+asb_state_city.res_state_city122,TRUE,res_state_city122,Kabupaten Magelang,base.state_id_jt,FALSE
+asb_state_city.res_state_city123,TRUE,res_state_city123,Kabupaten Sukoharjo,base.state_id_jt,FALSE
+asb_state_city.res_state_city124,TRUE,res_state_city124,Kabupaten Kendal,base.state_id_jt,FALSE
+asb_state_city.res_state_city125,TRUE,res_state_city125,Kabupaten Jepara,base.state_id_jt,FALSE
+asb_state_city.res_state_city126,TRUE,res_state_city126,Kabupaten Pemalang,base.state_id_jt,FALSE
+asb_state_city.res_state_city127,TRUE,res_state_city127,Kabupaten Tegal,base.state_id_jt,FALSE
+asb_state_city.res_state_city128,TRUE,res_state_city128,Kabupaten Banyumas,base.state_id_jt,FALSE
+asb_state_city.res_state_city129,TRUE,res_state_city129,Kabupaten Banjarnegara,base.state_id_jt,FALSE
+asb_state_city.res_state_city130,TRUE,res_state_city130,Kabupaten Brebes,base.state_id_jt,FALSE
+asb_state_city.res_state_city131,TRUE,res_state_city131,Kabupaten Cilacap,base.state_id_jt,FALSE
+asb_state_city.res_state_city132,TRUE,res_state_city132,Kabupaten Semarang,base.state_id_jt,FALSE
+asb_state_city.res_state_city133,TRUE,res_state_city133,Kabupaten Kudus,base.state_id_jt,FALSE
+asb_state_city.res_state_city134,TRUE,res_state_city134,Kabupaten Blora,base.state_id_jt,FALSE
+asb_state_city.res_state_city135,FALSE,res_state_city135,Kota Semarang,base.state_id_jt,FALSE
+asb_state_city.res_state_city136,FALSE,res_state_city136,Kota Salatiga,base.state_id_jt,FALSE
+asb_state_city.res_state_city137,FALSE,res_state_city137,Kota Tegal,base.state_id_jt,FALSE
+asb_state_city.res_state_city138,TRUE,res_state_city138,Kabupaten Karanganyar,base.state_id_jt,FALSE
+asb_state_city.res_state_city139,TRUE,res_state_city139,Kabupaten Sragen,base.state_id_jt,FALSE
+asb_state_city.res_state_city140,TRUE,res_state_city140,Kabupaten Rembang,base.state_id_jt,FALSE
+asb_state_city.res_state_city141,TRUE,res_state_city141,Kabupaten Kebumen,base.state_id_jt,FALSE
+asb_state_city.res_state_city142,FALSE,res_state_city142,Kota Surakarta,base.state_id_jt,FALSE
+asb_state_city.res_state_city143,TRUE,res_state_city143,Kabupaten Purbalingga,base.state_id_jt,FALSE
+asb_state_city.res_state_city144,TRUE,res_state_city144,Kabupaten Purworejo,base.state_id_jt,FALSE
+asb_state_city.res_state_city145,FALSE,res_state_city145,Kota Pekalongan,base.state_id_jt,FALSE
+asb_state_city.res_state_city146,FALSE,res_state_city146,Kota Magelang,base.state_id_jt,FALSE
+asb_state_city.res_state_city147,TRUE,res_state_city147,Kabupaten Bangkalan,base.state_id_ji,FALSE
+asb_state_city.res_state_city148,TRUE,res_state_city148,Kabupaten Banyuwangi,base.state_id_ji,FALSE
+asb_state_city.res_state_city149,FALSE,res_state_city149,Kota Batu,base.state_id_ji,FALSE
+asb_state_city.res_state_city150,FALSE,res_state_city150,Kota Blitar,base.state_id_ji,FALSE
+asb_state_city.res_state_city151,TRUE,res_state_city151,Kabupaten Blitar,base.state_id_ji,FALSE
+asb_state_city.res_state_city152,TRUE,res_state_city152,Kabupaten Bojonegoro,base.state_id_ji,FALSE
+asb_state_city.res_state_city153,TRUE,res_state_city153,Kabupaten Bondowoso,base.state_id_ji,FALSE
+asb_state_city.res_state_city154,TRUE,res_state_city154,Kabupaten Gresik,base.state_id_ji,FALSE
+asb_state_city.res_state_city155,TRUE,res_state_city155,Kabupaten Jember,base.state_id_ji,FALSE
+asb_state_city.res_state_city156,TRUE,res_state_city156,Kabupaten Jombang,base.state_id_ji,FALSE
+asb_state_city.res_state_city157,FALSE,res_state_city157,Kota Kediri,base.state_id_ji,FALSE
+asb_state_city.res_state_city158,TRUE,res_state_city158,Kabupaten Kediri,base.state_id_ji,FALSE
+asb_state_city.res_state_city159,TRUE,res_state_city159,Kabupaten Lamongan,base.state_id_ji,FALSE
+asb_state_city.res_state_city160,TRUE,res_state_city160,Kabupaten Lumajang,base.state_id_ji,FALSE
+asb_state_city.res_state_city161,FALSE,res_state_city161,Kota Madiun,base.state_id_ji,FALSE
+asb_state_city.res_state_city162,TRUE,res_state_city162,Kabupaten Madiun,base.state_id_ji,FALSE
+asb_state_city.res_state_city163,TRUE,res_state_city163,Kabupaten Magetan,base.state_id_ji,FALSE
+asb_state_city.res_state_city164,FALSE,res_state_city164,Kota Malang,base.state_id_ji,FALSE
+asb_state_city.res_state_city165,TRUE,res_state_city165,Kabupaten Malang,base.state_id_ji,FALSE
+asb_state_city.res_state_city166,FALSE,res_state_city166,Kota Mojokerto,base.state_id_ji,FALSE
+asb_state_city.res_state_city167,TRUE,res_state_city167,Kabupaten Mojokerto,base.state_id_ji,FALSE
+asb_state_city.res_state_city168,TRUE,res_state_city168,Kabupaten Nganjuk,base.state_id_ji,FALSE
+asb_state_city.res_state_city169,TRUE,res_state_city169,Kabupaten Ngawi,base.state_id_ji,FALSE
+asb_state_city.res_state_city170,TRUE,res_state_city170,Kabupaten Pacitan,base.state_id_ji,FALSE
+asb_state_city.res_state_city171,TRUE,res_state_city171,Kabupaten Pamekasan,base.state_id_ji,FALSE
+asb_state_city.res_state_city172,FALSE,res_state_city172,Kota Pasuruan,base.state_id_ji,FALSE
+asb_state_city.res_state_city173,TRUE,res_state_city173,Kabupaten Pasuruan,base.state_id_ji,FALSE
+asb_state_city.res_state_city174,TRUE,res_state_city174,Kabupaten Ponorogo,base.state_id_ji,FALSE
+asb_state_city.res_state_city175,FALSE,res_state_city175,Kota Probolinggo,base.state_id_ji,FALSE
+asb_state_city.res_state_city176,TRUE,res_state_city176,Kabupaten Probolinggo,base.state_id_ji,FALSE
+asb_state_city.res_state_city177,TRUE,res_state_city177,Kabupaten Sampang,base.state_id_ji,FALSE
+asb_state_city.res_state_city178,TRUE,res_state_city178,Kabupaten Sidoarjo,base.state_id_ji,FALSE
+asb_state_city.res_state_city179,TRUE,res_state_city179,Kabupaten Situbondo,base.state_id_ji,FALSE
+asb_state_city.res_state_city180,TRUE,res_state_city180,Kabupaten Sumenep,base.state_id_ji,FALSE
+asb_state_city.res_state_city181,FALSE,res_state_city181,Kota Surabaya,base.state_id_ji,FALSE
+asb_state_city.res_state_city182,TRUE,res_state_city182,Kabupaten Trenggalek,base.state_id_ji,FALSE
+asb_state_city.res_state_city183,TRUE,res_state_city183,Kabupaten Tuban,base.state_id_ji,FALSE
+asb_state_city.res_state_city184,TRUE,res_state_city184,Kabupaten Tulungagung,base.state_id_ji,FALSE
+asb_state_city.res_state_city185,TRUE,res_state_city185,Kabupaten Bengkayang,base.state_id_kb,FALSE
+asb_state_city.res_state_city186,TRUE,res_state_city186,Kabupaten Kapuas Hulu,base.state_id_kb,FALSE
+asb_state_city.res_state_city187,TRUE,res_state_city187,Kabupaten Kayong Utara,base.state_id_kb,FALSE
+asb_state_city.res_state_city188,TRUE,res_state_city188,Kabupaten Ketapang,base.state_id_kb,FALSE
+asb_state_city.res_state_city189,TRUE,res_state_city189,Kabupaten Kubu Raya,base.state_id_kb,FALSE
+asb_state_city.res_state_city190,TRUE,res_state_city190,Kabupaten Landak,base.state_id_kb,FALSE
+asb_state_city.res_state_city191,TRUE,res_state_city191,Kabupaten Melawi,base.state_id_kb,FALSE
+asb_state_city.res_state_city192,TRUE,res_state_city192,Kabupaten Mempawah,base.state_id_kb,FALSE
+asb_state_city.res_state_city193,FALSE,res_state_city193,Kota Pontianak,base.state_id_kb,FALSE
+asb_state_city.res_state_city194,TRUE,res_state_city194,Kabupaten Sambas,base.state_id_kb,FALSE
+asb_state_city.res_state_city195,TRUE,res_state_city195,Kabupaten Sanggau,base.state_id_kb,FALSE
+asb_state_city.res_state_city196,TRUE,res_state_city196,Kabupaten Sekadau,base.state_id_kb,FALSE
+asb_state_city.res_state_city197,FALSE,res_state_city197,Kota Singkawang,base.state_id_kb,FALSE
+asb_state_city.res_state_city198,TRUE,res_state_city198,Kabupaten Sintang,base.state_id_kb,FALSE
+asb_state_city.res_state_city199,TRUE,res_state_city199,Kabupaten Balangan,base.state_id_ks,FALSE
+asb_state_city.res_state_city200,TRUE,res_state_city200,Kabupaten Banjar,base.state_id_ks,FALSE
+asb_state_city.res_state_city201,FALSE,res_state_city201,Kota Banjarbaru,base.state_id_ks,FALSE
+asb_state_city.res_state_city202,FALSE,res_state_city202,Kota Banjarmasin,base.state_id_ks,FALSE
+asb_state_city.res_state_city203,TRUE,res_state_city203,Kabupaten Barito Kuala,base.state_id_ks,FALSE
+asb_state_city.res_state_city204,TRUE,res_state_city204,Kabupaten Hulu Sungai Selatan,base.state_id_ks,FALSE
+asb_state_city.res_state_city205,TRUE,res_state_city205,Kabupaten Hulu Sungai Tengah,base.state_id_ks,FALSE
+asb_state_city.res_state_city206,TRUE,res_state_city206,Kabupaten Hulu Sungai Utara,base.state_id_ks,FALSE
+asb_state_city.res_state_city207,TRUE,res_state_city207,Kabupaten Kotabaru,base.state_id_ks,FALSE
+asb_state_city.res_state_city208,TRUE,res_state_city208,Kabupaten Tabalong,base.state_id_ks,FALSE
+asb_state_city.res_state_city209,TRUE,res_state_city209,Kabupaten Tanah Bumbu,base.state_id_ks,FALSE
+asb_state_city.res_state_city210,TRUE,res_state_city210,Kabupaten Tanah Laut,base.state_id_ks,FALSE
+asb_state_city.res_state_city211,TRUE,res_state_city211,Kabupaten Tapin,base.state_id_ks,FALSE
+asb_state_city.res_state_city212,TRUE,res_state_city212,Kabupaten Barito Selatan,base.state_id_kt,FALSE
+asb_state_city.res_state_city213,TRUE,res_state_city213,Kabupaten Barito Timur,base.state_id_kt,FALSE
+asb_state_city.res_state_city214,TRUE,res_state_city214,Kabupaten Barito Utara,base.state_id_kt,FALSE
+asb_state_city.res_state_city215,TRUE,res_state_city215,Kabupaten Gunung Mas,base.state_id_kt,FALSE
+asb_state_city.res_state_city216,TRUE,res_state_city216,Kabupaten Kapuas,base.state_id_kt,FALSE
+asb_state_city.res_state_city217,TRUE,res_state_city217,Kabupaten Katingan,base.state_id_kt,FALSE
+asb_state_city.res_state_city218,TRUE,res_state_city218,Kabupaten Kotawaringin Barat,base.state_id_kt,FALSE
+asb_state_city.res_state_city219,TRUE,res_state_city219,Kabupaten Kotawaringin Timur,base.state_id_kt,FALSE
+asb_state_city.res_state_city220,TRUE,res_state_city220,Kabupaten Lamandau,base.state_id_kt,FALSE
+asb_state_city.res_state_city221,TRUE,res_state_city221,Kabupaten Murung Raya,base.state_id_kt,FALSE
+asb_state_city.res_state_city222,FALSE,res_state_city222,Kota Palangkaraya,base.state_id_kt,FALSE
+asb_state_city.res_state_city223,TRUE,res_state_city223,Kabupaten Pulang Pisau,base.state_id_kt,FALSE
+asb_state_city.res_state_city224,TRUE,res_state_city224,Kabupaten Seruyan,base.state_id_kt,FALSE
+asb_state_city.res_state_city225,TRUE,res_state_city225,Kabupaten Sukamara,base.state_id_kt,FALSE
+asb_state_city.res_state_city226,FALSE,res_state_city226,Kota Balikpapan,base.state_id_ki,FALSE
+asb_state_city.res_state_city227,TRUE,res_state_city227,Kabupaten Berau,base.state_id_ki,FALSE
+asb_state_city.res_state_city228,FALSE,res_state_city228,Kota Bontang,base.state_id_ki,FALSE
+asb_state_city.res_state_city229,TRUE,res_state_city229,Kabupaten Kutai Barat,base.state_id_ki,FALSE
+asb_state_city.res_state_city230,TRUE,res_state_city230,Kabupaten Kutai Kartanegara,base.state_id_ki,FALSE
+asb_state_city.res_state_city231,TRUE,res_state_city231,Kabupaten Kutai Timur,base.state_id_ki,FALSE
+asb_state_city.res_state_city232,TRUE,res_state_city232,Kabupaten Mahakam Ulu,base.state_id_ki,FALSE
+asb_state_city.res_state_city233,TRUE,res_state_city233,Kabupaten Paser,base.state_id_ki,FALSE
+asb_state_city.res_state_city234,TRUE,res_state_city234,Kabupaten Penajam Paser Utara,base.state_id_ki,FALSE
+asb_state_city.res_state_city235,FALSE,res_state_city235,Kota Samarinda,base.state_id_ki,FALSE
+asb_state_city.res_state_city236,TRUE,res_state_city236,Kabupaten Bulungan,base.state_id_ku,FALSE
+asb_state_city.res_state_city237,TRUE,res_state_city237,Kabupaten Malinau,base.state_id_ku,FALSE
+asb_state_city.res_state_city238,TRUE,res_state_city238,Kabupaten Nunukan,base.state_id_ku,FALSE
+asb_state_city.res_state_city239,TRUE,res_state_city239,Kabupaten Tana Tidung,base.state_id_ku,FALSE
+asb_state_city.res_state_city240,FALSE,res_state_city240,Kota Tarakan,base.state_id_ku,FALSE
+asb_state_city.res_state_city241,FALSE,res_state_city241,Kota Batam,base.state_id_kr,FALSE
+asb_state_city.res_state_city242,TRUE,res_state_city242,Kabupaten Bintan,base.state_id_kr,FALSE
+asb_state_city.res_state_city243,TRUE,res_state_city243,Kabupaten Karimun,base.state_id_kr,FALSE
+asb_state_city.res_state_city244,TRUE,res_state_city244,Kabupaten Kepulauan Anambas,base.state_id_kr,FALSE
+asb_state_city.res_state_city245,TRUE,res_state_city245,Kabupaten Lingga,base.state_id_kr,FALSE
+asb_state_city.res_state_city246,TRUE,res_state_city246,Kabupaten Natuna,base.state_id_kr,FALSE
+asb_state_city.res_state_city247,FALSE,res_state_city247,Kota Tanjung Pinang,base.state_id_kr,FALSE
+asb_state_city.res_state_city248,FALSE,res_state_city248,Kota Bandar Lampung,base.state_id_la,FALSE
+asb_state_city.res_state_city249,TRUE,res_state_city249,Kabupaten Lampung Barat,base.state_id_la,FALSE
+asb_state_city.res_state_city250,TRUE,res_state_city250,Kabupaten Lampung Selatan,base.state_id_la,FALSE
+asb_state_city.res_state_city251,TRUE,res_state_city251,Kabupaten Lampung Tengah,base.state_id_la,FALSE
+asb_state_city.res_state_city252,TRUE,res_state_city252,Kabupaten Lampung Timur,base.state_id_la,FALSE
+asb_state_city.res_state_city253,TRUE,res_state_city253,Kabupaten Lampung Utara,base.state_id_la,FALSE
+asb_state_city.res_state_city254,TRUE,res_state_city254,Kabupaten Mesuji,base.state_id_la,FALSE
+asb_state_city.res_state_city255,FALSE,res_state_city255,Kota Metro,base.state_id_la,FALSE
+asb_state_city.res_state_city256,TRUE,res_state_city256,Kabupaten Pesawaran,base.state_id_la,FALSE
+asb_state_city.res_state_city257,TRUE,res_state_city257,Kabupaten Pesisir Barat,base.state_id_la,FALSE
+asb_state_city.res_state_city258,TRUE,res_state_city258,Kabupaten Pringsewu,base.state_id_la,FALSE
+asb_state_city.res_state_city259,TRUE,res_state_city259,Kabupaten Tanggamus,base.state_id_la,FALSE
+asb_state_city.res_state_city260,TRUE,res_state_city260,Kabupaten Tulang Bawang,base.state_id_la,FALSE
+asb_state_city.res_state_city261,TRUE,res_state_city261,Kabupaten Tulang Bawang Barat,base.state_id_la,FALSE
+asb_state_city.res_state_city262,TRUE,res_state_city262,Kabupaten Way Kanan,base.state_id_la,FALSE
+asb_state_city.res_state_city263,FALSE,res_state_city263,Kota Ambon,base.state_id_ma,FALSE
+asb_state_city.res_state_city264,TRUE,res_state_city264,Kabupaten Buru,base.state_id_ma,FALSE
+asb_state_city.res_state_city265,TRUE,res_state_city265,Kabupaten Buru Selatan,base.state_id_ma,FALSE
+asb_state_city.res_state_city266,TRUE,res_state_city266,Kabupaten Kepulauan Aru,base.state_id_ma,FALSE
+asb_state_city.res_state_city267,TRUE,res_state_city267,Kabupaten Maluku Barat Daya,base.state_id_ma,FALSE
+asb_state_city.res_state_city268,TRUE,res_state_city268,Kabupaten Maluku Tengah,base.state_id_ma,FALSE
+asb_state_city.res_state_city269,TRUE,res_state_city269,Kabupaten Maluku Tenggara,base.state_id_ma,FALSE
+asb_state_city.res_state_city270,TRUE,res_state_city270,Kabupaten Maluku Tenggara Barat,base.state_id_ma,FALSE
+asb_state_city.res_state_city271,TRUE,res_state_city271,Kabupaten Seram Bagian Barat,base.state_id_ma,FALSE
+asb_state_city.res_state_city272,TRUE,res_state_city272,Kabupaten Seram Bagian Timur,base.state_id_ma,FALSE
+asb_state_city.res_state_city273,FALSE,res_state_city273,Kota Tual,base.state_id_ma,FALSE
+asb_state_city.res_state_city274,TRUE,res_state_city274,Kabupaten Halmahera Barat,base.state_id_mu,FALSE
+asb_state_city.res_state_city275,TRUE,res_state_city275,Kabupaten Halmahera Selatan,base.state_id_mu,FALSE
+asb_state_city.res_state_city276,TRUE,res_state_city276,Kabupaten Halmahera Tengah,base.state_id_mu,FALSE
+asb_state_city.res_state_city277,TRUE,res_state_city277,Kabupaten Halmahera Timur,base.state_id_mu,FALSE
+asb_state_city.res_state_city278,TRUE,res_state_city278,Kabupaten Halmahera Utara,base.state_id_mu,FALSE
+asb_state_city.res_state_city279,TRUE,res_state_city279,Kabupaten Kepulauan Sula,base.state_id_mu,FALSE
+asb_state_city.res_state_city280,TRUE,res_state_city280,Kabupaten Pulau Morotai,base.state_id_mu,FALSE
+asb_state_city.res_state_city281,TRUE,res_state_city281,Kabupaten Pulau Taliabu,base.state_id_mu,FALSE
+asb_state_city.res_state_city282,FALSE,res_state_city282,Kota Ternate,base.state_id_mu,FALSE
+asb_state_city.res_state_city283,FALSE,res_state_city283,Kota Tidore,base.state_id_mu,FALSE
+asb_state_city.res_state_city284,FALSE,res_state_city284,Kota Bima,base.state_id_nb,FALSE
+asb_state_city.res_state_city285,TRUE,res_state_city285,Kabupaten Bima,base.state_id_nb,FALSE
+asb_state_city.res_state_city286,TRUE,res_state_city286,Kabupaten Dompu,base.state_id_nb,FALSE
+asb_state_city.res_state_city287,TRUE,res_state_city287,Kabupaten Lombok Barat,base.state_id_nb,FALSE
+asb_state_city.res_state_city288,TRUE,res_state_city288,Kabupaten Lombok Tengah,base.state_id_nb,FALSE
+asb_state_city.res_state_city289,TRUE,res_state_city289,Kabupaten Lombok Timur,base.state_id_nb,FALSE
+asb_state_city.res_state_city290,TRUE,res_state_city290,Kabupaten Lombok Utara,base.state_id_nb,FALSE
+asb_state_city.res_state_city291,FALSE,res_state_city291,Kota Mataram,base.state_id_nb,FALSE
+asb_state_city.res_state_city292,TRUE,res_state_city292,Kabupaten Sumbawa,base.state_id_nb,FALSE
+asb_state_city.res_state_city293,TRUE,res_state_city293,Kabupaten Sumbawa Barat,base.state_id_nb,FALSE
+asb_state_city.res_state_city294,TRUE,res_state_city294,Kabupaten Alor,base.state_id_nt,FALSE
+asb_state_city.res_state_city295,TRUE,res_state_city295,Kabupaten Belu,base.state_id_nt,FALSE
+asb_state_city.res_state_city296,TRUE,res_state_city296,Kabupaten Ende,base.state_id_nt,FALSE
+asb_state_city.res_state_city297,TRUE,res_state_city297,Kabupaten Flores Timur,base.state_id_nt,FALSE
+asb_state_city.res_state_city298,FALSE,res_state_city298,Kota Kupang,base.state_id_nt,FALSE
+asb_state_city.res_state_city299,TRUE,res_state_city299,Kabupaten Kupang,base.state_id_nt,FALSE
+asb_state_city.res_state_city300,TRUE,res_state_city300,Kabupaten Lembata,base.state_id_nt,FALSE
+asb_state_city.res_state_city301,TRUE,res_state_city301,Kabupaten Malaka,base.state_id_nt,FALSE
+asb_state_city.res_state_city302,TRUE,res_state_city302,Kabupaten Manggarai,base.state_id_nt,FALSE
+asb_state_city.res_state_city303,TRUE,res_state_city303,Kabupaten Manggarai Barat,base.state_id_nt,FALSE
+asb_state_city.res_state_city304,TRUE,res_state_city304,Kabupaten Manggarai Timur,base.state_id_nt,FALSE
+asb_state_city.res_state_city305,TRUE,res_state_city305,Kabupaten Nagekeo,base.state_id_nt,FALSE
+asb_state_city.res_state_city306,TRUE,res_state_city306,Kabupaten Ngada,base.state_id_nt,FALSE
+asb_state_city.res_state_city307,TRUE,res_state_city307,Kabupaten Rote Ndao,base.state_id_nt,FALSE
+asb_state_city.res_state_city308,TRUE,res_state_city308,Kabupaten Sabu Raijua,base.state_id_nt,FALSE
+asb_state_city.res_state_city309,TRUE,res_state_city309,Kabupaten Sikka,base.state_id_nt,FALSE
+asb_state_city.res_state_city310,TRUE,res_state_city310,Kabupaten Sumba Barat,base.state_id_nt,FALSE
+asb_state_city.res_state_city311,TRUE,res_state_city311,Kabupaten Sumba Barat Daya,base.state_id_nt,FALSE
+asb_state_city.res_state_city312,TRUE,res_state_city312,Kabupaten Sumba Tengah,base.state_id_nt,FALSE
+asb_state_city.res_state_city313,TRUE,res_state_city313,Kabupaten Sumba Timur,base.state_id_nt,FALSE
+asb_state_city.res_state_city314,TRUE,res_state_city314,Kabupaten Timor Tengah Selatan,base.state_id_nt,FALSE
+asb_state_city.res_state_city315,TRUE,res_state_city315,Kabupaten Timor Tengah Utara,base.state_id_nt,FALSE
+asb_state_city.res_state_city316,TRUE,res_state_city316,Kabupaten Asmat,base.state_id_pa,FALSE
+asb_state_city.res_state_city317,TRUE,res_state_city317,Kabupaten Biak Numfor,base.state_id_pa,FALSE
+asb_state_city.res_state_city318,TRUE,res_state_city318,Kabupaten Boven Digoel,base.state_id_pa,FALSE
+asb_state_city.res_state_city319,TRUE,res_state_city319,Kabupaten Deiyai,base.state_id_pa,FALSE
+asb_state_city.res_state_city320,TRUE,res_state_city320,Kabupaten Dogiyai,base.state_id_pa,FALSE
+asb_state_city.res_state_city321,TRUE,res_state_city321,Kabupaten Intan Jaya,base.state_id_pa,FALSE
+asb_state_city.res_state_city322,FALSE,res_state_city322,Kota Jayapura,base.state_id_pa,FALSE
+asb_state_city.res_state_city323,TRUE,res_state_city323,Kabupaten Jayapura,base.state_id_pa,FALSE
+asb_state_city.res_state_city324,TRUE,res_state_city324,Kabupaten Jayawijaya,base.state_id_pa,FALSE
+asb_state_city.res_state_city325,TRUE,res_state_city325,Kabupaten Keerom,base.state_id_pa,FALSE
+asb_state_city.res_state_city326,TRUE,res_state_city326,Kabupaten Kepulauan Yapen,base.state_id_pa,FALSE
+asb_state_city.res_state_city327,TRUE,res_state_city327,Kabupaten Lanny Jaya,base.state_id_pa,FALSE
+asb_state_city.res_state_city328,TRUE,res_state_city328,Kabupaten Mamberamo Raya,base.state_id_pa,FALSE
+asb_state_city.res_state_city329,TRUE,res_state_city329,Kabupaten Mamberamo Tengah,base.state_id_pa,FALSE
+asb_state_city.res_state_city330,TRUE,res_state_city330,Kabupaten Mappi,base.state_id_pa,FALSE
+asb_state_city.res_state_city331,TRUE,res_state_city331,Kabupaten Merauke,base.state_id_pa,FALSE
+asb_state_city.res_state_city332,TRUE,res_state_city332,Kabupaten Mimika,base.state_id_pa,FALSE
+asb_state_city.res_state_city333,TRUE,res_state_city333,Kabupaten Nabire,base.state_id_pa,FALSE
+asb_state_city.res_state_city334,TRUE,res_state_city334,Kabupaten Nduga,base.state_id_pa,FALSE
+asb_state_city.res_state_city335,TRUE,res_state_city335,Kabupaten Paniai,base.state_id_pa,FALSE
+asb_state_city.res_state_city336,TRUE,res_state_city336,Kabupaten Pegunungan Bintang,base.state_id_pa,FALSE
+asb_state_city.res_state_city337,TRUE,res_state_city337,Kabupaten Puncak,base.state_id_pa,FALSE
+asb_state_city.res_state_city338,TRUE,res_state_city338,Kabupaten Puncak Jaya,base.state_id_pa,FALSE
+asb_state_city.res_state_city339,TRUE,res_state_city339,Kabupaten Sarmi,base.state_id_pa,FALSE
+asb_state_city.res_state_city340,TRUE,res_state_city340,Kabupaten Supiori,base.state_id_pa,FALSE
+asb_state_city.res_state_city341,TRUE,res_state_city341,Kabupaten Tolikara,base.state_id_pa,FALSE
+asb_state_city.res_state_city342,TRUE,res_state_city342,Kabupaten Waropen,base.state_id_pa,FALSE
+asb_state_city.res_state_city343,TRUE,res_state_city343,Kabupaten Yahukimo,base.state_id_pa,FALSE
+asb_state_city.res_state_city344,TRUE,res_state_city344,Kabupaten Yalimo,base.state_id_pa,FALSE
+asb_state_city.res_state_city345,TRUE,res_state_city345,Kabupaten Fakfak,base.state_id_pb,FALSE
+asb_state_city.res_state_city346,TRUE,res_state_city346,Kabupaten Kaimana,base.state_id_pb,FALSE
+asb_state_city.res_state_city347,TRUE,res_state_city347,Kabupaten Manokwari,base.state_id_pb,FALSE
+asb_state_city.res_state_city348,TRUE,res_state_city348,Kabupaten Manokwari Selatan,base.state_id_pb,FALSE
+asb_state_city.res_state_city349,TRUE,res_state_city349,Kabupaten Maybrat,base.state_id_pb,FALSE
+asb_state_city.res_state_city350,TRUE,res_state_city350,Kabupaten Pegunungan Arfak,base.state_id_pb,FALSE
+asb_state_city.res_state_city351,TRUE,res_state_city351,Kabupaten Raja Ampat,base.state_id_pb,FALSE
+asb_state_city.res_state_city352,FALSE,res_state_city352,Kota Sorong,base.state_id_pb,FALSE
+asb_state_city.res_state_city353,TRUE,res_state_city353,Kabupaten Sorong,base.state_id_pb,FALSE
+asb_state_city.res_state_city354,TRUE,res_state_city354,Kabupaten Sorong Selatan,base.state_id_pb,FALSE
+asb_state_city.res_state_city355,TRUE,res_state_city355,Kabupaten Tambrauw,base.state_id_pb,FALSE
+asb_state_city.res_state_city356,TRUE,res_state_city356,Kabupaten Teluk Bintuni,base.state_id_pb,FALSE
+asb_state_city.res_state_city357,TRUE,res_state_city357,Kabupaten Teluk Wondama,base.state_id_pb,FALSE
+asb_state_city.res_state_city358,TRUE,res_state_city358,Kabupaten Bengkalis,base.state_id_ri,FALSE
+asb_state_city.res_state_city359,FALSE,res_state_city359,Kota Dumai,base.state_id_ri,FALSE
+asb_state_city.res_state_city360,TRUE,res_state_city360,Kabupaten Indragiri Hilir,base.state_id_ri,FALSE
+asb_state_city.res_state_city361,TRUE,res_state_city361,Kabupaten Indragiri Hulu,base.state_id_ri,FALSE
+asb_state_city.res_state_city362,TRUE,res_state_city362,Kabupaten Kampar,base.state_id_ri,FALSE
+asb_state_city.res_state_city363,TRUE,res_state_city363,Kabupaten Kepulauan Meranti,base.state_id_ri,FALSE
+asb_state_city.res_state_city364,TRUE,res_state_city364,Kabupaten Kuantan Singingi,base.state_id_ri,FALSE
+asb_state_city.res_state_city365,FALSE,res_state_city365,Kota Pekanbaru,base.state_id_ri,FALSE
+asb_state_city.res_state_city366,TRUE,res_state_city366,Kabupaten Pelalawan,base.state_id_ri,FALSE
+asb_state_city.res_state_city367,TRUE,res_state_city367,Kabupaten Rokan Hilir,base.state_id_ri,FALSE
+asb_state_city.res_state_city368,TRUE,res_state_city368,Kabupaten Rokan Hulu,base.state_id_ri,FALSE
+asb_state_city.res_state_city369,TRUE,res_state_city369,Kabupaten Siak,base.state_id_ri,FALSE
+asb_state_city.res_state_city370,TRUE,res_state_city370,Kabupaten Majene,base.state_id_sr,FALSE
+asb_state_city.res_state_city371,TRUE,res_state_city371,Kabupaten Mamasa,base.state_id_sr,FALSE
+asb_state_city.res_state_city372,TRUE,res_state_city372,Kabupaten Mamuju,base.state_id_sr,FALSE
+asb_state_city.res_state_city373,TRUE,res_state_city373,Kabupaten Mamuju Tengah,base.state_id_sr,FALSE
+asb_state_city.res_state_city374,TRUE,res_state_city374,Kabupaten Mamuju Utara,base.state_id_sr,FALSE
+asb_state_city.res_state_city375,TRUE,res_state_city375,Kabupaten Polewali Mandar,base.state_id_sr,FALSE
+asb_state_city.res_state_city376,TRUE,res_state_city376,Kabupaten Bantaeng,base.state_id_sn,FALSE
+asb_state_city.res_state_city377,TRUE,res_state_city377,Kabupaten Barru,base.state_id_sn,FALSE
+asb_state_city.res_state_city378,TRUE,res_state_city378,Kabupaten Bone,base.state_id_sn,FALSE
+asb_state_city.res_state_city379,TRUE,res_state_city379,Kabupaten Bulukumba,base.state_id_sn,FALSE
+asb_state_city.res_state_city380,TRUE,res_state_city380,Kabupaten Enrekang,base.state_id_sn,FALSE
+asb_state_city.res_state_city381,TRUE,res_state_city381,Kabupaten Gowa,base.state_id_sn,FALSE
+asb_state_city.res_state_city382,TRUE,res_state_city382,Kabupaten Jeneponto,base.state_id_sn,FALSE
+asb_state_city.res_state_city383,TRUE,res_state_city383,Kabupaten Kepulauan Selayar,base.state_id_sn,FALSE
+asb_state_city.res_state_city384,TRUE,res_state_city384,Kabupaten Luwu,base.state_id_sn,FALSE
+asb_state_city.res_state_city385,TRUE,res_state_city385,Kabupaten Luwu Timur,base.state_id_sn,FALSE
+asb_state_city.res_state_city386,TRUE,res_state_city386,Kabupaten Luwu Utara,base.state_id_sn,FALSE
+asb_state_city.res_state_city387,FALSE,res_state_city387,Kota Makassar,base.state_id_sn,FALSE
+asb_state_city.res_state_city388,TRUE,res_state_city388,Kabupaten Maros,base.state_id_sn,FALSE
+asb_state_city.res_state_city389,FALSE,res_state_city389,Kota Palopo,base.state_id_sn,FALSE
+asb_state_city.res_state_city390,TRUE,res_state_city390,Kabupaten Pangkajene Kepulauan,base.state_id_sn,FALSE
+asb_state_city.res_state_city391,FALSE,res_state_city391,Kota Parepare,base.state_id_sn,FALSE
+asb_state_city.res_state_city392,TRUE,res_state_city392,Kabupaten Pinrang,base.state_id_sn,FALSE
+asb_state_city.res_state_city393,TRUE,res_state_city393,Kabupaten Sidenreng Rappang,base.state_id_sn,FALSE
+asb_state_city.res_state_city394,TRUE,res_state_city394,Kabupaten Sinjai,base.state_id_sn,FALSE
+asb_state_city.res_state_city395,TRUE,res_state_city395,Kabupaten Soppeng,base.state_id_sn,FALSE
+asb_state_city.res_state_city396,TRUE,res_state_city396,Kabupaten Takalar,base.state_id_sn,FALSE
+asb_state_city.res_state_city397,TRUE,res_state_city397,Kabupaten Tana Toraja,base.state_id_sn,FALSE
+asb_state_city.res_state_city398,TRUE,res_state_city398,Kabupaten Toraja Utara,base.state_id_sn,FALSE
+asb_state_city.res_state_city399,TRUE,res_state_city399,Kabupaten Wajo,base.state_id_sn,FALSE
+asb_state_city.res_state_city400,TRUE,res_state_city400,Kabupaten Banggai,base.state_id_st,FALSE
+asb_state_city.res_state_city401,TRUE,res_state_city401,Kabupaten Banggai Kepulauan,base.state_id_st,FALSE
+asb_state_city.res_state_city402,TRUE,res_state_city402,Kabupaten Banggai Laut,base.state_id_st,FALSE
+asb_state_city.res_state_city403,TRUE,res_state_city403,Kabupaten Buol,base.state_id_st,FALSE
+asb_state_city.res_state_city404,TRUE,res_state_city404,Kabupaten Donggala,base.state_id_st,FALSE
+asb_state_city.res_state_city405,TRUE,res_state_city405,Kabupaten Morowali,base.state_id_st,FALSE
+asb_state_city.res_state_city406,TRUE,res_state_city406,Kabupaten Morowali Utara,base.state_id_st,FALSE
+asb_state_city.res_state_city407,FALSE,res_state_city407,Kota Palu,base.state_id_st,FALSE
+asb_state_city.res_state_city408,TRUE,res_state_city408,Kabupaten Parigi Moutong,base.state_id_st,FALSE
+asb_state_city.res_state_city409,TRUE,res_state_city409,Kabupaten Poso,base.state_id_st,FALSE
+asb_state_city.res_state_city410,TRUE,res_state_city410,Kabupaten Sigi,base.state_id_st,FALSE
+asb_state_city.res_state_city411,TRUE,res_state_city411,Kabupaten Tojo Una-Una,base.state_id_st,FALSE
+asb_state_city.res_state_city412,TRUE,res_state_city412,Kabupaten Toli-Toli,base.state_id_st,FALSE
+asb_state_city.res_state_city413,FALSE,res_state_city413,Kota Bau-Bau,base.state_id_sg,FALSE
+asb_state_city.res_state_city414,TRUE,res_state_city414,Kabupaten Bombana,base.state_id_sg,FALSE
+asb_state_city.res_state_city415,TRUE,res_state_city415,Kabupaten Buton,base.state_id_sg,FALSE
+asb_state_city.res_state_city416,TRUE,res_state_city416,Kabupaten Buton Selatan,base.state_id_sg,FALSE
+asb_state_city.res_state_city417,TRUE,res_state_city417,Kabupaten Buton Tengah,base.state_id_sg,FALSE
+asb_state_city.res_state_city418,TRUE,res_state_city418,Kabupaten Buton Utara,base.state_id_sg,FALSE
+asb_state_city.res_state_city419,FALSE,res_state_city419,Kota Kendari,base.state_id_sg,FALSE
+asb_state_city.res_state_city420,TRUE,res_state_city420,Kabupaten Kolaka,base.state_id_sg,FALSE
+asb_state_city.res_state_city421,TRUE,res_state_city421,Kabupaten Kolaka Timur,base.state_id_sg,FALSE
+asb_state_city.res_state_city422,TRUE,res_state_city422,Kabupaten Kolaka Utara,base.state_id_sg,FALSE
+asb_state_city.res_state_city423,TRUE,res_state_city423,Kabupaten Konawe,base.state_id_sg,FALSE
+asb_state_city.res_state_city424,TRUE,res_state_city424,Kabupaten Konawe Kepulauan,base.state_id_sg,FALSE
+asb_state_city.res_state_city425,TRUE,res_state_city425,Kabupaten Konawe Selatan,base.state_id_sg,FALSE
+asb_state_city.res_state_city426,TRUE,res_state_city426,Kabupaten Konawe Utara,base.state_id_sg,FALSE
+asb_state_city.res_state_city427,TRUE,res_state_city427,Kabupaten Muna,base.state_id_sg,FALSE
+asb_state_city.res_state_city428,TRUE,res_state_city428,Kabupaten Muna Barat,base.state_id_sg,FALSE
+asb_state_city.res_state_city429,TRUE,res_state_city429,Kabupaten Wakatobi,base.state_id_sg,FALSE
+asb_state_city.res_state_city430,FALSE,res_state_city430,Kota Bitung,base.state_id_sa,FALSE
+asb_state_city.res_state_city431,TRUE,res_state_city431,Kabupaten Bolaang Mongondow,base.state_id_sa,FALSE
+asb_state_city.res_state_city432,TRUE,res_state_city432,Kabupaten Bolaang Mongondow Selatan,base.state_id_sa,FALSE
+asb_state_city.res_state_city433,TRUE,res_state_city433,Kabupaten Bolaang Mongondow Timur,base.state_id_sa,FALSE
+asb_state_city.res_state_city434,TRUE,res_state_city434,Kabupaten Bolaang Mongondow Utara,base.state_id_sa,FALSE
+asb_state_city.res_state_city435,TRUE,res_state_city435,Kabupaten Kepulauan Sangihe,base.state_id_sa,FALSE
+asb_state_city.res_state_city436,TRUE,res_state_city436,Kabupaten Kepulauan Siau Tagulandang Biaro (Sitaro),base.state_id_sa,FALSE
+asb_state_city.res_state_city437,TRUE,res_state_city437,Kabupaten Kepulauan Talaud,base.state_id_sa,FALSE
+asb_state_city.res_state_city438,FALSE,res_state_city438,Kota Kotamobagu,base.state_id_sa,FALSE
+asb_state_city.res_state_city439,FALSE,res_state_city439,Kota Manado,base.state_id_sa,FALSE
+asb_state_city.res_state_city440,TRUE,res_state_city440,Kabupaten Minahasa,base.state_id_sa,FALSE
+asb_state_city.res_state_city441,TRUE,res_state_city441,Kabupaten Minahasa Selatan,base.state_id_sa,FALSE
+asb_state_city.res_state_city442,TRUE,res_state_city442,Kabupaten Minahasa Tenggara,base.state_id_sa,FALSE
+asb_state_city.res_state_city443,TRUE,res_state_city443,Kabupaten Minahasa Utara,base.state_id_sa,FALSE
+asb_state_city.res_state_city444,FALSE,res_state_city444,Kota Tomohon,base.state_id_sa,FALSE
+asb_state_city.res_state_city445,TRUE,res_state_city445,Kabupaten Agam,base.state_id_sb,FALSE
+asb_state_city.res_state_city446,FALSE,res_state_city446,Kota Bukittinggi,base.state_id_sb,FALSE
+asb_state_city.res_state_city447,TRUE,res_state_city447,Kabupaten Dharmasraya,base.state_id_sb,FALSE
+asb_state_city.res_state_city448,TRUE,res_state_city448,Kabupaten Kepulauan Mentawai,base.state_id_sb,FALSE
+asb_state_city.res_state_city449,TRUE,res_state_city449,Kabupaten Lima Puluh,base.state_id_sb,FALSE
+asb_state_city.res_state_city450,FALSE,res_state_city450,Kota Padang,base.state_id_sb,FALSE
+asb_state_city.res_state_city451,FALSE,res_state_city451,Kota Padang Panjang,base.state_id_sb,FALSE
+asb_state_city.res_state_city452,TRUE,res_state_city452,Kabupaten Padang Pariaman,base.state_id_sb,FALSE
+asb_state_city.res_state_city453,FALSE,res_state_city453,Kota Pariaman,base.state_id_sb,FALSE
+asb_state_city.res_state_city454,TRUE,res_state_city454,Kabupaten Pasaman,base.state_id_sb,FALSE
+asb_state_city.res_state_city455,TRUE,res_state_city455,Kabupaten Pasaman Barat,base.state_id_sb,FALSE
+asb_state_city.res_state_city456,FALSE,res_state_city456,Kota Payakumbuh,base.state_id_sb,FALSE
+asb_state_city.res_state_city457,TRUE,res_state_city457,Kabupaten Pesisir Selatan,base.state_id_sb,FALSE
+asb_state_city.res_state_city458,FALSE,res_state_city458,Kota Sawahlunto,base.state_id_sb,FALSE
+asb_state_city.res_state_city459,TRUE,res_state_city459,Kabupaten Sijunjung,base.state_id_sb,FALSE
+asb_state_city.res_state_city460,FALSE,res_state_city460,Kota Solok,base.state_id_sb,FALSE
+asb_state_city.res_state_city461,TRUE,res_state_city461,Kabupaten Solok,base.state_id_sb,FALSE
+asb_state_city.res_state_city462,TRUE,res_state_city462,Kabupaten Solok Selatan,base.state_id_sb,FALSE
+asb_state_city.res_state_city463,TRUE,res_state_city463,Kabupaten Tanah Datar,base.state_id_sb,FALSE
+asb_state_city.res_state_city464,TRUE,res_state_city464,Kabupaten Banyuasin,base.state_id_ss,FALSE
+asb_state_city.res_state_city465,TRUE,res_state_city465,Kabupaten Empat Lawang,base.state_id_ss,FALSE
+asb_state_city.res_state_city466,TRUE,res_state_city466,Kabupaten Lahat,base.state_id_ss,FALSE
+asb_state_city.res_state_city467,FALSE,res_state_city467,Kota Lubuk Linggau,base.state_id_ss,FALSE
+asb_state_city.res_state_city468,TRUE,res_state_city468,Kabupaten Muara Enim,base.state_id_ss,FALSE
+asb_state_city.res_state_city469,TRUE,res_state_city469,Kabupaten Musi Banyuasin,base.state_id_ss,FALSE
+asb_state_city.res_state_city470,TRUE,res_state_city470,Kabupaten Musi Rawas,base.state_id_ss,FALSE
+asb_state_city.res_state_city471,TRUE,res_state_city471,Kabupaten Musi Rawas Utara,base.state_id_ss,FALSE
+asb_state_city.res_state_city472,TRUE,res_state_city472,Kabupaten Ogan Ilir,base.state_id_ss,FALSE
+asb_state_city.res_state_city473,TRUE,res_state_city473,Kabupaten Ogan Komering Ilir,base.state_id_ss,FALSE
+asb_state_city.res_state_city474,TRUE,res_state_city474,Kabupaten Ogan Komering Ulu,base.state_id_ss,FALSE
+asb_state_city.res_state_city475,TRUE,res_state_city475,Kabupaten Ogan Komering Ulu Selatan,base.state_id_ss,FALSE
+asb_state_city.res_state_city476,TRUE,res_state_city476,Kabupaten Ogan Komering Ulu Timur,base.state_id_ss,FALSE
+asb_state_city.res_state_city477,FALSE,res_state_city477,Kota Pagar Alam,base.state_id_ss,FALSE
+asb_state_city.res_state_city478,FALSE,res_state_city478,Kota Palembang,base.state_id_ss,FALSE
+asb_state_city.res_state_city479,TRUE,res_state_city479,Kabupaten Penukal Abab Lematang Ilir,base.state_id_ss,FALSE
+asb_state_city.res_state_city480,FALSE,res_state_city480,Kota Prabumulih,base.state_id_ss,FALSE
+asb_state_city.res_state_city481,TRUE,res_state_city481,Kabupaten Asahan,base.state_id_su,FALSE
+asb_state_city.res_state_city482,TRUE,res_state_city482,Kabupaten Batu Bara,base.state_id_su,FALSE
+asb_state_city.res_state_city483,FALSE,res_state_city483,Kota Binjai,base.state_id_su,FALSE
+asb_state_city.res_state_city484,TRUE,res_state_city484,Kabupaten Dairi,base.state_id_su,FALSE
+asb_state_city.res_state_city485,TRUE,res_state_city485,Kabupaten Deli Serdang,base.state_id_su,FALSE
+asb_state_city.res_state_city486,FALSE,res_state_city486,Kota Gunungsitoli,base.state_id_su,FALSE
+asb_state_city.res_state_city487,TRUE,res_state_city487,Kabupaten Humbang Hasundutan,base.state_id_su,FALSE
+asb_state_city.res_state_city488,TRUE,res_state_city488,Kabupaten Karo,base.state_id_su,FALSE
+asb_state_city.res_state_city489,TRUE,res_state_city489,Kabupaten Labuhanbatu,base.state_id_su,FALSE
+asb_state_city.res_state_city490,TRUE,res_state_city490,Kabupaten Labuhanbatu Selatan,base.state_id_su,FALSE
+asb_state_city.res_state_city491,TRUE,res_state_city491,Kabupaten Labuhanbatu Utara,base.state_id_su,FALSE
+asb_state_city.res_state_city492,TRUE,res_state_city492,Kabupaten Langkat,base.state_id_su,FALSE
+asb_state_city.res_state_city493,TRUE,res_state_city493,Kabupaten Mandailing Natal,base.state_id_su,FALSE
+asb_state_city.res_state_city494,FALSE,res_state_city494,Kota Medan,base.state_id_su,FALSE
+asb_state_city.res_state_city495,TRUE,res_state_city495,Kabupaten Nias,base.state_id_su,FALSE
+asb_state_city.res_state_city496,TRUE,res_state_city496,Kabupaten Nias Barat,base.state_id_su,FALSE
+asb_state_city.res_state_city497,TRUE,res_state_city497,Kabupaten Nias Selatan,base.state_id_su,FALSE
+asb_state_city.res_state_city498,TRUE,res_state_city498,Kabupaten Nias Utara,base.state_id_su,FALSE
+asb_state_city.res_state_city499,TRUE,res_state_city499,Kabupaten Padang Lawas,base.state_id_su,FALSE
+asb_state_city.res_state_city500,TRUE,res_state_city500,Kabupaten Padang Lawas Utara,base.state_id_su,FALSE
+asb_state_city.res_state_city501,FALSE,res_state_city501,Kota Padang Sidempuan,base.state_id_su,FALSE
+asb_state_city.res_state_city502,TRUE,res_state_city502,Kabupaten Pakpak Bharat,base.state_id_su,FALSE
+asb_state_city.res_state_city503,FALSE,res_state_city503,Kota Pematangsiantar,base.state_id_su,FALSE
+asb_state_city.res_state_city504,TRUE,res_state_city504,Kabupaten Samosir,base.state_id_su,FALSE
+asb_state_city.res_state_city505,TRUE,res_state_city505,Kabupaten Serdang Bedagai,base.state_id_su,FALSE
+asb_state_city.res_state_city506,FALSE,res_state_city506,Kota Sibolga,base.state_id_su,FALSE
+asb_state_city.res_state_city507,TRUE,res_state_city507,Kabupaten Simalungun,base.state_id_su,FALSE
+asb_state_city.res_state_city508,FALSE,res_state_city508,Kota Tanjung Balai,base.state_id_su,FALSE
+asb_state_city.res_state_city509,TRUE,res_state_city509,Kabupaten Tapanuli Selatan,base.state_id_su,FALSE
+asb_state_city.res_state_city510,TRUE,res_state_city510,Kabupaten Tapanuli Tengah,base.state_id_su,FALSE
+asb_state_city.res_state_city511,TRUE,res_state_city511,Kabupaten Tapanuli Utara,base.state_id_su,FALSE
+asb_state_city.res_state_city512,FALSE,res_state_city512,Kota Tebing Tinggi,base.state_id_su,FALSE
+asb_state_city.res_state_city513,TRUE,res_state_city513,Kabupaten Toba Samosir,base.state_id_su,FALSE

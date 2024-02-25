@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<record model="ir.ui.view" id="training_employee_suggestion_wizard_view_form">
+    	    <field name="name">training_employee_suggestion_wizard_view.form</field>
+    	    <field name="model">training.employee.suggestion.wizard</field>
+    	    <field name="arch" type="xml">
+    	        <form string="description">
+    	            <sheet>
+    	            	<span>
+    	            		Karyawan di bawah ini pernah diajukan untuk mengikuti pelatihan, Apakah anda akan mengikutsertakan dalam pelatihan ini? <br/>
+    	            		Jika ya silakan klik tombol <strong>Submit</strong>, jika tidak klik tombol <strong>Tidak, Lanjutkan</strong> 
+    	            	</span>
+    	                <group>
+    	                    <field name="employee_ids"/>
+    	                </group>
+    	            </sheet>
+    	            <footer>
+    	            	<button name="submit_employee" string="Ya, Daftarkan" type="object" icon="fa-plus"/>
+    	            	<button name="skip_employee" string="Tidak, Lanjutkan" type="object" icon="fa-stop"/>
+    	            </footer>
+    	        </form>
+    	    </field>
+    	</record>
+
+    	<record id="action_training_employee_suggestion_wizard" model="ir.actions.act_window">
+    		<field name="name">Employee Suggestion</field>
+    		<field name="res_model">training.employee.suggestion.wizard</field>
+    		<field name="view_mode">form</field>
+    		<field name="target">new</field>
+    	</record>
+    </data>
+</odoo>

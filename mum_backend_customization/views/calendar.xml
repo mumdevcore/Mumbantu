@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+		<record model='ir.ui.view' id='calendar_event_view_tree'>
+		    <field name='name'>calendar_event_view.tree</field>
+		    <field name='model'>calendar.event</field>
+		    <field name="inherit_id" ref="calendar.view_calendar_event_tree"/>
+		    <field name='arch' type='xml'>
+		    	<field name="duration" position='attributes'>
+		    		<attribute name='invisible'>True</attribute>
+		    	</field>
+
+		    	<field name="start" position='before'>
+		    		<field name="tipe_kegiatan"/>
+		    		<field name="trainer_partner_ids" widget="many2many_tags"/>
+		    		<field name="hr_training_id"/>
+		    		<!-- <field name="location"/> -->
+		    	</field>
+
+		    	<field name="duration" position='after'>
+		    		<field name="total_attendees"/>
+		    		<field name="total_days"/>
+		    		<field name="total_hours"/>
+		    		<field name="state"/>
+		    	</field>
+		    </field>
+		</record>
+
+		<record model='ir.ui.view' id='calendar_event_view_form'>
+			<field name='name'>calendar_event_view.form</field>
+			<field name='model'>calendar.event</field>
+			<field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+			<field name='arch' type='xml'>
+				<xpath expr="//page[@name='page_invitations']" position='attributes'>
+					<attribute name='attrs'>{'invisible' : [('tipe_calendar', '!=', 'meeting')]}</attribute>
+				</xpath>
+				
+		    	<field name="allday" position='attributes'>
+		    		<attribute name='invisible'>True</attribute>
+		    	</field>
+
+				<field name="name" position='attributes'>
+					<attribute name='attrs'>{'readonly' : [('tipe_calendar', 'in', ('training_manajemen', 'training_eksternal') )]}</attribute>
+				</field>
+
+				<xpath expr="//div[hasclass('oe_button_box')]" position='inside'>
+					<button name="action_view_hr_certification" type="object" class="oe_stat_button" icon="fa-pencil" attrs="{'invisible': [('hr_certification_count', '=', 0)]}">
+						<div class="o_field_widget o_stat_info">
+							<span class="o_stat_value">
+								<field name="hr_certification_count" widget="statinfo" nolabel="1" string="Certifications"/>
+							</span>
+							<span class="o_stat_text">Training</span>
+						</div>
+					</button>
+				</xpath>
+
+				<xpath expr="//page[@name='page_details']/group[2]" position='after'>
+					<group string="Training Details" attrs="{'invisible' : [('tipe_calendar', 'not in', ('training_manajemen', 'training_eksternal') )]}">
+						<group>
+							<field name="tipe_kegiatan"/>
+							<field name="kualifikasi_training" invisible='1'/>
+							<field name="trainer_partner_ids" widget="many2many_tags"/>
+							<field name="hr_training_id"/>
+							<field name="location"/>
+						</group>
+						<group>
+							<field name="total_days"/>
+							<field name="total_hours"/>
+							<field name="total_attendees"/>
+
+						</group>
+					</group>
+				</xpath>
+
+				<xpath expr="//sheet" position='before'>
+					<header>
+						<button name="button_confirm" states="draft" string="Confirm" type="object" class="oe_highlight"/>
+						<button name="button_done" states="confirm" string="Mark As Done" type="object" class="oe_highlight"/>
+						<button name="button_cancel" states="draft,confirm" string="Cancel" type="object"/>
+						<field name='state' widget='statusbar' statusbar_visible='draft,done'/>
+					</header>
+				</xpath>
+
+				<xpath expr="//notebook">
+					<page name='employee_attendee' string="Informasi Peserta" attrs="{'invisible' : [('tipe_calendar', 'not in', ('training_manajemen', 'training_eksternal'))]}">
+						<field name="tipe_calendar" invisible='1'/>
+						<button name="%(action_calendar_add_member_wizard)d" string="ADD" type="action" icon="fa-plus" class="btn btn-success" groups="hr.group_hr_user"/>
+						<field name="employee_ids" attrs="{'invisible' : [('tipe_calendar', '!=', 'training_manajemen')]}" invisible='1'/>
+						<field name="eksternal_group_ids" attrs="{'invisible' : [('tipe_calendar', '!=', 'training_eksternal')]}" invisible='1'/>
+						<separator string="Details"/>
+						<field name='hr_certification_line' attrs="{'readonly' : [('tipe_calendar', '!=', 'training_eksternal')]}">
+							<tree editable='bottom'>
+								<field name="name" readonly='1'/>
+								<field name="employee_id" attrs="{'column_invisible' : [('parent.tipe_calendar', '!=', 'training_manajemen')]}" readonly='1'/>
+								<field name="eksternal_group_id" attrs="{'column_invisible' : [('parent.tipe_calendar', '!=', 'training_eksternal')]}" readonly='1'/>
+								<field name="tipe_kegiatan" readonly='1'/>
+								<field name="hr_training_id" readonly='1'/>
+								<field name="start_date" readonly='1'/>
+								<field name="end_date" readonly='1'/>
+								<field name="total_days" optional='hide' readonly='1'/>
+								<field name="total_hours" optional='hide' readonly='1'/>
+								<field name="total_attendees" optional='hide'/>
+								<field name="trainer_partner_ids" widget="many2many_tags" readonly='1'/>
+								<field name="location" readonly='1'/>
+								<field name="kualifikasi_training" invisible='1' readonly='1'/>
+								<field name="company_id" optional='hide' readonly='1'/>
+								<!-- <field name="budget_plan"/> -->
+								<!-- <field name="budget_realisation"/> -->
+								<field name="notes" optional='hide' readonly='1'/>
+							</tree>
+						</field>
+					</page>
+				</xpath>
+			</field>
+		</record>
+
+		<record model='ir.ui.view' id='calendar_event_view_calendar'>
+			<field name='name'>calendar_event_view.calendar</field>
+			<field name='model'>calendar.event</field>
+			<field name="inherit_id" ref="calendar.view_calendar_event_calendar"/>
+			<field name='arch' type='xml'>
+				<xpath expr="//calendar" position='attributes'>
+					<attribute name='mode'>month</attribute>
+					<attribute name='quick_add'>0</attribute>
+				</xpath>
+			</field>
+		</record>
+		<record id="action_calendar_training_manajemen" model="ir.actions.act_window">
+			<field name="name">Jadwal Training Manajemen</field>
+			<field name="res_model">calendar.event</field>
+			<field name="view_mode">tree,calendar,form</field>
+			<field name="context">
+				{
+					'default_tipe_calendar' : 'training_manajemen', 
+					'default_kualifikasi_training' : 'manajemen', 
+					'default_allday' : 1
+				}
+			</field>
+			<field name="domain">
+				[('tipe_calendar', '=', 'training_manajemen')]
+			</field>
+		</record>
+
+		<record id="action_calendar_training_eksternal" model="ir.actions.act_window">
+			<field name="name">Jadwal Training Eksternal</field>
+			<field name="res_model">calendar.event</field>
+			<field name="view_mode">tree,calendar,form</field>
+			<field name="context">
+				{
+					'default_tipe_calendar' : 'training_eksternal', 
+					'default_kualifikasi_training' : 'eksternal', 
+					'default_allday' : 1
+				}
+			</field>
+			<field name="domain">
+				[('tipe_calendar', '=', 'training_eksternal')]
+			</field>
+		</record>
+
+		
+		<menuitem id="calendar_training_manajemen_menu" name="Jadwal Training Manajemen" parent="jadwal_training_menu" action="action_calendar_training_manajemen" sequence='10'/>
+		<menuitem id="calendar_training_eksternal_menu" name="Jadwal Training Eksternal" parent="jadwal_training_menu" action="action_calendar_training_eksternal" sequence='20'/>
+	</data>
+</odoo>

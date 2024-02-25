@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<record model='ir.ui.view' id='training_needs_analysis_view_tree'>
+    	    <field name='name'>training_needs_analysis_view.tree</field>
+    	    <field name='model'>training.needs.analysis</field>
+    	    <field name='arch' type='xml'>
+    	        <tree string='description'>
+    	            <field name="name"/>
+					<field name="tgl_diajukan"/>
+					<field name="employee_id"/>
+					<field name="hr_training_id"/>
+					<field name="job_id"/>
+					<!-- hr_certification_ids -->
+					<field name="state"/>
+    	        </tree>
+    	    </field>
+    	</record>
+
+
+	    <record model="ir.ui.view" id="training_needs_analysis_view_form">
+	        <field name="name">training_needs_analysis_view.form</field>
+	        <field name="model">training.needs.analysis</field>
+	        <field name="arch" type="xml">
+	            <form string="description">
+	                <header>
+	                	<button name="button_submit" states="draft" string="Ajukan" type="object" class='oe_highlight'/>
+	                	<field name="state" widget="statusbar" statusbar_visible='draft,done'/>
+	                </header>
+	                <sheet>
+	                     <!-- <div class='oe_button_box' name='button_box'>
+							<button name="action_view_revisions" type="object" class="oe_stat_button" icon="fa-file-archive-o" attrs="{'invisible': ['|', ('has_old_revisions', '=', False),('revision_count', '=', 0)]}">
+								<field name="revision_count" widget="statinfo" string="Prev. revisions"/>
+							</button>
+						</div> -->
+						<div class='oe_title'>
+							<!-- <label for='name' string=""/> -->
+							<h1>
+								<field name="name" readonly='1'/>
+							</h1>
+						</div>
+						<group>
+							<group>
+								<field name="employee_id"/>
+								<field name="job_id"/>
+							</group>
+							<group>
+								<field name="tgl_diajukan"/>
+								<field name="hr_training_id"/>
+							</group>
+						</group>
+	                </sheet>
+	                <div class="o_attachment_preview"/>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" groups="base.group_user"/>
+						<field name="activity_ids"/>
+						<field name="message_ids"/>
+					</div>
+	            </form>
+	        </field>
+	    </record>
+
+    	<record id="action_training_needs_analysis" model="ir.actions.act_window">
+    		<field name="name">Training Needs Analysis</field>
+    		<field name="res_model">training.needs.analysis</field>
+    		<field name="view_mode">tree,form</field>
+    	</record>
+
+    	<menuitem id="training_needs_analysis_menu" name="Training Needs Analysis" parent="training_menu" action="action_training_needs_analysis"/>
+    </data>
+</odoo>

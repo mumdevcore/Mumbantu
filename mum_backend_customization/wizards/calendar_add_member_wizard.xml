@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<record model="ir.ui.view" id="calendar_add_member_wizard_form">
+    	    <field name="name">calendar_add_member_wizard.form</field>
+    	    <field name="model">calendar.add.member.wizard</field>
+    	    <field name="arch" type="xml">
+    	        <form string="description">
+    	            <sheet>
+    	                <group>
+    	                    <field name="calendar_id" invisible="1"/>
+                            <field name="tipe_calendar" invisible='1'/>
+    	                    <field name="employee_ids" attrs="{'invisible' : [('tipe_calendar', '!=', 'training_manajemen')]}"/>
+    	                    <field name="eksternal_group_ids" attrs="{'invisible' : [('tipe_calendar', '!=', 'training_eksternal')]}"/>
+    	                </group>
+    	            </sheet>
+    	            <footer>
+    	            	<button name="button_add_member" string="Add Member" type="object" icon="fa-plus"/>
+    	            	<button special='cancel' name="Cancel"/>
+    	            </footer>
+    	        </form>
+    	    </field>
+    	</record>
+
+        <record id="action_calendar_add_member_wizard" model="ir.actions.act_window">
+            <field name="name">ADD MEMBER</field>
+            <field name="res_model">calendar.add.member.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context">
+                {
+                    'default_calendar_id' : active_id,
+                }
+            </field>
+        </record>
+    </data>
+</odoo>

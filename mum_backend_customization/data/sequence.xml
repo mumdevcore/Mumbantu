@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<record id="hr_certification_seq" model='ir.sequence'>
+    		<field name='name'>HR Certification Sequence</field>
+    		<field name="code">hr.certification.seq</field>
+            <field name='prefix'>SCH/%(range_year)s/%(range_month)s/</field>
+            <field name='padding'>3</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field name='use_date_range' eval='True'/>
+            <field name='range_reset'>monthly</field>
+    	</record>
+
+        <record id="training_needs_analysis_seq" model='ir.sequence'>
+            <field name='name'>Training Needs Analysis Sequence</field>
+            <field name="code">training.needs.analysis.seq</field>
+            <field name='prefix'>TNA/%(range_year)s/%(range_month)s/</field>
+            <field name='padding'>3</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field name='use_date_range' eval='True'/>
+            <field name='range_reset'>monthly</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<record model='ir.ui.view' id='hr_certification_view_tree'>
+    	    <field name='name'>hr_certification_view.tree</field>
+    	    <field name='model'>hr.certification</field>
+    	    <field name='arch' type='xml'>
+    	    	<tree>
+    	    		<field name="name"/>
+	    	    	<field name="employee_id"/>
+	    	    	<field name="eksternal_group_id"/>
+					<field name="tipe_kegiatan"/>
+					<field name="hr_training_id"/>
+					<field name="start_date"/>
+					<field name="end_date"/>
+					<field name="total_days" optional='hide'/>
+					<field name="total_hours" optional='hide'/>
+					<field name="total_attendees" optional='hide'/>
+					<field name="trainer_partner_ids" widget="many2many_tags"/>
+					<field name="location"/>
+					<field name="kualifikasi_training" invisible='1'/>
+					<field name="company_id" optional='hide'/>
+					<!-- <field name="budget_plan"/> -->
+					<!-- <field name="budget_realisation"/> -->
+					<field name="notes" optional='hide'/>
+					<field name="status_sertifikasi"/>
+					<field name="state"/>
+    	    	</tree>
+    	    </field>
+    	</record>
+
+    	<record model="ir.ui.view" id="hr_certification_view_form">
+    	    <field name="name">hr_certification_view.form</field>
+    	    <field name="model">hr.certification</field>
+    	    <field name="arch" type="xml">
+    	        <form string="description">
+    	            <header>
+    	            	<button name="button_lulus" string="Lulus" type="object" class='oe_highlight' attrs="{'invisible' : ['|', ('state', '!=', 'in_progress'), ('kualifikasi_training', '=', 'eksternal')]}"/>
+    	            	<button name="button_tidak_lulus" string="Tidak Lulus" type="object" class='btn btn-danger' attrs="{'invisible' : ['|', ('state', '!=', 'in_progress'), ('kualifikasi_training', '=', 'eksternal')]}"/>
+    	            	<field name="state" widget='statusbar' statusbar_visible='draft,done'/>
+    	            </header>
+    	            <sheet>
+	                    <!-- <div class='oe_button_box' name='button_box'>
+							<button name="action_view_revisions" type="object" class="oe_stat_button" icon="fa-file-archive-o" attrs="{'invisible': ['|', ('has_old_revisions', '=', False),('revision_count', '=', 0)]}">
+								<field name="revision_count" widget="statinfo" string="Prev. revisions"/>
+							</button>
+						</div> -->
+						<div class='oe_title'>
+							<label for='name' string="Nomor"/>
+							<h1>
+								<field name="name" readonly='1'/>
+							</h1>
+						</div>
+    	                <group>
+    	                	<group>
+								<field name="tipe_kegiatan"/>
+				    	    	<field name="employee_id" attrs="{'invisible' : [('kualifikasi_training', '!=', 'manajemen')]}"/>
+				    	    	<field name="eksternal_group_id" attrs="{'invisible' : [('kualifikasi_training', '!=', 'eksternal')]}"/>
+								<field name="kualifikasi_training" invisible='1'/>
+								<field name="hr_training_id"/>
+								<label for="start_date" string="Tanggal"/>
+								<div>
+									<field name="start_date" placeholder="Mulai" widget="daterange" class="oe_inline" options="{'related_end_date': 'end_date'}"/> 
+									s/d 
+									<field name="end_date" placeholder="Selesai" widget="daterange" class="oe_inline" options="{'related_start_date': 'start_date'}"/>
+								</div>
+								<field name="total_days" optional='hide'/>
+								<field name="total_hours" optional='hide'/>
+								<field name="total_attendees" optional='hide'/>
+								<field name="user_id"/>
+    	                	</group>
+    	                	<group>
+								<field name="trainer_partner_ids" widget="many2many_tags"/>
+								<field name="location"/>
+								<field name="budget_plan"/>
+								<field name="budget_realisation"/>
+								<field name="notes" optional='hide'/>
+								<field name="company_id"/>
+    	                	</group>
+    	                </group>
+    	                <group string='Dokumentasi'>
+    	                	<group>
+    	                		<field name="status_sertifikasi" readonly='1'/>
+    	                		<field name="sertifikat"/>
+								<field name="dokumentasi"/>
+								
+    	                	</group>
+    	                	<group>
+    	                		<field name="modul"/>
+								<field name="lpj"/>
+								<field name="rundown"/>
+    	                	</group>
+    	                </group>
+    	            </sheet>
+    	            <div class="o_attachment_preview"/>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" groups="base.group_user"/>
+						<field name="activity_ids"/>
+						<field name="message_ids"/>
+					</div>
+    	        </form>
+    	    </field>
+    	</record>
+
+    	<record id="action_hr_certification_manajemen" model="ir.actions.act_window">
+    		<field name="name">Training Manajemen</field>
+    		<field name="res_model">hr.certification</field>
+    		<field name="view_mode">tree,form</field>
+    		<field name='domain'>
+    			[('kualifikasi_training', '=', 'manajemen')]
+    		</field>
+    		<field name='context'>
+    			{'default_kualifikasi_training' : 'manajemen'}
+    		</field>
+    	</record>
+
+    	<record id="action_hr_certification_eksternal" model="ir.actions.act_window">
+    		<field name="name">Training Eksternal</field>
+    		<field name="res_model">hr.certification</field>
+    		<field name="view_mode">tree,form</field>
+    		<field name='domain'>
+    			[('kualifikasi_training', '=', 'eksternal')]
+    		</field>
+    		<field name='context'>
+    			{'default_kualifikasi_training' : 'eksternal'}
+    		</field>
+    	</record>
+
+    	<menuitem id="hr_certification_manajemen_menu" parent='training_menu' name="Training Manajemen" action="action_hr_certification_manajemen" groups="hr.group_hr_user" sequence='10'/>
+    	<menuitem id="hr_certification_eksternal_menu" parent='training_menu' name="Training Eksternal" action="action_hr_certification_eksternal" groups="hr.group_hr_user" sequence='20'/>
+
+    </data>
+</odoo>
