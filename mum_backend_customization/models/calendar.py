@@ -32,8 +32,10 @@ class HrCalendarCertification(models.Model):
 	total_days = fields.Integer(string='Jumlah Hari', tracking=True, compute='_compute_total_days')
 	total_hours = fields.Float(string='Jumlah Jam Kegiatan', tracking=True)
 	total_attendees = fields.Integer(string='Total Peserta', tracking=True)
+	total_attendees_eksternal = fields.Integer(string='Total Peserta', tracking=True, compute='_compute_total_peserta_eksternal')
 	location = fields.Char(string='Lokasi Pelaksanaan',)
 	trainer_partner_ids = fields.Many2many('res.partner', "calendar_trainer_partner_rel",string='Trainer', tracking=True)
+	instansi_ids = fields.Many2many('res.partner', 'calendar_instansi_partner_rel',string='Instansi',)
 	currency_id = fields.Many2one('res.currency',string='Currency', default=lambda s:s.env.company.currency_id)
 	budget_plan = fields.Monetary(string='RAB', tracking=True, currency_field='currency_id')
 	budget_realisation = fields.Monetary(string='Realisasi Anggaran', tracking=True, currency_field='currency_id')
@@ -54,6 +56,14 @@ class HrCalendarCertification(models.Model):
 		if vals.get('tipe_calendar') in ('training_manajemen', 'training_eksternal'):
 			vals['name'] = self.env['ir.sequence'].next_by_code('event.calendar.seq', fields.Date.to_date(vals.get('start_date')))
 		return super(HrCalendarCertification, self).create(vals)
+
+	@api.depends('hr_certification_line', 'tipe_calendar')
+	def _compute_total_peserta_eksternal(self):
+		for rec in self:
+			rec.total_attendees_eksternal = 0
+			if rec.tipe_calendar == 'training_eksternal':
+				rec.total_attendees_eksternal = sum(x.total_attendees for x in rec.hr_certification_line)
+
 
 	def _compute_hr_certification_count(self):
 		for rec in self:
@@ -90,6 +100,7 @@ class HrCalendarCertification(models.Model):
 			'kualifikasi_training' : self.kualifikasi_training,
 			'hr_training_id' : self.hr_training_id.id,
 			# 'total_days' : self.total_days,
+			'instansi_ids' : self.instansi_ids,
 			'total_attendees' : self.total_attendees,
 			'location' : self.location,
 			'trainer_partner_ids' : self.trainer_partner_ids, 

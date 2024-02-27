@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-    	<record model='ir.ui.view' id='hr_certification_view_tree'>
-    	    <field name='name'>hr_certification_view.tree</field>
+    	<record model='ir.ui.view' id='hr_certification_manajemen_view_tree'>
+    	    <field name='name'>hr_certification_manajemen_view.tree</field>
     	    <field name='model'>hr.certification</field>
     	    <field name='arch' type='xml'>
     	    	<tree>
@@ -29,6 +29,36 @@
     	    </field>
     	</record>
 
+    	<record model='ir.ui.view' id='hr_certification_eksternal_view_tree'>
+    	    <field name='name'>hr_certification_eksternal_view.tree</field>
+    	    <field name='model'>hr.certification</field>
+    	    <field name='arch' type='xml'>
+    	    	<tree>
+    	    		<field name="name"/>
+	    	    	<field name="instansi_ids" widget="many2many_tags"/>
+	    	    	<field name="eksternal_group_id"/>
+					<field name="tipe_kegiatan"/>
+					<field name="hr_training_id"/>
+					<field name="start_date"/>
+					<field name="end_date"/>
+					<field name="total_days" optional='hide'/>
+					<field name="total_hours" optional='hide'/>
+					<field name="total_attendees" optional='hide'/>
+					<field name="trainer_partner_ids" widget="many2many_tags"/>
+					<field name="location"/>
+					<field name="kualifikasi_training" invisible='1'/>
+					<field name="company_id" optional='hide'/>
+					<!-- <field name="budget_plan"/> -->
+					<!-- <field name="budget_realisation"/> -->
+					<field name="notes" optional='hide'/>
+					<field name="state"/>
+    	    	</tree>
+    	    </field>
+    	</record>
+
+
+
+
     	<record model="ir.ui.view" id="hr_certification_view_form">
     	    <field name="name">hr_certification_view.form</field>
     	    <field name="model">hr.certification</field>
@@ -46,7 +76,7 @@
 							</button>
 						</div> -->
 						<div class='oe_title'>
-							<label for='name' string="Nomor"/>
+							<!-- <label for='name' string="Nomor"/> -->
 							<h1>
 								<field name="name" readonly='1'/>
 							</h1>
@@ -98,6 +128,7 @@
     	<record id="action_hr_certification_manajemen" model="ir.actions.act_window">
     		<field name="name">Training Manajemen</field>
     		<field name="res_model">hr.certification</field>
+    		<field name="view_id" ref="hr_certification_manajemen_view_tree"/>
     		<field name="view_mode">tree,form</field>
     		<field name='domain'>
     			[('kualifikasi_training', '=', 'manajemen')]
@@ -110,6 +141,7 @@
     	<record id="action_hr_certification_eksternal" model="ir.actions.act_window">
     		<field name="name">Training Eksternal</field>
     		<field name="res_model">hr.certification</field>
+    		<field name="view_id" ref="hr_certification_eksternal_view_tree"/>
     		<field name="view_mode">tree,form</field>
     		<field name='domain'>
     			[('kualifikasi_training', '=', 'eksternal')]

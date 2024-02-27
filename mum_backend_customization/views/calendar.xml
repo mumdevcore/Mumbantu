@@ -23,7 +23,8 @@
 		    	</field>
 
 		    	<field name="duration" position='after'>
-		    		<field name="total_attendees"/>
+		    		<field name="total_attendees" invisible="context.get('default_tipe_calendar') != 'training_manajemen'"/>
+		    		<field name="total_attendees_eksternal" invisible="context.get('default_tipe_calendar') != 'training_eksternal'"/>
 		    		<field name="total_days"/>
 		    		<field name="total_hours"/>
 		    		<field name="state"/>
@@ -49,7 +50,7 @@
 				</field>
 
 				<xpath expr="//div[hasclass('oe_button_box')]" position='inside'>
-					<button name="action_view_hr_certification" type="object" class="oe_stat_button bg-warning" icon="fa-pencil" attrs="{'invisible': [('hr_certification_count', '=', 0)]}">
+					<button name="action_view_hr_certification" type="object" class="oe_stat_button bg-warning" icon="fa-pencil" attrs="{'invisible': ['|', ('hr_certification_count', '=', 0), ('tipe_calendar', '!=', 'training_manajemen')]}">
 						<div class="o_field_widget o_stat_info">
 							<span class="o_stat_value">
 								<field name="hr_certification_count" widget="statinfo" nolabel="1" string="Certifications"/>
@@ -63,6 +64,7 @@
 					<group string="Training Details" attrs="{'invisible' : [('tipe_calendar', 'not in', ('training_manajemen', 'training_eksternal') )]}">
 						<group>
 							<field name="tipe_kegiatan"/>
+							<field name="instansi_ids" widget="many2many_tags"/>
 							<field name="kualifikasi_training" invisible='1'/>
 							<field name="trainer_partner_ids" widget="many2many_tags"/>
 							<field name="hr_training_id"/>
@@ -71,7 +73,8 @@
 						<group>
 							<field name="total_days"/>
 							<field name="total_hours"/>
-							<field name="total_attendees"/>
+							<field name="total_attendees" attrs="{'invisible' : [('tipe_calendar', '!=', 'training_manajemen')]}"/>
+							<field name="total_attendees_eksternal" attrs="{'invisible' : [('tipe_calendar', '!=', 'training_eksternal')]}"/>
 							<field name='budget_plan'/>
 							<field name='budget_realisation'/>
 							<field name="currency_id" invisible='1'/>
@@ -115,7 +118,7 @@
 								<field name="end_date" readonly='1'/>
 								<field name="total_days" optional='hide' readonly='1'/>
 								<field name="total_hours" optional='hide' readonly='1'/>
-								<field name="total_attendees" optional='hide'/>
+								<field name="total_attendees"/>
 								<field name="trainer_partner_ids" widget="many2many_tags" readonly='1'/>
 								<field name="location" readonly='1'/>
 								<field name="kualifikasi_training" invisible='1' readonly='1'/>

@@ -32,6 +32,7 @@ class HrCertification(models.Model):
 	total_attendees = fields.Integer(string='Total Peserta', tracking=True)
 	location = fields.Char(string='Lokasi Pelaksanaan',)
 	trainer_partner_ids = fields.Many2many('res.partner', string='Trainer', tracking=True)
+	instansi_ids = fields.Many2many('res.partner', 'hr_certification_instansi_partner_rel',string='Instansi',)
 	budget_plan = fields.Float(string='RAB', tracking=True)
 	budget_realisation = fields.Float(string='Realisasi Anggaran', tracking=True)
 	notes = fields.Text(string='Keterangan',)
@@ -48,7 +49,7 @@ class HrCertification(models.Model):
 		('lulus', 'Lulus'),
 		('tidak_lulus', 'Tidak Lulus'),
 		('cancel', 'Cancel'),
-		], string='State', copy=False, tracking=True, default='draft')
+		], string='Status Sertifikas', copy=False, tracking=True, default='draft')
 	
 	company_id = fields.Many2one('res.company',string='Company', default=lambda self:self.env.company)
 	document_ids = fields.One2many('certification.document.line','hr_certification_id',string='Dokumen Lampiran',)
@@ -88,7 +89,7 @@ class HrCertification(models.Model):
 
 class HrExternalCertification(models.Model):
 	_name = 'hr.external.certification'
-	_inherit = 'hr.certification'
+	# _inherit = 'hr.certification'
 	_description = 'HR External Certification'
 	_check_company_auto = True
 

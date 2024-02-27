@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="ir_attachment_history_form" model="ir.ui.view">
+            <field name="name">ir_attachment.history.view.form</field>
+            <field name="model">ir.attachment.history</field>
+            <field name="arch" type="xml">
+                <form string="Attachment History">
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="number"/>
+                        <field name="user_id"/>
+                        <field name="attachment" widget="binary" filename="name"/>
+                        <field name="vals"/>
+                        <field name="attachment_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="ir_attachment_history_tree" model="ir.ui.view">
+            <field name="name">ir_attachment.history.view.tree</field>
+            <field name="model">ir.attachment.history</field>
+            <field name="arch" type="xml">
+                <tree string="Attachment History">
+                    <field name="name"/>
+                    <field name="number"/>
+                    <field name="user_id"/>
+                    <field name="attachment" widget="binary" filename="name"/>
+                    <field name="vals"/>
+                    <field name="attachment_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="ir_attachment_history_action" model="ir.actions.act_window">
+            <field name="name">Attachment History</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ir.attachment.history</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="ir_attachment_history_tree"/>
+        </record>
+
+        <menuitem
+            id="menu_dms_history"
+            name="History"
+            parent="main_menu_dms"
+            action="ir_attachment_history_action"
+        />
+    </data>
+</odoo>

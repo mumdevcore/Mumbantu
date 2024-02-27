@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_attachments_center" model="ir.ui.view">
+        <field name="name">res.config.settings.view.attachments.center</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="80"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Attachments Center" string="Attachments Center" data-key="attachments_center" groups="attachments_center.group_dms_manager">
+                    <h2>Attachments center</h2>
+                    <div class="row mt16 o_settings_container" name="attachments_center_setting_container">
+                        <div class="col-12 col-lg-12 o_setting_box">
+
+                            <h4>Enable/disable history and numbering</h4>
+                            <div class="o_setting_left_pane">
+                                <field name="attachments_history_and_numbering"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="attachments_history_and_numbering"/>
+                                <div class="text-warning" colspan="12">
+                                    <p><i class="fa fa-warning"></i> If enable, the attachment change history will be stored
+                                    and a new number will be assigned with each change.</p>
+                                    <p>Only attachments that have a directory specified will be proccesed.</p>
+                                    <p>Binary versions of files will also be saved if they have changed,
+                                    which can increase the amount of disk space used.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
