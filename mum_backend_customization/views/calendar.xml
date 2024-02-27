@@ -72,11 +72,18 @@
 							<field name="total_days"/>
 							<field name="total_hours"/>
 							<field name="total_attendees"/>
+							<field name='budget_plan'/>
+							<field name='budget_realisation'/>
+							<field name="currency_id" invisible='1'/>
 
-			              <field name='budget_plan'/>
-			              <field name='budget_realisation'/>
-			              <field name="currency_id" invisible='1'/>
-
+						</group>
+					</group>
+					<group string="Dokumentasi" attrs="{'invisible' : ['|', ('tipe_calendar', 'not in', ('training_manajemen', 'training_eksternal')), ('state', 'not in', ('confirm', 'done'))]}">
+						<group>
+							<field name="dokumentasi"/>
+							<field name="modul"/>
+							<field name="lpj"/>
+							<field name="rundown"/>
 						</group>
 					</group>
 				</xpath>

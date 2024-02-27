@@ -12,6 +12,7 @@ class Employee(models.Model):
 	email_pribadi = fields.Char(string='Email Pribadi',)
 	nomor_wa = fields.Char(string='No WA',)
 	inisial_jabatan = fields.Char(string='Inisial Jabatan', related='job_id.inisial')
+	jenis_kelamin = fields.Selection([('pria', 'Pria'), ('wanita', 'Wanita')], string='Jenis Kelamin', copy=False)
 	# kota_kabupaten
 	tgl_bergabung = fields.Date(string='Tgl Bergabung')
 	tgl_resign = fields.Date(string='Tgl Resign')

@@ -3,6 +3,7 @@
 
 from odoo import fields, models, api, Command, _
 from datetime import timedelta
+from odoo.exceptions import ValidationError
 
 class HrCertification(models.Model):
 	_name = 'hr.certification'
@@ -52,10 +53,6 @@ class HrCertification(models.Model):
 	company_id = fields.Many2one('res.company',string='Company', default=lambda self:self.env.company)
 	document_ids = fields.One2many('certification.document.line','hr_certification_id',string='Dokumen Lampiran',)
 	sertifikat = fields.Binary('Sertifikat',attachment=True,)
-	dokumentasi = fields.Binary(string='Dokumentasi Event',attachment=True,)
-	modul = fields.Binary(string='Modul/Materi',attachment=True,)
-	lpj = fields.Binary(string='LPJ',attachment=True,)
-	rundown = fields.Binary(string='Rundown Acara',attachment=True,)
 
 	@api.model
 	def create(self, vals):
@@ -63,10 +60,10 @@ class HrCertification(models.Model):
 		vals['name'] = self.env['ir.sequence'].next_by_code(sequence_code)
 		return super().create(vals)
 
-	def unlink(self):
-		for rec in self:
-			if rec.state == 'done':
-				raise ValidationError(_("Transaksi tidak dapat dihapus"))
+	# def unlink(self):
+	# 	for rec in self:
+	# 		if rec.state == 'done':
+	# 			raise ValidationError(_("Transaksi tidak dapat dihapus"))
 
 	def _compute_total_days(self):
 		for rec in self:
@@ -76,6 +73,9 @@ class HrCertification(models.Model):
 				rec.total_days = total_days.days
 
 	def button_lulus(self):
+		if not self.sertifikat and self.tipe_kegiatan == 'sertifikasi':
+			raise ValidationError(_("Sertifikat belum dilampirkan."))
+			
 		return self.write({'status_sertifikasi' : 'lulus', 'state' : 'done'})
 	
 

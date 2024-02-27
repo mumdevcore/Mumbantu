@@ -78,17 +78,10 @@
 								<field name="company_id"/>
     	                	</group>
     	                </group>
-    	                <group string='Dokumentasi'>
+    	                <group string='Dokumentasi' attrs="{'invisible' : [('tipe_kegiatan', '!=', 'sertifikasi')]}">
     	                	<group>
     	                		<field name="status_sertifikasi" readonly='1'/>
     	                		<field name="sertifikat"/>
-								<field name="dokumentasi"/>
-								
-    	                	</group>
-    	                	<group>
-    	                		<field name="modul"/>
-								<field name="lpj"/>
-								<field name="rundown"/>
     	                	</group>
     	                </group>
     	            </sheet>

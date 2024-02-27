@@ -44,6 +44,11 @@ class HrCalendarCertification(models.Model):
 		('done', 'Done'),
 		('cancel', 'Cancel'),], string='State', default='draft')
 
+	dokumentasi = fields.Binary(string='Dokumentasi Event',attachment=True,)
+	modul = fields.Binary(string='Modul/Materi',attachment=True,)
+	lpj = fields.Binary(string='LPJ',attachment=True,)
+	rundown = fields.Binary(string='Rundown Acara',attachment=True,)
+
 	@api.model
 	def create(self, vals):
 		if vals.get('tipe_calendar') in ('training_manajemen', 'training_eksternal'):
@@ -121,7 +126,8 @@ class HrCalendarCertification(models.Model):
 		
 
 	def button_done(self):
-		if any(x.dokumentasi == False for x in self.hr_certification_line):
+		dokumen = [self.dokumentasi, self.modul, self.lpj, self.rundown]
+		if any(x == False for x in dokumen):
 			raise ValidationError(_("Wajib melampirkan dokumen."))
 
 		if self.kualifikasi_training == 'eksternal':

@@ -38,6 +38,16 @@
 					<field name="status_pajak_id"/>
     	    	</field>
 
+    	    	<field name='gender' position='attributes'>
+    	    		<attribute name='invisible'>True</attribute>
+    	    	</field>
+
+    	    	<field name='gender' position='after'>
+    	    		<field name="jenis_kelamin"/>
+    	    	</field>
+
+    	    	
+
     	        <xpath expr="//page[@name='public']" position='after'>
     	        	<page name='training_certification' string="Training &amp; Sertifikat">
     	        		<field name="hr_certification_line" readonly='1'>
