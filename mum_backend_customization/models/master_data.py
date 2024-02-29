@@ -30,3 +30,18 @@ class status_pajak(models.Model):
 	_description = 'Status Pajak'
 
 	name = fields.Char(string='Status Pajak',)
+
+class ResCabang(models.Model):
+	_name = 'res.cabang'
+	_description = 'Res Cabang'
+
+	name = fields.Char(string='Nama Cabang',)
+	kota_id = fields.Many2one('vit.kota',string='Kota',)
+	# company_id = fields.Many2one('source.model.name',string='Field Label',)
+
+class JobTitle(models.Model):
+	_name = 'job.title'
+	_description = 'Job Title'
+
+	name = fields.Char(string='Job Title',)
+	

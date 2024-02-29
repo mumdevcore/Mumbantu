@@ -11,6 +11,11 @@
     	    		<field name="kota_id"/>
     	    	</field> -->
 
+    	    	<field name='job_id' position='before'>
+    	    		<field name="contract_type_id"/>
+    	    		<field name="job_title_id"/>
+    	    	</field>
+
     	        <xpath expr="//page[@name='public']" position='after'>
     	        	<page name='training_certification' string="Training &amp; Sertifikat">
     	        		<field name="hr_certification_line" readonly='1'>

@@ -14,3 +14,8 @@ access_status_pajak_all,access_status_pajak_all,model_status_pajak,base.group_us
 access_status_pajak_hr,access_status_pajak_hr,model_status_pajak,hr.group_hr_user,1,1,1,1
 access_training_needs_analysis,access_training_needs_analysis,model_training_needs_analysis,hr.group_hr_user,1,1,1,1
 access_training_employee_suggestion_wizard,access_training_employee_suggestion_wizard,model_training_employee_suggestion_wizard,base.group_user,1,1,1,1
+access_res_cabang_all,access_res_cabang_all,model_res_cabang,base.group_user,1,0,0,0
+access_res_cabang_hr,access_res_cabang_hr,model_res_cabang,hr.group_hr_user,1,1,1,1
+access_job_title_all,access_job_title_all,model_job_title,base.group_user,1,0,0,0
+access_job_title_hr,access_job_title_hr,model_job_title,hr.group_hr_user,1,1,1,1
+

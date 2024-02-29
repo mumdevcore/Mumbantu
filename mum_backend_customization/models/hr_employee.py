@@ -23,4 +23,7 @@ class Employee(models.Model):
 	nama_ibu = fields.Char(string='Nama Ibu',)
 	no_npwp = fields.Char(string='No NPWP',)
 	status_pajak_id = fields.Many2one('status.pajak',string='Status Pajak',)
-	kota_id = fields.Many2one('vit.kota',string='Kota/Kabupaten',)
+	job_title_id = fields.Many2one('job.title',string='Title',)
+	cabang_id = fields.Many2one('res.cabang',string='Cabang',)
+	kota_id = fields.Many2one('vit.kota',string='Kota/Kabupaten', related='cabang_id.kota_id', store=True, precompute=True)
+	contract_type_id = fields.Many2one('hr.contract.type', string='Status Karyawan',)
