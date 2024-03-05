@@ -49,6 +49,10 @@
 		    		<attribute name='invisible'>True</attribute>
 		    	</field>
 
+		    	<field name='user_id' position='before'>
+		    		<field name="online_offline"/>
+		    	</field>
+
 				<field name="name" position='attributes'>
 					<attribute name='attrs'>{'readonly' : [('tipe_calendar', 'in', ('training_manajemen', 'training_eksternal') )]}</attribute>
 				</field>
