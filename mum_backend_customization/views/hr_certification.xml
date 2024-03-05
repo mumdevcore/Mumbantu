@@ -13,15 +13,15 @@
 					<field name="hr_training_id"/>
 					<field name="start_date"/>
 					<field name="end_date"/>
-					<field name="total_days" optional='hide'/>
-					<field name="total_hours" optional='hide'/>
+					<field name="total_days" optional='show' sum='total_days'/>
+					<field name="total_hours" optional='show' sum='total_hours'/>
 					<field name="total_attendees" optional='hide'/>
 					<field name="trainer_partner_ids" widget="many2many_tags"/>
 					<field name="location"/>
 					<field name="kualifikasi_training" invisible='1'/>
 					<field name="company_id" optional='hide'/>
-					<!-- <field name="budget_plan"/> -->
-					<!-- <field name="budget_realisation"/> -->
+					<field name="budget_plan" optional='hide'/>
+					<field name="budget_realisation" optional='hide'/>
 					<field name="notes" optional='hide'/>
 					<field name="status_sertifikasi"/>
 					<field name="state"/>
@@ -41,15 +41,15 @@
 					<field name="hr_training_id"/>
 					<field name="start_date"/>
 					<field name="end_date"/>
-					<field name="total_days" optional='hide'/>
-					<field name="total_hours" optional='hide'/>
+					<field name="total_days" optional='show' sum='total_days'/>
+					<field name="total_hours" optional='show' sum='total_hours'/>
 					<field name="total_attendees" optional='hide'/>
 					<field name="trainer_partner_ids" widget="many2many_tags"/>
 					<field name="location"/>
 					<field name="kualifikasi_training" invisible='1'/>
 					<field name="company_id" optional='hide'/>
-					<!-- <field name="budget_plan"/> -->
-					<!-- <field name="budget_realisation"/> -->
+					<field name="budget_plan" optional='hide'/>
+					<field name="budget_realisation" optional='hide'/>
 					<field name="notes" optional='hide'/>
 					<field name="state"/>
     	    	</tree>

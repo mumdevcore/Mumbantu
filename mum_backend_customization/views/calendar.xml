@@ -53,6 +53,16 @@
 		    		<field name="online_offline"/>
 		    	</field>
 
+		    	<xpath expr="//div[@name='send_buttons']" position='attributes'>
+		    		<attribute name='invisible'>True</attribute>
+		    	</xpath>
+
+		    	<xpath expr="//page[@name='page_options']" position='attributes'>
+		    		<attribute name='invisible'>True</attribute>
+		    	</xpath>
+
+
+
 				<field name="name" position='attributes'>
 					<attribute name='attrs'>{'readonly' : [('tipe_calendar', 'in', ('training_manajemen', 'training_eksternal') )]}</attribute>
 				</field>
@@ -76,7 +86,7 @@
 							<field name="kualifikasi_training" invisible='1'/>
 							<field name="trainer_partner_ids" widget="many2many_tags"/>
 							<field name="hr_training_id"/>
-							<field name="location"/>
+							<!-- <field name="location"/> -->
 						</group>
 						<group>
 							<field name="total_days"/>
