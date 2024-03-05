@@ -22,6 +22,10 @@
 		    		<!-- <field name="location"/> -->
 		    	</field>
 
+		    	<field name='user_id' position='before'>
+		    		<field name="online_offline"/>
+		    	</field>
+
 		    	<field name="duration" position='after'>
 		    		<field name="total_attendees" invisible="context.get('default_tipe_calendar') != 'training_manajemen'"/>
 		    		<field name="total_attendees_eksternal" invisible="context.get('default_tipe_calendar') != 'training_eksternal'"/>

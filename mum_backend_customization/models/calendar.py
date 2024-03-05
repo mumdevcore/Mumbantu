@@ -15,6 +15,7 @@ class HrCalendarCertification(models.Model):
 		('training_eksternal', 'Training Eksternal'),
 		('meeting', 'Meeting')], string="Tipe Jadwal", copy=False, tracking=True, default='meeting')
 	employee_ids = fields.Many2many('hr.employee',string='Employees',)
+	online_offline = fields.Selection([('offline', 'Offline'), ('online', 'Online')], default='offline', tracking=True, string='Online/Offline')
 	eksternal_group_ids = fields.Many2many('eksternal.group',string='Eksternal Groups',)
 	hr_certification_line = fields.One2many('hr.certification','calendar_id',string='Certification Details',)
 	hr_certification_count = fields.Integer(string='HR Certification Count', compute='_compute_hr_certification_count')

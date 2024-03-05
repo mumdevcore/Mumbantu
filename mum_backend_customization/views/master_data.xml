@@ -47,7 +47,7 @@
 
         <record id="action_res_agama" model="ir.actions.act_window">
             <field name="name">Agama</field>
-            <field name="res_model">status.pajak</field>
+            <field name="res_model">res.agama</field>
             <field name="view_mode">tree</field>
         </record>
         
