@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<!-- <record id="calendar_eksternal_rule" model="ir.rule">
+            <field name="name">Jadwal Training Eksternal Rule</field>
+            <field name="model_id" ref="calendar.model_model_calendar"/>
+            <field name="domain_force">[('id','in', user.allowed_warehouse_ids.ids)]</field>
+            <field name="global" eval="True" />
+            <field eval="1" name="perm_unlink" />
+            <field eval="1" name="perm_write" />
+            <field eval="1" name="perm_read" />
+            <field eval="1" name="perm_create" />
+            <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
+        </record>
+
+        <record id="stock_warehouse_restriction_admin_rule" model="ir.rule">
+            <field name="name">Stock Warehouse Administrator Rule</field>
+            <field name="model_id" ref="stock.model_stock_warehouse"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="global" eval="True" />
+            <field eval="1" name="perm_unlink" />
+            <field eval="1" name="perm_write" />
+            <field eval="1" name="perm_read" />
+            <field eval="1" name="perm_create" />
+            <field name="groups" eval="[(4, ref('allowed_all_inventory_rule'))]"/>
+        </record> -->
+    </data>
+</odoo>

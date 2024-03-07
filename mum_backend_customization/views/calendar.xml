@@ -195,7 +195,7 @@
 		</record>
 
 		
-		<menuitem id="calendar_training_manajemen_menu" name="Jadwal Training Manajemen" parent="jadwal_training_menu" action="action_calendar_training_manajemen" sequence='10'/>
-		<menuitem id="calendar_training_eksternal_menu" name="Jadwal Training Eksternal" parent="jadwal_training_menu" action="action_calendar_training_eksternal" sequence='20'/>
+		<menuitem id="calendar_training_manajemen_menu" name="Jadwal Training Manajemen" parent="jadwal_training_menu" action="action_calendar_training_manajemen" sequence='10' groups='group_training_manajemen,group_training_administrator'/>
+		<menuitem id="calendar_training_eksternal_menu" name="Jadwal Training Eksternal" parent="jadwal_training_menu" action="action_calendar_training_eksternal" sequence='20' groups='group_training_eksternal,group_training_administrator'/>
 	</data>
 </odoo>

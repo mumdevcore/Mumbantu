@@ -5,7 +5,7 @@
     	<menuitem id="training_main_menu" name="Training &amp; Sertifikasi" groups="hr.group_hr_user">
     		<menuitem id="jadwal_training_menu" name="Jadwal" sequence='10'/>
     		<menuitem id="training_menu" name="Training" sequence='20'/>
-    		<menuitem id="configuration_menu" name="Configuration" sequence='100'/>
+    		<menuitem id="configuration_menu" name="Configuration" sequence='100' groups="group_training_administrator"/>
 
     	</menuitem>
     </data>
