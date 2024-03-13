@@ -7,7 +7,7 @@ class HrTraining(models.Model):
 	_name = 'hr.training'
 	_description = 'HR Training Model'
 	_check_company_auto = True
-
+	
 	name = fields.Char(string='Tema Training',)
 	company_id = fields.Many2one('res.company',string='Company', default=lambda self:self.env.company)
 
@@ -45,3 +45,16 @@ class JobTitle(models.Model):
 
 	name = fields.Char(string='Job Title',)
 	
+class ResMonth(models.Model):
+	_name = 'res.month'
+	_description = 'Res Month'
+
+	sequence = fields.Char(string='Urutan')
+	name = fields.Char(string='Nama Bulan')
+
+class InsentifPeriode(models.Model):
+	_name = 'insentif.periode'
+	_description = "Periode Insentif"
+
+	name = fields.Char(string='Nama Periode')
+	month_ids = fields.Many2many(comodel_name='res.month', string='Bulan')

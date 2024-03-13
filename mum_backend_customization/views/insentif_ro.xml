@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="insentif_ro_view_tree" model="ir.ui.view">
+            <field name="name">insentif.ro.view.tree</field>
+            <field name="model">insentif.ro</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="periode_id" />
+                    <field name="month_ids" />
+                    <field name="kro_id" />
+                    <field name="company_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="insentif_ro_view_form" model="ir.ui.view">
+            <field name="name">insentif.ro.view.form</field>
+            <field name="model">insentif.ro</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box">
+                            
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly='1'/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="periode_id" />
+                            <field name="month_ids" widget='many2many_tags' />
+                            <field name="kro_id" />
+                            <field name="company_id" invisible='1' />
+                        </group>
+                        <notebook>
+                            <page name="insentif_ro_employee_ids" string="Detail Karyawan">
+                                <field name="insentif_ro_employee_ids">
+                                    <tree editable='bottom'>
+                                        <field name="employee_id" />
+                                        <field name="total_resign" />
+                                        <field name="total_rekrutmen" />
+                                        <field name="total_tl" />
+                                        <field name="company_id" invisible='1' />
+                                        <!-- <field name="insentif_ro_employee_line_ids" /> -->
+                                        <button name="action_show_details" type="object" icon="fa-list" width="0.1" title="Details"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="insentif_ro_employee_view_form" model="ir.ui.view">
+            <field name="name">insentif.ro.employee.view.form</field>
+            <field name="model">insentif.ro.employee</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="total_resign" />
+                            <field name="total_rekrutmen" />
+                            <field name="total_tl" />
+                            <field name="employee_id" invisible='1' />
+                            <field name="company_id" invisible='1' />
+                        </group>
+                        <separator string="KPI Bulanan"/>
+                        <field name="insentif_ro_employee_line_ids">
+                            <tree editable='bottom' delete='0' create='0'>
+                                <field name="name" />
+                                <field name="month_id" />
+                                <field name="cabang" />
+                                <field name="formasi" />
+                                <field name="aktif" />
+                                <field name="resign" />
+                                <field name="rekrutmen" />
+                                <field name="tl" />
+                                <field name="pencapaian_rekrutmen" />
+                                <field name="pencapaian_maintain" />
+                                <field name="pencapaian_tl" />
+                                <field name="grade_rekrutmen" />
+                                <field name="grade_maintain" />
+                                <field name="grade_tl" />
+                                <field name="average" />
+                                <field name="grade_average" />
+                                <field name="wilayah_suffer_id" />
+                                <field name="company_id" />
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="insentif_ro_view_search" model="ir.ui.view">
+            <field name="name">insentif.ro.view.search</field>
+            <field name="model">insentif.ro</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="kro_id" />
+                </search>
+            </field>
+        </record>
+
+        <record id="insentif_ro_action" model="ir.actions.act_window">
+            <field name="name">Insentif RO</field>
+            <field name="res_model">insentif.ro</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p>
+                    Tidak Ada Data, silakan buat data baru.
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="insentif_ro_menu" name="Insentif RO" action="insentif_ro_action" parent='insentif_main_menu' />
+    </data>
+</odoo>

@@ -1,27 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data noupdate='1'>
+    <data>
     	<record id="category_training_security" model="ir.module.category">
 	        <field name="name">Training &amp; Sertifikasi</field>
 	    </record>
 
 	    <record id="group_training_manajemen" model="res.groups">
-	        <field name="name">Training Manajemen</field>
+	        <field name="name">User: Training Manajemen</field>
 	        <field name="category_id" ref="category_training_security" />
-	        <!-- <field name="implied_ids" eval="[(4, ref('base.group_user'))]" /> -->
+	        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
 	    </record>
 
 	    <record id="group_training_eksternal" model="res.groups">
-	        <field name="name">Training Eksternal</field>
+	        <field name="name">User: Training Eksternal</field>
 	        <field name="category_id" ref="category_training_security" />
-	        <!-- <field name="implied_ids" eval="[(4, ref('base.group_user'))]" /> -->
+	        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
 	    </record>
 
-	    <record id="group_training_administrator" model="res.groups">
-	        <field name="name">Training Administrator</field>
+	    <record id="group_training_manager" model="res.groups">
+	        <field name="name">Administrator</field>
 	        <field name="category_id" ref="category_training_security" />
+			<field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
 	        <field name="implied_ids" eval="[(4, ref('group_training_manajemen')),(4, ref('group_training_eksternal'))]" />
 	    </record>
+
+		<record id="category_insentif_karyawan" model="ir.module.category">
+	        <field name="name">Insentif Karyawan</field>
+	    </record>
+
+		<record id="group_insentif_user" model="res.groups">
+			<field name="name">Insentif User</field>
+	        <field name="category_id" ref="category_insentif_karyawan" />
+			<field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+		</record>
+
+		<record id="group_insentif_manager" model="res.groups">
+			<field name="name">Insentif Administrator</field>
+	        <field name="category_id" ref="category_insentif_karyawan" />
+			<field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+	        <field name="implied_ids" eval="[(4, ref('group_insentif_user'))]" />
+		</record>
 
     </data>
 </odoo>

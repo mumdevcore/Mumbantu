@@ -151,8 +151,8 @@
     		</field>
     	</record>
 
-    	<menuitem id="hr_certification_manajemen_menu" parent='training_menu' name="Training Manajemen" action="action_hr_certification_manajemen" groups="hr.group_hr_user,group_training_manajemen,group_training_administrator" sequence='10'/>
-    	<menuitem id="hr_certification_eksternal_menu" parent='training_menu' name="Training Eksternal" action="action_hr_certification_eksternal" groups="hr.group_hr_user,group_training_eksternal,group_training_administrator" sequence='20'/>
+    	<menuitem id="hr_certification_manajemen_menu" parent='training_menu' name="Training Manajemen" action="action_hr_certification_manajemen" groups="hr.group_hr_user,group_training_manajemen,group_training_manager" sequence='10'/>
+    	<menuitem id="hr_certification_eksternal_menu" parent='training_menu' name="Training Kelolaan" action="action_hr_certification_eksternal" groups="hr.group_hr_user,group_training_eksternal,group_training_manager" sequence='20'/>
 
     </data>
 </odoo>

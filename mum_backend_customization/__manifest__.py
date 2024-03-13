@@ -35,6 +35,7 @@
         'security/groups.xml',
         'security/ir.model.access.csv',
         'data/sequence.xml',
+        'data/res_month_data.xml',
 
         'wizards/calendar_add_member_wizard.xml',
         'wizards/training_employee_suggestion_wizard.xml',
@@ -47,6 +48,6 @@
         'views/hr_employee.xml',
         'views/hr_employee_public.xml',
         'views/calendar.xml',
-        'views/templates.xml',
+        'views/insentif_ro.xml',
     ],
 }

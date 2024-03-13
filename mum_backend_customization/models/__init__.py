@@ -7,4 +7,5 @@ from . import hr_employee
 from . import hr_employee_public
 from . import calendar
 from . import training_needs_analysis
+from . import insentif_ro
 # from . import hr_calendar_certification
