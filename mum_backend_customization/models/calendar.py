@@ -100,6 +100,7 @@ class HrCalendarCertification(models.Model):
 			'tipe_kegiatan' : self.tipe_kegiatan,
 			'kualifikasi_training' : self.kualifikasi_training,
 			'hr_training_id' : self.hr_training_id.id,
+			'total_hours' : self.total_hours,
 			# 'total_days' : self.total_days,
 			'instansi_ids' : self.instansi_ids,
 			'total_attendees' : self.total_attendees,

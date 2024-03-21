@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="kpi_main_menu" name="Key Performance Indicator"/>
+	
+	<menuitem id="kpi_menu" name="KPI Karyawan" sequence='10' parent='kpi_main_menu'>
+		<menuitem id="employee_kpi_batch_menu" name="Employee KPI Batches" action="employee_kpi_batch_action" sequence='10'/>
+		<menuitem id="monthly_grading_menu" name="Rekap Grading Bulanan" action="action_monthly_grading" sequence='20'/>
+	</menuitem>
+	
+	
+	<menuitem id="kpi_config_menu" name="Configuration" sequence='99' parent='kpi_main_menu'>
+		<menuitem id="grading_master_template_menu" name="Template Grading" action="action_grading_master_template" sequence='10' />
+		<menuitem id="periode_kpi_menu" name="Periode KPI" action="action_kpi_periode" sequence='20' />
+		<menuitem id='res_month_menu' name='Bulan' action='action_res_month' sequence='30'/>
+		<menuitem id="wilayah_suffer_menu" name="Wilayah Suffer" action="action_wilayah_suffer" sequence='40' />
+	</menuitem>
+
+</odoo>

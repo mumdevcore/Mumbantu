@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wilayah_suffer_view_tree" model="ir.ui.view">
+        <field name="name">wilayah.suffer.view.tree</field>
+        <field name="model">wilayah.suffer</field>
+        <field name="arch" type="xml">
+            <tree editable='bottom'>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="res_month_view_tree" model="ir.ui.view">
+        <field name="name">res.month.view.tree</field>
+        <field name="model">res.month</field>
+        <field name="arch" type="xml">
+            <tree editable='bottom'>
+                <field name="sequence" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="kpi_periode_view_tree" model="ir.ui.view">
+        <field name="name">kpi_periode.view.tree</field>
+        <field name="model">kpi.periode</field>
+        <field name="arch" type="xml">
+            <tree editable='bottom'>
+                <field name="name" />
+                <field name="month_ids" widget='many2many_tags' />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_res_month" model="ir.actions.act_window">
+        <field name="name">Bulan</field>
+        <field name="res_model">res.month</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="action_kpi_periode" model="ir.actions.act_window">
+        <field name="name">Periode KPI</field>
+        <field name="res_model">kpi.periode</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="action_wilayah_suffer" model="ir.actions.act_window">
+        <field name="name">Wilayah Suffer</field>
+        <field name="res_model">wilayah.suffer</field>
+        <field name="view_mode">tree</field>
+    </record>
+    
+
+</odoo>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="grading_master_template_view_tree" model="ir.ui.view">
+        <field name="name">grading.template.view.tree</field>
+        <field name="model">grading.template</field>
+        <field name="arch" type="xml">
+            <tree editable='bottom'>
+                <field name="grade" />
+                <field name="nilai_min" widget='percentage'/>
+                <field name="nilai_max" widget='percentage'/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_grading_master_template" model="ir.actions.act_window">
+        <field name="name">Template Grading</field>
+        <field name="res_model">grading.template</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="monthly_grading_view_tree" model="ir.ui.view">
+        <field name="name">monthly.grading.view.tree</field>
+        <field name="model">monthly.grading</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="periode_id" />
+                <field name="month_id" />
+                <field name="tahun" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="monthly_grading_view_form" model="ir.ui.view">
+        <field name="name">monthly.grading.view.form</field>
+        <field name="model">monthly.grading</field>
+        <field name="arch" type="xml">
+            <form create='0' edit='0'>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly='1'/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="periode_id" />
+                        <field name="month_id" />
+                        <field name="tahun" />
+                    </group>
+
+                    <notebook>
+                        <page name="employee_kpi_grading" string="KPI Karyawan">
+                            <field name="employee_kpi_grading_ids" readonly='1'>
+                                <tree create='0' edit='0'>
+                                    <field name="employee_monthly_kpi_line_id" invisible='1' />
+                                    <field name="employee_id" />
+                                    <field name="pencapaian_rekrutmen" widget='percentage' />
+                                    <field name="grade_rekrutmen_id" />
+                                    <field name="pencapaian_maintain" widget='percentage' />
+                                    <field name="grade_maintain_id" />
+                                    <field name="pencapaian_tl" widget='percentage' />
+                                    <field name="grade_tl_id" />
+                                    <!-- <field name="pencapaian_average" widget='percentage' />
+                                    <field name="grade_average_id" /> -->
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="resume_kpi_grading_ids" string="Resume KPI Grading">
+                            <field name="resume_kpi_grading_ids" readonly='1'>
+                                <tree>
+                                    <field name="grade_template_id" invisible='1' />
+                                    <field name="grade" />
+                                    <field name="nilai_min" widget='percentage'/>
+                                    <field name="nilai_max" widget='percentage'/>
+                                    <field name="jumlah_ro" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_monthly_grading" model="ir.actions.act_window">
+        <field name="name">Rekap Grading Bulanan</field>
+        <field name="res_model">monthly.grading</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    
+
+</odoo>
