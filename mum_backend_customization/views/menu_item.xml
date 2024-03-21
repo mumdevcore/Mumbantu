@@ -2,7 +2,7 @@
 <odoo>
 
 	<!-- MAIN MENU -->
-	<menuitem id="training_main_menu" name="Training &amp; Sertifikasi" groups="hr.group_hr_user"/>
+	<menuitem id="training_main_menu" name="Training &amp; Sertifikasi" groups="hr.group_hr_user"  web_icon="mum_backend_customization,static/description/icon.png"/>
 	
 
 	<!-- SUB MENU -->
