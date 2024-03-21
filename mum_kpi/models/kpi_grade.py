@@ -94,7 +94,7 @@ class GradingEmployeeMonth(models.Model):
 			rec.pencapaian_maintain = rec.employee_monthly_kpi_line_id.pemenuhan
 			# rec.grade_rekrutmen_id = rec.grade_maintain_id = rec.grade_tl_id = rec.grade_average_id = False
 			if rec.employee_monthly_kpi_line_id.formasi > 0:
-				rec.pencapaian_rekrutmen = (rec.employee_monthly_kpi_line_id.rekrutmen - rec.employee_monthly_kpi_line_id.kurang) / rec.employee_monthly_kpi_line_id.formasi
+				rec.pencapaian_rekrutmen = rec.employee_monthly_kpi_line_id.rekrutmen / rec.employee_monthly_kpi_line_id.formasi
 			if rec.employee_monthly_kpi_line_id.kurang > 0:
 				rec.pencapaian_tl = rec.employee_monthly_kpi_line_id.tl / rec.employee_monthly_kpi_line_id.kurang
 			

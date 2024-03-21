@@ -191,7 +191,7 @@ class InsentifRoEmployeeLine(models.Model):
 			rec.kurang = rec.pemenuhan = 0
 			if rec.formasi > 0:
 				rec.kurang = rec.formasi - rec.aktif
-				rec.pemenuhan = rec.aktif / rec.formasi
+				rec.pemenuhan = (rec.aktif - rec.kurang) / rec.formasi
 
 
 	def _create_employee_kpi_grading(self, monthly_grading_ids):
