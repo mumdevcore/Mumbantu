@@ -35,12 +35,12 @@
         'security/groups.xml',
         'security/ir.model.access.csv',
         'data/sequence.xml',
-        'data/res_month_data.xml',
+        # 'data/res_month_data.xml',
 
         'wizards/calendar_add_member_wizard.xml',
         'wizards/training_employee_suggestion_wizard.xml',
 
-        'views/main_menu.xml',
+        
         'views/hr_job.xml',
         'views/master_data.xml',
         'views/hr_certification.xml',
@@ -48,6 +48,10 @@
         'views/hr_employee.xml',
         'views/hr_employee_public.xml',
         'views/calendar.xml',
-        'views/insentif_ro.xml',
+        # 'views/employee_kpi.xml',
+        # 'views/grading_master_template.xml',
+        # 'views/grading.xml',
+
+        'views/menu_item.xml',
     ],
 }

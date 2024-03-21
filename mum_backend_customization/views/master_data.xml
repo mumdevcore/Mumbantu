@@ -102,50 +102,7 @@
     		<field name="view_mode">tree</field>
     	</record>
 
-        <record id="res_month_view_tree" model="ir.ui.view">
-            <field name="name">res.month.view.tree</field>
-            <field name="model">res.month</field>
-            <field name="arch" type="xml">
-                <tree editable='bottom'>
-                    <field name="sequence" />
-                    <field name="name" />
-                </tree>
-            </field>
-        </record>
-
-        <record id="insentif_periode_view_tree" model="ir.ui.view">
-            <field name="name">insentif.periode.view.tree</field>
-            <field name="model">insentif.periode</field>
-            <field name="arch" type="xml">
-                <tree editable='bottom'>
-                    <field name="name" />
-                    <field name="month_ids" widget='many2many_tags' />
-                </tree>
-            </field>
-        </record>
-
-        <record id="action_res_month" model="ir.actions.act_window">
-            <field name="name">Bulan</field>
-            <field name="res_model">res.month</field>
-            <field name="view_mode">tree</field>
-        </record>
-
-        <record id="action_insentif_period" model="ir.actions.act_window">
-            <field name="name">Periode Insentif</field>
-            <field name="res_model">insentif.periode</field>
-            <field name="view_mode">tree</field>
-        </record>
         
-
-    	<menuitem id="hr_training_menu" name="Tema Training" parent="configuration_menu" groups="hr.group_hr_user" action="action_hr_training" sequence='10'/>
-    	<menuitem id="eksternal_group_menu" name="Eksternal Group" parent="configuration_menu" action="action_eksternal_group" sequence='20'/>
-        <menuitem id="res_agama_menu" name="Agama" parent="hr.menu_human_resources_configuration" action="action_res_agama"/>
-        <menuitem id="status_pajak_menu" name="Status Pajak" parent="hr.menu_human_resources_configuration" action="action_status_pajak"/>
-        <menuitem id="res_cabang_menu" name="Cabang" parent="hr.menu_human_resources_configuration" action="action_res_cabang"/>
-        <menuitem id="job_title_menu" name="Job Title" parent="hr.menu_human_resources_configuration" action="action_job_title"/>
-        
-        <menuitem id="insentif_periode_menu" name="Periode Insentif" action="action_insentif_period" parent="calendar.menu_calendar_configuration" sequence='91' />
-        <menuitem id='res_month_menu' name='Bulan' parent='calendar.menu_calendar_configuration' sequence='90' action='action_res_month'/>
 
     </data>
 </odoo>

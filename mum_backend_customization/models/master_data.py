@@ -52,9 +52,10 @@ class ResMonth(models.Model):
 	sequence = fields.Char(string='Urutan')
 	name = fields.Char(string='Nama Bulan')
 
-class InsentifPeriode(models.Model):
-	_name = 'insentif.periode'
-	_description = "Periode Insentif"
+class KpiPeriode(models.Model):
+	_name = 'kpi.periode'
+	_description = "KPI Periode"
 
 	name = fields.Char(string='Nama Periode')
 	month_ids = fields.Many2many(comodel_name='res.month', string='Bulan')
+

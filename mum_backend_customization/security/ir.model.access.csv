@@ -18,13 +18,3 @@ access_res_cabang_all,access_res_cabang_all,model_res_cabang,base.group_user,1,0
 access_res_cabang_hr,access_res_cabang_hr,model_res_cabang,hr.group_hr_user,1,1,1,1
 access_job_title_all,access_job_title_all,model_job_title,base.group_user,1,0,0,0
 access_job_title_hr,access_job_title_hr,model_job_title,hr.group_hr_user,1,1,1,1
-access_res_month,access_res_month,model_res_month,base.group_user,1,0,0,0
-access_res_month_admin,access_res_month_admin,model_res_month,base.group_erp_manager,1,1,1,1
-access_insentif_periode,access_insentif_periode,model_insentif_periode,base.group_user,1,0,0,0
-access_insentif_periode_admin,access_insentif_periode_admin,model_insentif_periode,base.group_erp_manager,1,1,1,1
-access_insentif_ro,access_insentif_ro,model_insentif_ro,base.group_user,1,0,0,0
-access_insentif_ro_kro,access_insentif_ro_kro,model_insentif_ro,group_insentif_user,1,1,1,1
-access_insentif_ro_employee,access_insentif_ro_employee,model_insentif_ro_employee,base.group_user,1,0,0,0
-access_insentif_ro_employee_kro,access_insentif_ro_employee_kro,model_insentif_ro_employee,group_insentif_user,1,1,1,1
-access_insentif_ro_employee_line,access_insentif_ro_employee_line,model_insentif_ro_employee_line,base.group_user,1,0,0,0
-access_insentif_ro_employee_line_kro,access_insentif_ro_employee_line_kro,model_insentif_ro_employee_line,group_insentif_user,1,1,1,1

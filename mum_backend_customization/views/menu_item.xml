@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- MAIN MENU -->
+	<menuitem id="training_main_menu" name="Training &amp; Sertifikasi" groups="hr.group_hr_user"/>
+	
+
+	<!-- SUB MENU -->
+
+	<menuitem id="jadwal_training_menu" name="Jadwal" sequence='10' parent='training_main_menu'>
+		<menuitem id="calendar_training_manajemen_menu" name="Jadwal Training Manajemen" action="action_calendar_training_manajemen" sequence='10' groups='group_training_manajemen,group_training_manager'/>
+		<menuitem id="calendar_training_eksternal_menu" name="Jadwal Training Kelolaan" action="action_calendar_training_eksternal" sequence='20' groups='group_training_eksternal,group_training_manager'/>
+	</menuitem>
+
+	<menuitem id="training_menu" name="Training" sequence='20' parent='training_main_menu'>
+		<menuitem id="hr_certification_manajemen_menu" name="Report Training Manajemen" action="action_hr_certification_manajemen" groups="group_training_manajemen,group_training_manager" sequence='10'/>
+		<menuitem id="hr_certification_eksternal_menu" name="Report Training Kelolaan" action="action_hr_certification_eksternal" groups="group_training_eksternal,group_training_manager" sequence='20'/>
+	</menuitem>
+
+	<menuitem id="training_configuration_menu" name="Configuration" sequence='100' groups="group_training_manager" parent='training_main_menu'>
+		<menuitem id="hr_training_menu" name="Tema Training" groups="hr.group_hr_user" action="action_hr_training" sequence='10'/>
+		<menuitem id="eksternal_group_menu" name="Eksternal Group" action="action_eksternal_group" sequence='20'/>
+	</menuitem>
+
+	<!-- <menuitem id="kpi_main_menu" name="Key Performance Indicator"/>
+	
+	<menuitem id="kpi_menu" name="KPI Karyawan" sequence='10' parent='kpi_main_menu'>
+		<menuitem id="employee_kpi_batch_menu" name="Employee KPI Batches" action="employee_kpi_batch_action" sequence='10'/>
+		<menuitem id="monthly_grading_menu" name="Rekap Grading Bulanan" action="action_monthly_grading" sequence='20'/>
+	</menuitem>
+	
+	
+	<menuitem id="kpi_config_menu" name="Configuration" sequence='99' parent='kpi_main_menu'>
+		<menuitem id="grading_master_template_menu" name="Template Grading" action="action_grading_master_template" sequence='10' />
+		<menuitem id="periode_kpi_menu" name="Periode KPI" action="action_kpi_periode" sequence='20' />
+		<menuitem id='res_month_menu' name='Bulan' action='action_res_month' sequence='30'/>
+	</menuitem> -->
+
+
+	<menuitem id="res_agama_menu" name="Agama" parent="hr.menu_human_resources_configuration" action="action_res_agama"/>
+	<menuitem id="status_pajak_menu" name="Status Pajak" parent="hr.menu_human_resources_configuration" action="action_status_pajak"/>
+	<menuitem id="res_cabang_menu" name="Cabang" parent="hr.menu_human_resources_configuration" action="action_res_cabang"/>
+	<menuitem id="job_title_menu" name="Job Title" parent="hr.menu_human_resources_configuration" action="action_job_title"/>
+
+</odoo>

@@ -125,8 +125,8 @@
 						<field name="employee_ids" attrs="{'invisible' : [('tipe_calendar', '!=', 'training_manajemen')]}" invisible='1'/>
 						<field name="eksternal_group_ids" attrs="{'invisible' : [('tipe_calendar', '!=', 'training_eksternal')]}" invisible='1'/>
 						<separator string="Details"/>
-						<field name='hr_certification_line' attrs="{'readonly' : [('tipe_calendar', '!=', 'training_eksternal')]}">
-							<tree editable='bottom'>
+						<field name='hr_certification_line'>
+							<tree editable='bottom' create='0'>
 								<field name="name" readonly='1'/>
 								<field name="employee_id" attrs="{'column_invisible' : [('parent.tipe_calendar', '!=', 'training_manajemen')]}" readonly='1'/>
 								<field name="eksternal_group_id" attrs="{'column_invisible' : [('parent.tipe_calendar', '!=', 'training_eksternal')]}" readonly='1'/>
@@ -135,8 +135,8 @@
 								<field name="start_date" readonly='1'/>
 								<field name="end_date" readonly='1'/>
 								<field name="total_days" optional='hide' readonly='1'/>
-								<field name="total_hours" optional='hide' readonly='1'/>
-								<field name="total_attendees"/>
+								<field name="total_hours" optional='show' attrs="{'readonly' : [('parent.tipe_calendar', '!=', 'training_manajemen')]}"/>
+								<field name="total_attendees" attrs="{'readonly' : [('parent.tipe_calendar', '!=', 'training_eksternal')]}"/>
 								<field name="trainer_partner_ids" widget="many2many_tags" readonly='1'/>
 								<field name="location" readonly='1'/>
 								<field name="kualifikasi_training" invisible='1' readonly='1'/>
@@ -195,7 +195,6 @@
 		</record>
 
 		
-		<menuitem id="calendar_training_manajemen_menu" name="Jadwal Training Manajemen" parent="jadwal_training_menu" action="action_calendar_training_manajemen" sequence='10' groups='group_training_manajemen,group_training_manager'/>
-		<menuitem id="calendar_training_eksternal_menu" name="Jadwal Training Kelolaan" parent="jadwal_training_menu" action="action_calendar_training_eksternal" sequence='20' groups='group_training_eksternal,group_training_manager'/>
+		
 	</data>
 </odoo>

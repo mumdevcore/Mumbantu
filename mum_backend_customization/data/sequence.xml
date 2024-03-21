@@ -49,15 +49,6 @@
             <field name='range_reset'>monthly</field>
         </record>
 
-        <record id="kpi_insentif_ro_seq" model='ir.sequence'>
-            <field name='name'>KPI Insentif ROSequence</field>
-            <field name="code">kpi.insentif.ro.seq</field>
-            <field name='suffix'>/%(range_month)s/%(range_year)s/MUM-KPI-RO</field>
-            <field name='padding'>3</field>
-            <field eval="1" name="number_next"/>
-            <field eval="1" name="number_increment"/>
-            <field name='use_date_range' eval='True'/>
-            <field name='range_reset'>monthly</field>
-        </record>
+        
     </data>
 </odoo>
