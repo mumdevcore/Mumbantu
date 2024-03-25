@@ -20,3 +20,4 @@ class WilayahSuffer(models.Model):
 	_description = 'Wilayah Suffer'
 
 	name = fields.Char(string='Wilayah Suffer')
+	nilai_insentif = fields.Float(string='Nilai Insentif')

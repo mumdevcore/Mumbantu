@@ -24,8 +24,8 @@
                     <header>
                         <button string="Confirm" name="button_confirm" states='draft' type="object" class="oe_highlight"/>
                         <button string="Submit" name="button_submit" states='in_progress' type="object" class="oe_highlight"/>
-                        <button string="Approve 1" name="button_approve_1" states='approval_1' type="object" class="oe_highlight" attrs="{'invisible' : [('show_approval_button', '=', False)]}" />
-                        <button string="Approve 2" name="button_done" states='approval_2' type="object" class="oe_highlight" attrs="{'invisible' : [('show_approval_button', '=', False)]}" />
+                        <button string="Approve 1" name="button_approve_1" type="object" class="oe_highlight" attrs="{'invisible' : ['|', ('show_approval_button', '=', False), ('state', '!=', 'approval_1')]}" />
+                        <button string="Approve 2" name="button_done" type="object" class="oe_highlight" attrs="{'invisible' : ['|', ('show_approval_button', '=', False), ('state', '!=', 'approval_1')]}" />
                         <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
                     </header>
                     <sheet>
@@ -52,21 +52,68 @@
                             </group>
                         </group>
                         <notebook>
-                            <page name="insentif_ro_employee_ids" string="Detail Karyawan">
+                            <page name="insentif_ro_employee_ids" string="Karyawan RO" class='bg-info text-light'>
                                 <field name="employee_kpi_line">
                                     <tree editable='bottom' create='0'>
                                         <field name="employee_id" readonly='1' />
+                                        <field name="absen" />
+                                        <field name="more" />
                                         <field name="total_resign" />
                                         <field name="total_rekrutmen" />
                                         <field name="total_tl" />
                                         <field name="average" widget='percentage' />
                                         <field name="grade_average_id" />
                                         <field name="company_id" invisible='1' />
+                                        <field name="insentif_maintain" invisible='1'/>
+                                        <field name="insentif_rekrutmen" invisible='1'/>
+                                        <field name="insentif_tl" invisible='1'/>
+                                        <field name="insentif_wilayah_suffer" invisible='1'/>
+                                        
                                         <field name="wilayah_suffer_id" />
-                                        <!-- <field name="employee_monthly_kpi_lines" /> -->
+                                        <field name="total_insentif" />
+                                        <field name="employee_monthly_kpi_line" invisible='1' />
                                         <button name="action_show_details" type="object" icon="fa-list" width="0.1" title="Details"/>
                                     </tree>
                                 </field>
+                            </page>
+                            <page name="karyawan_alw_ids" string="Karyawan ALW" class='bg-info text-light'>
+                                <field name="employee_alw_kpi_line">
+                                    <tree editable='bottom' create='0'>
+                                        <field name="employee_id" readonly='1' />
+                                        <field name="absen" />
+                                        <field name="total_karyawan_terakhir" />
+                                        <field name="total_aktif" />
+                                        <field name="total_resign" />
+                                        <field name="total_perp_kontrak" />
+                                        <field name="total_incomplete_data" />
+                                        <field name="total_pkwt" />
+                                        <field name="total_ppkwt" />
+                                        <field name="total_kesalahan_resign" />
+                                        <field name="average_alw" widget='percentage' />
+                                        <field name="grade_average_id" />
+                                        
+
+                                        <button name="action_show_details" type="object" icon="fa-list" width="0.1" title="Details"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="karyawan_kro" string="Karyawan KRO" class='bg-info text-light'>
+                                <group>
+                                    <group string="RO">
+                                        <field name="average_ro" />
+                                        <field name="grading_ro_id" />
+                                        <field name="insentif_g_ro" />
+                                    </group>
+                                    <group string="ALW">
+                                        <field name="average_alw" />
+                                        <field name="grading_alw_id" />
+                                        <field name="insentif_g_alw" />
+                                    </group>
+                                    <group string="Total">
+                                        <field name="total_insentif" />
+                                        <field name="penyesuaian" />
+                                    </group>
+                                </group>
                             </page>
                         </notebook>
                     </sheet>
@@ -95,7 +142,7 @@
                             <field name="employee_id" invisible='1' />
                             <field name="company_id" invisible='1' />
                             <field name="state" invisible='1' />
-                            <field name="wilayah_suffer_id" />
+                            <field name="wilayah_suffer_id" readonly='1'/>
                         </group>
                         <separator string="KPI Bulanan"/>
                         <field name="employee_monthly_kpi_line" attrs="{'readonly' : [('state', 'in', ('draft', 'approval_2', 'done', 'cancel'))]}">
@@ -103,6 +150,8 @@
                                 <field name="name" />
                                 <field name="employee_kpi_batch_id" invisible='1' />
                                 <field name="month_id" invisible='1'/>
+                                <field name="absen" />
+                                <field name="more" />
                                 <field name="cabang" />
                                 <field name="formasi" />
                                 <field name="aktif" />
@@ -110,6 +159,9 @@
                                 <field name="rekrutmen" />
                                 <field name="tl" />
                                 <field name="kurang" />
+                                <field name="insentif_maintain" />
+                                <field name="insentif_rekrutmen" />
+                                <field name="insentif_tl" />
                                 <field name="pemenuhan" widget='percentage' />
                                 
                                 <field name="employee_kpi_grading_ids" invisible='1' />
@@ -117,6 +169,71 @@
                                 <!-- <field name="wilayah_suffer_id" /> -->
                                 
                                 <field name="company_id" />
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="employee_alw_kpi_view_form" model="ir.ui.view">
+            <field name="name">employee.alw.kpi.view.form</field>
+            <field name="model">employee.alw.kpi</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group string="Total">
+                            <group>
+                                <field name="employee_id" />
+                                <field name="total_karyawan_terakhir" />
+                                <field name="total_aktif" />
+                                <field name="total_resign" />
+                                <field name="total_perp_kontrak" />
+                            </group>
+                            <group>
+                                <field name="total_incomplete_data" />
+                                <field name="total_pkwt" />
+                                <field name="total_ppkwt" />
+                                <field name="total_kesalahan_resign" />
+                                <field name="state" invisible='1'/>    
+                            </group>
+                        </group>
+                        <group string='Persentase &amp; Grade'>
+                            <group>
+                                
+                                
+                                
+                                
+                                <field name="grade_incomplete_data_id"/>
+                                <field name="persen_incomplete_data" widget="percentage" />
+                                <field name="grade_kesalahan_resign_id"/>
+                                <field name="persen_kesalahan_resign" widget="percentage" />
+                            </group>
+                            <group>
+                                <field name="grade_pkwt_id"/>
+                                <field name="persen_pkwt" widget="percentage" />
+                                <field name="grade_ppkwt_id"/>
+                                <field name="persen_ppkwt" widget="percentage" />
+
+                                <field name="grade_average_id"/>
+                                <field name="average_alw" widget="percentage" />
+                                
+                            </group>
+                        </group>
+                        <separator string="Detail KPI ALW"/>
+                        <field name="alw_monthly_kpi_line" attrs="{'readonly' : [('state', 'in', ('draft', 'approval_2', 'done', 'cancel'))]}">
+                            <tree editable='bottom' create='0' delete='0'>
+                                <field name="name" readonly='1'/>
+                                <field name="absen" />
+                                <field name="month_id" invisible='1' />
+                                <field name="karyawan_terakhir" />
+                                <field name="aktif" />
+                                <field name="resign" />
+                                <field name="perp_kontrak" />
+                                <field name="incomplete_data" />
+                                <field name="pkwt" />
+                                <field name="ppkwt" />
+                                <field name="kesalahan_resign" />
                             </tree>
                         </field>
                     </sheet>

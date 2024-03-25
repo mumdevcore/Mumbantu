@@ -34,6 +34,8 @@
         'views/employee_kpi.xml',
         'views/master.xml',
         'views/grading.xml',
+        'views/res_config_settings.xml',
         'views/menu_item.xml',
+        
     ],
 }
