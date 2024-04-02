@@ -22,6 +22,7 @@
     # any module necessary for this one to work correctly
     'depends': [
         'base', 
+        'mail',
         'sequence_reset_period',
         'calendar',
         'contacts',

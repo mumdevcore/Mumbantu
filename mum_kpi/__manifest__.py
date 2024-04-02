@@ -29,6 +29,7 @@
         'data/sequence.xml',
         'data/res_month_data.xml',
         'security/group.xml',
+        'security/ir_rule.xml',
         'security/ir.model.access.csv',
 
         'views/employee_kpi.xml',
