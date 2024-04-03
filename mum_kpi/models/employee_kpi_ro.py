@@ -14,7 +14,7 @@ class EmployeeKpi(models.Model):
 	total_tl = fields.Integer(string='Total TL', compute='_compute_total')
 	company_id = fields.Many2one(comodel_name='res.company', string='Company', related='employee_kpi_batch_id.company_id', store=True, precompute=True)
 	average = fields.Float(string='Average', compute='_compute_average')
-	avg_maintain_pertama = fields.Float(string='Avg Maintain Pertama')
+	avg_maintain_pertama = fields.Float(string='Pemenuhan Sebelumnya')
 	grade_average_id = fields.Many2one('grading.template',string='Grade Average', compute='_compute_average')
 	wilayah_suffer_id = fields.Many2one(comodel_name='wilayah.suffer', string='Wilayah Suffer')
 	
@@ -32,6 +32,7 @@ class EmployeeKpi(models.Model):
 	komite = fields.Float(string='Komite')
 
 	employee_monthly_kpi_line = fields.One2many(comodel_name='employee.monthly.kpi.line', inverse_name='employee_kpi_id', string='Insentif RO Employee Line')
+	employee_monthly_kpi_result_line = fields.One2many(comodel_name='employee.monthly.kpi.line', inverse_name='employee_kpi_id', string='Insentif RO Employee Result Line')
 
 	def _compute_pencapaian_maintain(self):
 		avg_maintain_pertama = self.avg_maintain_pertama
@@ -173,12 +174,14 @@ class EmployeeMonthlyKpiLine(models.Model):
 			# Rekrutmen = rekrutmen / formasi
 			# maintain = average(pemenuhan / pemenuhan periode)
 			# tl = tl / formasi kurangx
-			rec.pencapaian_rekrutmen = rec.pencapaian_tl = 0
+			rec.pencapaian_rekrutmen = rec.pencapaian_tl = 1
 			if rec.kurang > 0:
 				pencapaian_rekrutmen = rec.rekrutmen / rec.kurang
-				rec.pencapaian_rekrutmen = pencapaian_rekrutmen <= 0 and 0 or pencapaian_rekrutmen
+				# rec.pencapaian_rekrutmen = pencapaian_rekrutmen <= 0 and 0 or min(1,pencapaian_rekrutmen)
+				rec.pencapaian_rekrutmen = min(1,pencapaian_rekrutmen)
 				pencapaian_tl = rec.tl / rec.kurang
-				rec.pencapaian_tl = pencapaian_tl <= 0 and 0 or pencapaian_tl
+				# rec.pencapaian_tl = pencapaian_tl <= 0 and 0 or min(1,pencapaian_tl)
+				rec.pencapaian_tl = min(1,pencapaian_tl)
 
 			# rec.pencapaian_maintain = pencapaian_maintain_dict[rec.sequence]
 			rec.employee_kpi_id._compute_pencapaian_maintain()

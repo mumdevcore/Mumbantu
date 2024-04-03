@@ -53,6 +53,7 @@ class EmployeeKpiBatch(models.Model):
 	def create(self, vals):
 		# CODE HERE
 		vals['name'] = self.env['ir.sequence'].next_by_code('employee.kpi.batch.seq', fields.Date.to_date(vals.get('tgl_dibuat')))
+		vals['tahun'] = fields.Date.to_date(vals.get('tgl_dibuat')).strftime("%Y")
 		return super(EmployeeKpiBatch, self).create(vals)
 	
 	# Lanjutkan yang ini.
@@ -159,13 +160,13 @@ class EmployeeKpiBatch(models.Model):
 		if any(line.absen == 0 or line.more == 0 for line in self.employee_kpi_line):
 			raise ValidationError(_("Kolom Absen dan kolom More RO tidak boleh berisi 0"))
 		if any(line.absen == 0 for line in self.employee_alw_kpi_line):
-			raise ValidationError(_("Kolom Absen ALrandom.randint(0,200)W tidak boleh berisi 0"))
+			raise ValidationError(_("Kolom Absen ALW tidak boleh berisi 0"))
 		return self.write({'state' : 'approval_1'})
 	
 	def _compute_show_approval_button(self):
 		self.show_approval_button = False
 		if (self.state == 'approval_1' and self.env.user == self.user_approval_1) or \
-			  (self.state == 'approval_2' and self.env.user == self.user_approval_2):
+			  (self.state == 'approval_2' and self.env.user == self.user_approval_2) or self.user_has_groups('base.group_system'):
 			self.show_approval_button = True
 
 	def button_approve_1(self):
