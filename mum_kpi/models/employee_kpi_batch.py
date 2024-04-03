@@ -181,6 +181,7 @@ class EmployeeKpiBatch(models.Model):
 		self.ensure_one()
 		tree_view = self.env.ref('mum_kpi.employee_kpi_view_tree')
 		form_view = self.env.ref('mum_kpi.employee_kpi_view_form')
+		# pivot_view = self.env.ref('mum_kpi.employee_kpi_view_pivot')
 		return {
 			'name': _('Detail KPI RO'),
 			'type': 'ir.actions.act_window',

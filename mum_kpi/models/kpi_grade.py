@@ -9,6 +9,13 @@ class GradingMasterTemplate(models.Model):
 
 	# Nilai ditulis dalam persen, pastikan memberikan widget percentage pada xml
 	grade = fields.Char(string='Grade')
+	nilai_min_absen = fields.Integer(string='Nilai Min Absensi')
+	nilai_max_absen = fields.Integer(string='Nilai Max Absensi')
+	insentif_absen = fields.Float(string='Insentif Absensi')
+	nilai_min_more = fields.Integer(string='Nilai Min MORE')
+	nilai_max_more = fields.Integer(string='Nilai Max MORE')
+	insentif_more = fields.Float(string='Insentif MORE')
+
 	nilai_min = fields.Float(string='Nilai Min', default=0)
 	nilai_max = fields.Float(string='Nilai Max', default=0)
 	nilai_min_ro = fields.Float(string='Min RO', default=0)

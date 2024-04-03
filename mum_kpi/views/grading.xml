@@ -24,6 +24,28 @@
                             <field name="grade"/>
                         </h1>
                     </div>
+                    <separator string="Grading Global" style='font-size:2rem'/>
+                    <group>
+                        <group>
+                            <label for="nilai_min_absen" string="Absensi"/>
+							<div>
+								<field name="nilai_min_absen" placeholder="From" class="oe_inline"/> 
+								<div class='d-inline-block mx-5'>s/d</div>  
+								<field name="nilai_max_absen" placeholder="To" class="oe_inline"/>
+							</div>
+                            <field name="insentif_absen" />
+                        </group>
+                        <group>
+                            <label for="nilai_min_more" string="Kandidat di MORE"/>
+							<div>
+								<field name="nilai_min_more" placeholder="From" class="oe_inline"/> 
+								<div class='d-inline-block mx-5'>s/d</div>  
+								<field name="nilai_max_more" placeholder="To" class="oe_inline"/>
+							</div>
+                            <field name="insentif_more" />
+                        </group>
+                    </group>
+                    
                     <separator string="Grading RO" style='font-size:2rem'/>
                     <group>
                         <group>

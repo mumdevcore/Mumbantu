@@ -111,7 +111,7 @@ class EmployeeMonthlyKpiLine(models.Model):
 	employee_kpi_batch_id = fields.Many2one(comodel_name='employee.kpi.batch', string='Employee KPI Batch')
 	employee_kpi_id = fields.Many2one(comodel_name='employee.kpi', string='Employee KPI', ondelete='cascade')
 	monthly_grading_id = fields.Many2one(comodel_name='monthly.grading', string='Monthly Grading')
-	employee_id = fields.Many2one(comodel_name='hr.employee', string='Karyawan', related='employee_kpi_id.employee_id')
+	employee_id = fields.Many2one(comodel_name='hr.employee', string='Karyawan', related='employee_kpi_id.employee_id', store=True, precompute=True)
 	name = fields.Char(string='Name')
 	month_id = fields.Many2one(comodel_name='res.month', string='Bulan')
 	absen = fields.Integer(string='Absen')

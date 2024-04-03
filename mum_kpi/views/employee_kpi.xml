@@ -248,6 +248,38 @@
             </field>
         </record>
 
+        <record id="employee_kpi_view_pivot" model="ir.ui.view">
+            <field name="name">employee.monthly.kpi.line.view.pivot</field>
+            <field name="model">employee.monthly.kpi.line</field>
+            <field name="arch" type="xml">
+                <pivot string="Employee KPI">
+                    <!-- <field name="employee_kpi_batch_id" type='row' /> -->
+                    <!-- <field name="employee_kpi_id" type='row' /> -->
+                    <field name="employee_id" type='row' />
+                    <field name="monthly_grading_id" type='col' />
+                    
+                    
+                    
+                    <field name="pencapaian_rekrutmen" widget='percentage' type='measure' />
+                    <field name="insentif_rekrutmen" type='measure' />
+                    <field name="pencapaian_maintain" widget='percentage' type='measure' />
+                    <field name="insentif_maintain" type='measure' />
+                    <field name="pencapaian_tl" widget='percentage' type='measure' />
+                    <field name="insentif_tl" type='measure' />
+                </pivot>
+            </field>
+        </record>
+
+        <record id="action_employee_monthly_kpi_line" model="ir.actions.act_window">
+            <field name="name">RO KPI Line Report</field>
+            <field name="res_model">employee.monthly.kpi.line</field>
+            <field name="view_mode">pivot</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        
+
+
         <record id="employee_alw_kpi_view_tree" model="ir.ui.view">
             <field name="name">employee.alw.kpi.view.tree</field>
             <field name="model">employee.alw.kpi</field>
