@@ -178,7 +178,9 @@
                                     <!-- <field name="employee_monthly_kpi_line_id" invisible='1' /> -->
                                     <field name="employee_id" />
                                     <field name="absen" />
+                                    <field name="grade_absen_id" />
                                     <field name="more" />
+                                    <field name="grade_more_id" />
                                     <field name="pencapaian_rekrutmen" widget='percentage' />
                                     <field name="grade_rekrutmen_id" />
                                     <field name="pencapaian_maintain" widget='percentage' />
@@ -195,6 +197,7 @@
                                 <tree editable='bottom' create='0' delete='0'>
                                     <field name="employee_id"/>
                                     <field name="absen" />
+                                    <field name="grade_absen_id" />
                                     <field name="persen_incomplete_data" widget='percentage'/>
                                     <field name="grade_incomplete_data_id"/>
                                     <field name="persen_pkwt" widget='percentage'/>

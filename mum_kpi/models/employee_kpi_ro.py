@@ -114,7 +114,7 @@ class EmployeeMonthlyKpiLine(models.Model):
 	employee_id = fields.Many2one(comodel_name='hr.employee', string='Karyawan', related='employee_kpi_id.employee_id', store=True, precompute=True)
 	name = fields.Char(string='Name')
 	month_id = fields.Many2one(comodel_name='res.month', string='Bulan')
-	absen = fields.Integer(string='Absen')
+	absen = fields.Integer(string='Absen',)
 	more = fields.Integer(string='MORE', help='Jumlah Kandidat yang ada di MORE')
 	cabang = fields.Integer(string='Cabang', default=0)
 	formasi = fields.Integer(string='Formasi', default=0)
@@ -133,6 +133,8 @@ class EmployeeMonthlyKpiLine(models.Model):
 	pencapaian_maintain = fields.Float(string='Pencapaian Maintain', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
 	pencapaian_tl = fields.Float(string='Pencapaian TL', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
 	pencapaian_average = fields.Float(string='Average', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
+	grade_absen_id = fields.Many2one('grading.template',string='Grade Absensi', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
+	grade_more_id = fields.Many2one('grading.template',string='Grade MORE', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
 	grade_rekrutmen_id = fields.Many2one('grading.template',string='Grade Rekrutmen', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
 	grade_maintain_id = fields.Many2one('grading.template',string='Grade maintain', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
 	grade_tl_id = fields.Many2one('grading.template',string='Grade TL', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
@@ -152,6 +154,8 @@ class EmployeeMonthlyKpiLine(models.Model):
 
 
 	@api.depends(
+		'absen',
+		'more',
 		'formasi',
 		'employee_kpi_id',
 		'employee_kpi_id.avg_maintain_pertama',
@@ -180,6 +184,12 @@ class EmployeeMonthlyKpiLine(models.Model):
 			rec.employee_kpi_id._compute_pencapaian_maintain()
 				
 			# Hitung Grading
+			domain_search_grade_absen = [('nilai_min_absen', '<=', rec.absen), ('nilai_max_absen', '>', rec.absen)]
+			# print(domain_search_grade_absen)
+			rec.grade_absen_id = self.env['grading.template'].search(domain_search_grade_absen, limit=1, order='nilai_max_absen desc')
+			# print(rec.grade_absen_id)
+			domain_search_grade_more = self._get_domain_grading(rec.more)
+			rec.grade_more_id = self.env['grading.template'].search(domain_search_grade_more, limit=1, order='nilai_max_more desc')
 			domain_search_grade_rekrutmen = self._get_domain_grading(rec.pencapaian_rekrutmen)
 			rec.grade_rekrutmen_id = self.env['grading.template'].search(domain_search_grade_rekrutmen, limit=1, order='nilai_max_ro desc')
 			domain_search_grade_tl = self._get_domain_grading(rec.pencapaian_tl)

@@ -166,6 +166,7 @@ class AlwMonthlyKpiLine(models.Model):
 	persen_pkwt = fields.Float(string='Belum PKWT %', compute='_compute_all', store=True, precompute=True)
 	persen_ppkwt = fields.Float(string='Belum PPKWT %', compute='_compute_all', store=True, precompute=True)
 	persen_kesalahan_resign = fields.Float(string='Kesalahan Resign %', compute='_compute_all', store=True, precompute=True)
+	grade_absen_id = fields.Many2one('grading.template',string='Grade Absensi', compute='_compute_all', store=True, precompute=True)
 	grade_incomplete_data_id = fields.Many2one('grading.template',string='Grade Incomplete Data', compute='_compute_all', store=True, precompute=True)
 	grade_pkwt_id = fields.Many2one('grading.template',string='Grade PKWT', compute='_compute_all', store=True, precompute=True)
 	grade_ppkwt_id = fields.Many2one('grading.template',string='Grade PPKWT', compute='_compute_all', store=True, precompute=True)
@@ -173,6 +174,7 @@ class AlwMonthlyKpiLine(models.Model):
 	# grade_average_id = fields.Many2one(comodel_name='grading.template', string='Grade Average')
 
 	@api.depends(
+		'absen',
 		'karyawan_terakhir',
 		'resign',
 		'perp_kontrak',
@@ -190,24 +192,27 @@ class AlwMonthlyKpiLine(models.Model):
 
 			# percent_field_values = [rec.persen_incomplete_data, rec.persen_pkwt, rec.persen_ppkwt, rec.persen_kesalahan_resign]
 			# rec.average_alw = sum(percent_field_values) / len(percent_field_values)
+			domain_search_absen = self._get_domain_grading('absen', rec.absen)
+			# print(domain_search_absen)
+			rec.grade_absen_id = self.env['grading.template'].search(domain_search_absen, limit=1, order='nilai_max_absen desc')
 
-			domain_search_incomplete_data = self._get_domain_grading('incomplete_data', rec.persen_incomplete_data)
+			domain_search_incomplete_data = self._get_domain_grading('alw_incomplete_data', rec.persen_incomplete_data)
 			rec.grade_incomplete_data_id = self.env['grading.template'].search(domain_search_incomplete_data, limit=1, order='nilai_max_alw_incomplete_data desc')
 			
 			
-			domain_search_pkwt = self._get_domain_grading('pkwt', rec.persen_pkwt)
+			domain_search_pkwt = self._get_domain_grading('alw_pkwt', rec.persen_pkwt)
 			rec.grade_pkwt_id = self.env['grading.template'].search(domain_search_pkwt, limit=1, order='nilai_max_alw_pkwt desc')
 			
-			domain_search_ppkwt = self._get_domain_grading('ppkwt', rec.persen_ppkwt)
+			domain_search_ppkwt = self._get_domain_grading('alw_ppkwt', rec.persen_ppkwt)
 			rec.grade_ppkwt_id = self.env['grading.template'].search(domain_search_ppkwt, limit=1, order='nilai_max_alw_ppkwt desc')
 
-			domain_search_resign = self._get_domain_grading('resign', rec.persen_kesalahan_resign)
+			domain_search_resign = self._get_domain_grading('alw_resign', rec.persen_kesalahan_resign)
 			rec.grade_kesalahan_resign_id = self.env['grading.template'].search(domain_search_resign, limit=1, order='nilai_max_alw_resign desc')
 			
 			# domain_search_avg = self._get_domain_grading('avg', rec.average_alw)
 			# rec.grade_average_id = self.env['grading.template'].search(domain_search_avg, limit=1, order='nilai_max_alw_resign desc')
 
 	def _get_domain_grading(self, key, field):
-		nilai_min = f'nilai_min_alw_{key}'
-		nilai_max = f'nilai_max_alw_{key}'
+		nilai_min = f'nilai_min_{key}'
+		nilai_max = f'nilai_max_{key}'
 		return [(nilai_min, '<=', field), (nilai_max, '>', field)]	

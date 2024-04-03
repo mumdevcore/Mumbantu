@@ -74,7 +74,9 @@
                                     <tree editable='bottom' create='0'>
                                         <field name="employee_id" readonly='1' />
                                         <field name="absen" />
+                                        <!-- <field name="grade_absen_id" invisible='1' /> -->
                                         <field name="more" />
+                                        <!-- <field name="grade_more_id" invisible='1' /> -->
                                         <field name="total_resign" />
                                         <field name="total_rekrutmen" />
                                         <field name="total_tl" />
@@ -98,6 +100,7 @@
                                     <tree editable='bottom' create='0'>
                                         <field name="employee_id" readonly='1' />
                                         <field name="absen" />
+                                        
                                         <field name="total_karyawan_terakhir" />
                                         <!-- <field name="total_aktif" /> -->
                                         <field name="total_resign" />
@@ -220,7 +223,9 @@
                                 <field name="employee_kpi_batch_id" invisible='1' />
                                 <field name="month_id" invisible='1'/>
                                 <field name="absen" />
+                                <field name="grade_absen_id" invisible='1' />
                                 <field name="more" />
+                                <field name="grade_more_id" invisible='1' />
                                 <field name="cabang" />
                                 <field name="formasi" />
                                 <field name="aktif" />
@@ -287,6 +292,7 @@
                 <tree delete='0' create='0'>
                     <field name="employee_id" readonly='1' />
                     <field name="absen" />
+                    <!-- <field name="grade_absen_id" invisible='1' /> -->
                     <field name="total_karyawan_terakhir" />
                     <!-- <field name="total_aktif" /> -->
                     <field name="total_resign" />
@@ -365,6 +371,7 @@
                                 <field name="sequence" invisible='0' />
                                 <field name="name" readonly='1'/>
                                 <field name="absen" />
+                                <field name="grade_absen_id" invisible='1' />
                                 <field name="month_id" invisible='1' />
                                 <field name="karyawan_terakhir" />
                                 <!-- <field name="aktif" /> -->
