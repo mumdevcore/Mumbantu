@@ -1,8 +1,8 @@
 from odoo import _, api, fields, models, Command
 from collections import OrderedDict
 
-# class EmployeeKpi(models.Model):
-# 	_name = 'employee.kpi'
+class EmployeeKpi(models.Model):
+	_name = 'employee.kpi'
 
 class EmployeeKpi(models.Model):
 	_name = 'employee.ro.kpi'
