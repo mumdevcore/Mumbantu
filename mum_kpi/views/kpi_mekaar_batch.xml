@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="kpi_mekaar_batch_view_tree" model="ir.ui.view">
+        <field name="name">kpi.mekaar.batch.view.tree</field>
+        <field name="model">kpi.mekaar.batch</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="periode_id" />
+                <field name="tahun" />
+                <field name="total_insentif_kro" />
+                <field name="total_insentif_ro" />
+                <field name="total_insentif_alw" />
+                <field name="total_insentif" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="kpi_mekaar_batch_view_form" model="ir.ui.view">
+        <field name="name">kpi.mekaar.batch.view.form</field>
+        <field name="model">kpi.mekaar.batch</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Approve" name="button_approve" type="object" states='draft' class="oe_highlight"/>
+                    <button string="Reset to Draft" name="button_draft" type="object" states="done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <!-- <button name="action_show_details_ro" type="object" class="oe_stat_button" icon="fa-pencil">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="employee_kpi_line_count" widget="statinfo" nolabel="1" string="RO Count"/>
+                                </span>
+                                <span class="o_stat_text">Detail RO</span>
+                            </div>
+                        </button>
+
+                        <button name="action_show_details_alw" type="object" class="oe_stat_button" icon="fa-pencil">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="employee_alw_kpi_line_count" widget="statinfo" nolabel="1" string="RO Count"/>
+                                </span>
+                                <span class="o_stat_text">Detail ALW</span>
+                            </div>
+                        </button> -->
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly='1'/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="periode_id" readonly='1'/>
+                            <field name="tahun" readonly='1'/>
+                            <field name="tgl_dibuat" readonly='1'/>
+                        </group>
+                        <group>
+                            <label for='jml_ro' name="Jumlah RO"/>
+                            <div>
+                                <field name="jml_ro" class="oe_inline"/> 
+                                 dari 
+                                <field name="total_ro" class="oe_inline" readonly='1' />
+                            </div>
+                            
+                            <label for='jml_alw' name="Jumlah ALW"/>
+                            <div>
+                                <field name="jml_alw" class="oe_inline"/> 
+                                 dari 
+                                <field name="total_alw" class="oe_inline" readonly='1' />
+                            </div>
+
+                            <label for='jml_kro' name="Jumlah KRO"/>
+                            <div>
+                                <field name="jml_kro" class="oe_inline"/> 
+                                 dari 
+                                <field name="total_kro" class="oe_inline" readonly='1' />
+                            </div>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Insentif">
+                            <field name="total_insentif_kro" />
+                            <field name="total_insentif_ro" />
+                            <field name="total_insentif_alw" />
+                            <field name="total_insentif" />
+                        </group>
+                        <group string="Penyesuaian Komite">
+                            <field name="total_penyesuaian_insentif_kro" />
+                            <field name="total_penyesuaian_insentif_ro" />
+                            <field name="total_penyesuaian_insentif_alw" />
+                            <field name="total_penyesuaian_insentif" />
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Skor KPI RO">
+                            <field name="employee_ro_kpi_line" context="{'show_inisial' : True}">
+                                <tree editable='bottom' create='0'>
+                                    <field name="employee_id" readonly='1' string="RO" />
+                                    <field name="employee_manager_id" string="KRO" />
+                                    <!-- <field name="absen" readonly='1' />
+                                    <field name="more" readonly='1' />
+                                    <field name="total_resign" />
+                                    <field name="total_rekrutmen" />
+                                    <field name="total_tl" /> -->
+                                    <field name="average" widget='percentage' />
+                                    <field name="grade_average_id" groups='mum_kpi.group_insentif_manager' />
+                                    <field name="company_id" invisible='1' />
+                                    <field name="insentif_maintain" invisible='1'/>
+                                    <field name="insentif_rekrutmen" invisible='1'/>
+                                    <field name="insentif_tl" invisible='1'/>
+                                    <field name="insentif_wilayah_suffer" invisible='1'/>
+                                    
+                                    <field name="wilayah_suffer_id"  groups='mum_kpi.group_insentif_manager'/>
+                                    <field name="total_insentif"  groups='mum_kpi.group_insentif_manager'/>
+                                    <field name="alasan_penyesuaian"  groups='mum_kpi.group_insentif_manager'/>
+                                    <field name="penyesuaian"  groups='mum_kpi.group_insentif_manager'/>
+                                    <field name="total_insentif" invisible='1' groups='mum_kpi.group_insentif_manager'/>
+                                    <field name="employee_monthly_kpi_line" invisible='1' />
+                                    <button name="action_show_details" type="object" icon="fa-list" width="0.1" title="Details"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string='KPI ALW'>
+                            <field name="employee_alw_kpi_line" context="{'show_inisial' : True}">
+                                <tree editable='bottom' create='0'>
+                                    <field name="employee_id" readonly='1' string="ALW" />
+                                    <field name="employee_manager_id" string="KRO" />
+                                    <field name="absen" />
+                                    
+                                    <!-- <field name="total_karyawan_terakhir" />
+                                    <field name="total_resign" />
+                                    <field name="total_perp_kontrak" />
+                                    <field name="total_incomplete_data" />
+                                    <field name="total_pkwt" />
+                                    <field name="total_ppkwt" />
+                                    <field name="total_kesalahan_resign" /> -->
+                                    
+                                    
+                                    <field name="persen_incomplete_data" widget="percentage" invisible='1' />
+                                    <field name="grade_incomplete_data_id"/>
+                                    <field name="insentif_alw_incomplete_data" />
+
+                                    <field name="persen_kesalahan_resign" widget="percentage" invisible='1' />
+                                    <field name="grade_kesalahan_resign_id" class='text-center'/>
+                                    
+                                    <field name="persen_pkwt" widget="percentage" invisible='1' />
+                                    <field name="grade_pkwt_id"/>
+                                    <field name="insentif_alw_pkwt" />
+                                    <field name="persen_ppkwt" widget="percentage" invisible='1' />
+                                    <field name="grade_ppkwt_id"/>
+                                    <field name="insentif_alw_ppkwt" />
+                                    
+                                    
+                                    <field name="average_alw" widget='percentage' invisible='1' />
+                                    <field name="grade_average_id" groups='mum_kpi.group_insentif_manager' />
+                                    <field name="total_insentif" /> 
+                                    <field name="alasan_penyesuaian" groups='mum_kpi.group_insentif_manager'/>
+                                    <field name="penyesuaian" groups='mum_kpi.group_insentif_manager'/>
+                                    
+                                    <button name="action_show_details" type="object" icon="fa-list" width="0.1" title="Details"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="kpi_kro" string="KPI KRO">
+                            <field name="employee_kro_kpi_line" context="{'show_inisial' : True}">
+                                <tree editable='bottom' create='0'>
+                                    <field name="employee_id" readonly='1' string="KRO"/>
+                                    <field name="employee_manager_id" string="KABAG" />
+                                    <field name="average_ro" widget='percentage' />
+                                    <field name="grading_ro_id" />
+                                    <field name="insentif_g_ro" string="Insentif Grading RO" />
+                                    <field name="average_alw" widget='percentage' />
+                                    <field name="grading_alw_id" />
+                                    <field name="insentif_g_alw" string="Insentif Grading ALW" />
+                                    <field name="total_insentif" />
+                                    <field name="penyesuaian" string="Komite" />
+                                    <field name="alasan_penyesuaian" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_kpi_mekaar_batch" model="ir.actions.act_window">
+        <field name="name">KPI MEKAAR</field>
+        <field name="res_model">kpi.mekaar.batch</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+</odoo>

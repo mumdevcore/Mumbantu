@@ -45,6 +45,24 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-12 col-md-6 o_setting_box" id="default_job_position_kro">
+                            <div class="o_setting_right_pane">
+                                <div class="row">
+                                    <div class="text-muted col-lg-8">
+                                        Job Position for KRO
+                                    </div>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="position_default_job_kro_id" required="1"
+                                            class="o_light_label"
+                                            domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]"
+                                            context="{'default_company_id': company_id}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </xpath>

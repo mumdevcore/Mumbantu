@@ -3,8 +3,8 @@
 
     <record id="kpi_user_role" model="ir.rule">
         <field name="name">KPI Batch User Role</field>
-        <field name="model_id" ref="mum_kpi.model_employee_kpi_batch"/>
-        <field name="domain_force">['|', ('kro_id','=', user.employee_id.id), ('user_approval_1','=', user.id)]</field>
+        <field name="model_id" ref="mum_kpi.model_employee_kro_kpi"/>
+        <field name="domain_force">['|', ('employee_id','=', user.employee_id.id), ('user_approval_1','=', user.id)]</field>
         <field eval="1" name="perm_unlink" />
         <field eval="1" name="perm_write" />
         <field eval="1" name="perm_read" />
@@ -14,7 +14,7 @@
 
     <record id="kpi_manager_role" model="ir.rule">
         <field name="name">KPI Batch Admin Role</field>
-        <field name="model_id" ref="mum_kpi.model_employee_kpi_batch"/>
+        <field name="model_id" ref="mum_kpi.model_employee_kro_kpi"/>
         <field name="domain_force">[(1,'=', 1)]</field>
         <field eval="1" name="perm_unlink" />
         <field eval="1" name="perm_write" />

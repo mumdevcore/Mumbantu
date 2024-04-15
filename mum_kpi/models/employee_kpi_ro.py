@@ -1,18 +1,24 @@
 from odoo import _, api, fields, models, Command
 from collections import OrderedDict
 
+# class EmployeeKpi(models.Model):
+# 	_name = 'employee.kpi'
+
 class EmployeeKpi(models.Model):
-	_name = 'employee.kpi'
-	_description = 'Employee KPI'
+	_name = 'employee.ro.kpi'
+	_description = 'Employee RO KPI'
 	_rec_name = 'employee_id'
 
 	# name = fields.Char(string='Name')
-	employee_kpi_batch_id = fields.Many2one(comodel_name='employee.kpi.batch', string='Employee KPI Batch', ondelete='cascade')
+	employee_kro_kpi_id = fields.Many2one(comodel_name='employee.kro.kpi', string='Employee KPI Batch', ondelete='cascade')
+	kpi_mekaar_batch_id = fields.Many2one(comodel_name='kpi.mekaar.batch', string='KPI Mekaar Batch')
 	employee_id = fields.Many2one(comodel_name='hr.employee', string='Karyawan')
+	employee_manager_id = fields.Many2one(comodel_name='hr.employee', string='KRO', related='employee_id.parent_id')
+
 	total_resign = fields.Integer(string='Total Resign', compute='_compute_total')
 	total_rekrutmen = fields.Integer(string='Total Rekrutmen', compute='_compute_total')
 	total_tl = fields.Integer(string='Total TL', compute='_compute_total')
-	company_id = fields.Many2one(comodel_name='res.company', string='Company', related='employee_kpi_batch_id.company_id', store=True, precompute=True)
+	
 	average = fields.Float(string='Average', compute='_compute_average')
 	avg_maintain_pertama = fields.Float(string='Pemenuhan Sebelumnya')
 	grade_average_id = fields.Many2one('grading.template',string='Grade Average', compute='_compute_average')
@@ -20,19 +26,24 @@ class EmployeeKpi(models.Model):
 	
 	absen = fields.Integer(string='Absen', compute='_compute_absen_more')
 	more = fields.Integer(string='MORE', compute='_compute_absen_more', help='Jumlah Kandidat yang ada di MORE')
-	state = fields.Selection(string='State', related='employee_kpi_batch_id.state')
+	state = fields.Selection(string='State', related='employee_kro_kpi_id.state')
+
+	potongan_absen = fields.Float(string='Potongan Absensi', compute='_compute_insentif', store=True,)
+	insentif_more = fields.Float(string='Insentif MORE', compute='_compute_insentif', store=True,)
 	insentif_wilayah_suffer = fields.Float(string='Insentif Wilayah Suffer', related='wilayah_suffer_id.nilai_insentif', store=True)
 	insentif_maintain = fields.Float(string='Insentif Aktif', compute='_compute_insentif')
 	insentif_rekrutmen = fields.Float(string='Insentif Rekrutmen', compute='_compute_insentif')
 	insentif_tl = fields.Float(string='Insentif TL', compute='_compute_insentif')
 	total_insentif = fields.Float(string='Total Insentif', compute='_compute_insentif')
+
 	usulan_kabag = fields.Float(string='Usulan Kabag')
 	penyesuaian_kabag = fields.Float(string='Penyesuaian Kabag', compute='_compute_penyesuaian_kabag')
 	alasan_penyesuaian = fields.Char(string='Alasan Penyesuaian')
-	komite = fields.Float(string='Komite')
+	penyesuaian = fields.Float(string='Komite')
 
 	employee_monthly_kpi_line = fields.One2many(comodel_name='employee.monthly.kpi.line', inverse_name='employee_kpi_id', string='Insentif RO Employee Line')
 	employee_monthly_kpi_result_line = fields.One2many(comodel_name='employee.monthly.kpi.line', inverse_name='employee_kpi_id', string='Insentif RO Employee Result Line')
+	company_id = fields.Many2one(comodel_name='res.company', string='Company', related='employee_kro_kpi_id.company_id', store=True, precompute=True)
 
 	def _compute_pencapaian_maintain(self):
 		avg_maintain_pertama = self.avg_maintain_pertama
@@ -64,7 +75,9 @@ class EmployeeKpi(models.Model):
 			rec.insentif_maintain = sum(rec.employee_monthly_kpi_line.mapped('insentif_maintain'))
 			rec.insentif_tl = sum(rec.employee_monthly_kpi_line.mapped('insentif_tl'))
 			rec.insentif_rekrutmen = sum(rec.employee_monthly_kpi_line.mapped('insentif_rekrutmen'))
-			rec.total_insentif = rec.insentif_maintain + rec.insentif_tl + rec.insentif_rekrutmen + rec.insentif_wilayah_suffer
+			rec.insentif_more = sum(rec.employee_monthly_kpi_line.mapped('insentif_more'))
+			rec.potongan_absen = sum(rec.employee_monthly_kpi_line.mapped('potongan_absen'))
+			rec.total_insentif = rec.insentif_maintain + rec.insentif_tl + rec.insentif_rekrutmen + rec.insentif_wilayah_suffer + rec.insentif_more - rec.potongan_absen
 			
 	def _compute_absen_more(self):
 		for rec in self:
@@ -109,37 +122,43 @@ class EmployeeMonthlyKpiLine(models.Model):
 	_order = 'sequence'
 
 	sequence = fields.Integer(string='Sequence', default=0)
-	employee_kpi_batch_id = fields.Many2one(comodel_name='employee.kpi.batch', string='Employee KPI Batch')
-	employee_kpi_id = fields.Many2one(comodel_name='employee.kpi', string='Employee KPI', ondelete='cascade')
+	employee_kro_kpi_id = fields.Many2one(comodel_name='employee.kro.kpi', string='Employee KPI Batch')
+	employee_kpi_id = fields.Many2one(comodel_name='employee.ro.kpi', string='Employee KPI', ondelete='cascade')
 	monthly_grading_id = fields.Many2one(comodel_name='monthly.grading', string='Monthly Grading')
 	employee_id = fields.Many2one(comodel_name='hr.employee', string='Karyawan', related='employee_kpi_id.employee_id', store=True, precompute=True)
 	name = fields.Char(string='Name')
 	month_id = fields.Many2one(comodel_name='res.month', string='Bulan')
-	absen = fields.Integer(string='Absen',)
+	
+	absen = fields.Integer(string='Absen', )
 	more = fields.Integer(string='MORE', help='Jumlah Kandidat yang ada di MORE')
-	cabang = fields.Integer(string='Cabang', default=0)
-	formasi = fields.Integer(string='Formasi', default=0)
-	aktif = fields.Integer(string='Aktif', default=0)
-	resign = fields.Integer(string='Resign', default=0)
-	rekrutmen = fields.Integer(string='Rekrutmen', default=0)
-	tl = fields.Integer(string='TL', default=0)
-	insentif_maintain = fields.Float(string='Insentif Aktif', related='grade_maintain_id.insentif_maintain', store=True, precompute=True)
-	insentif_rekrutmen = fields.Float(string='Insentif Rekrutmen', related='grade_rekrutmen_id.insentif_rekrutmen', store=True, precompute=True)
-	insentif_tl = fields.Float(string='Insentif TL', related='grade_tl_id.insentif_tl', store=True, precompute=True)
+	cabang = fields.Integer(string='Cabang', )
+	formasi = fields.Integer(string='Formasi', )
+	aktif = fields.Integer(string='Aktif', )
+	resign = fields.Integer(string='Resign', )
+	rekrutmen = fields.Integer(string='Rekrutmen', )
+	tl = fields.Integer(string='TL', )
 	kurang = fields.Integer(string='Kurang', compute='_compute_kurang_pemenuhan')
 	pemenuhan = fields.Float(string='Pemenuhan', compute='_compute_kurang_pemenuhan')
-	company_id = fields.Many2one(comodel_name='res.company', string='Company', related='employee_kpi_batch_id.company_id', store=True, precompute=True)
 
 	pencapaian_rekrutmen = fields.Float(string='Pencapaian Rekrutment', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
 	pencapaian_maintain = fields.Float(string='Pencapaian Maintain', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
 	pencapaian_tl = fields.Float(string='Pencapaian TL', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
 	pencapaian_average = fields.Float(string='Average', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
+
 	grade_absen_id = fields.Many2one('grading.template',string='Grade Absensi', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
 	grade_more_id = fields.Many2one('grading.template',string='Grade MORE', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
 	grade_rekrutmen_id = fields.Many2one('grading.template',string='Grade Rekrutmen', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
 	grade_maintain_id = fields.Many2one('grading.template',string='Grade maintain', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
 	grade_tl_id = fields.Many2one('grading.template',string='Grade TL', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
 	grade_average_id = fields.Many2one('resume.kpi.grading',string='Grade Average', compute='_compute_pencapaian_karyawan', store=True, precompute=True)
+
+	insentif_maintain = fields.Float(string='Insentif Aktif', related='grade_maintain_id.insentif_maintain', store=True, precompute=True)
+	insentif_rekrutmen = fields.Float(string='Insentif Rekrutmen', related='grade_rekrutmen_id.insentif_rekrutmen', store=True, precompute=True)
+	insentif_tl = fields.Float(string='Insentif TL', related='grade_tl_id.insentif_tl', store=True, precompute=True)
+	potongan_absen = fields.Float(string='Potongan Absensi', related='grade_absen_id.potongan_absen', store=True,)
+	insentif_more = fields.Float(string='Insentif MORE', related='grade_more_id.insentif_more', store=True,)
+
+	company_id = fields.Many2one(comodel_name='res.company', string='Company', related='employee_kro_kpi_id.company_id', store=True, precompute=True)
 
 	def _calc_average(self):
 		pencapaian_vals = []
@@ -188,15 +207,17 @@ class EmployeeMonthlyKpiLine(models.Model):
 				
 			# Hitung Grading
 			domain_search_grade_absen = [('nilai_min_absen', '<=', rec.absen), ('nilai_max_absen', '>', rec.absen)]
-			# print(domain_search_grade_absen)
 			rec.grade_absen_id = self.env['grading.template'].search(domain_search_grade_absen, limit=1, order='nilai_max_absen desc')
-			# print(rec.grade_absen_id)
-			domain_search_grade_more = self._get_domain_grading(rec.more)
+
+			domain_search_grade_more = [('nilai_min_more', '<=', rec.more), ('nilai_max_more', '>', rec.more)]
 			rec.grade_more_id = self.env['grading.template'].search(domain_search_grade_more, limit=1, order='nilai_max_more desc')
+
 			domain_search_grade_rekrutmen = self._get_domain_grading(rec.pencapaian_rekrutmen)
 			rec.grade_rekrutmen_id = self.env['grading.template'].search(domain_search_grade_rekrutmen, limit=1, order='nilai_max_ro desc')
+
 			domain_search_grade_tl = self._get_domain_grading(rec.pencapaian_tl)
 			rec.grade_tl_id = self.env['grading.template'].search(domain_search_grade_tl, limit=1, order='nilai_max_ro desc')
+
 			domain_search_grade_maintain = self._get_domain_grading(rec.pencapaian_maintain)
 			rec.grade_maintain_id = self.env['grading.template'].search(domain_search_grade_maintain, limit=1, order='nilai_max_ro desc')
 
@@ -230,6 +251,6 @@ class EmployeeMonthlyKpiLine(models.Model):
 				'monthly_grading_id' : monthly_grading.id,
 				'employee_id' : line.employee_id.id,
 				# 'employee_monthly_kpi_line_id' : line.id,
-				'employee_kpi_id' : line.employee_kpi_batch_id.id,
+				'employee_kpi_id' : line.employee_kro_kpi_id.id,
 			} for monthly_grading in monthly_grading_ids]
 			employee_kpi_grading_ids = self.env['employee.kpi.grading'].create(employee_kpi_grading_vals)

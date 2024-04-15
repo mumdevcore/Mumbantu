@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-inherit="web.ListRenderer" t-inherit-mode="extension" owl="1">
+    <!-- <t t-name='mum_backend_custom.ListRenderer' t-inherit='' owl='1'> -->
+        <xpath expr="//table[contains(@class, 'o_list_table table table-sm table-hover mb-0')]/t/th/t/div" position='attributes'>
+            
+            <attribute name='t-attf-class'>{'d-flex': true}</attribute>
+        </xpath>
+
+        <!-- <xpath expr="//span[contains(@t-att-class, 'o_list_number_th')]" position='attributes'>
+            
+            <attribute name='t-attf-class'>{'d-flex': true}</attribute>
+        </xpath> -->
+    </t>    
+</templates>

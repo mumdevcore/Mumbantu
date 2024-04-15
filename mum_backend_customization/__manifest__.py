@@ -55,4 +55,12 @@
 
         'views/menu_item.xml',
     ],
+
+    'assets' : {
+        'web.assets_backend' : [
+            # '/static/src/xml/**/*',
+            # 'mum_backend_customization/static/src/xml/list_renderer.xml',
+            'mum_backend_customization/static/src/scss/style.scss',
+        ]
+    }
 }

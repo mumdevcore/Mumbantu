@@ -6,49 +6,57 @@ class EmployeeAlwKpi(models.Model):
 	_description = "Employee Admin KPI"
 	_rec_name = 'employee_id'
 
-	employee_kpi_batch_id = fields.Many2one(comodel_name='employee.kpi.batch', string='Employee KPI Batch')
+	employee_kro_kpi_id = fields.Many2one(comodel_name='employee.kro.kpi', string='Employee KPI Batch')
+	kpi_mekaar_batch_id = fields.Many2one(comodel_name='kpi.mekaar.batch', string='KPI Mekaar Batch')
 	monthly_grading_id = fields.Many2one(comodel_name='monthly.grading', string='Monthly Grading')
 	employee_id = fields.Many2one(comodel_name='hr.employee', string='Karyawan')
+	employee_manager_id = fields.Many2one(comodel_name='hr.employee', string='KRO', related='employee_id.parent_id')
+
 	absen = fields.Integer(string='Absen', compute='_compute_absen', store=True, precompute=True)
 	total_karyawan_terakhir = fields.Integer(string='Karyawan Terakhir', compute='_compute_all', store=True, precompute=True)
 	total_aktif = fields.Integer(string='Aktif', compute='_compute_all', store=True, precompute=True)
 	total_resign = fields.Integer(string='Resign', compute='_compute_all', store=True, precompute=True)
 	total_perp_kontrak = fields.Integer(string='Perp. Kontrak', compute='_compute_all', store=True, precompute=True)
 	total_incomplete_data = fields.Integer(string='Incomplete Data', compute='_compute_all', store=True, precompute=True)
-	persen_incomplete_data = fields.Float(string='Incomplete Data', compute='_compute_all', store=True, precompute=True)
 	total_pkwt = fields.Integer(string='Belum PKWT', compute='_compute_all', store=True, precompute=True)
-	persen_pkwt = fields.Float(string='Belum PKWT', compute='_compute_all', store=True, precompute=True)
 	total_ppkwt = fields.Integer(string='Belum PPKWT', compute='_compute_all', store=True, precompute=True)
-	persen_ppkwt = fields.Float(string='Belum PPKWT', compute='_compute_all', store=True, precompute=True)
 	total_kesalahan_resign = fields.Integer(string='Kesalahan Resign', compute='_compute_all', store=True, precompute=True)
+
 	persen_kesalahan_resign = fields.Float(string='Kesalahan Resign', compute='_compute_all', store=True, precompute=True)
+	persen_incomplete_data = fields.Float(string='Incomplete Data', compute='_compute_all', store=True, precompute=True)
+	persen_pkwt = fields.Float(string='Belum PKWT', compute='_compute_all', store=True, precompute=True)
+	persen_ppkwt = fields.Float(string='Belum PPKWT', compute='_compute_all', store=True, precompute=True)
 	average_alw = fields.Float(string='Average ALW', compute='_compute_all', store=True, precompute=True)
+
 	grade_incomplete_data_id = fields.Many2one('grading.template',string='Grade Incomplete Data', compute='_compute_all', store=True, precompute=True)
 	grade_pkwt_id = fields.Many2one('grading.template',string='Grade PKWT', compute='_compute_all', store=True, precompute=True)
 	grade_ppkwt_id = fields.Many2one('grading.template',string='Grade PPKWT', compute='_compute_all', store=True, precompute=True)
 	grade_kesalahan_resign_id = fields.Many2one('grading.template',string='Grade Kesalahan Resign', compute='_compute_all', store=True, precompute=True)
+	grade_absen_id = fields.Many2one(comodel_name='grading.template', string='Grade Average', compute='_compute_all', store=True, precompute=True)
 	grade_average_id = fields.Many2one(comodel_name='grading.template', string='Grade Average', compute='_compute_all', store=True, precompute=True)
+
 
 	insentif_alw_resign = fields.Float(string='Insentif Resign', compute='_compute_insentif', store=True, precompute=True)
 	insentif_alw_incomplete_data = fields.Float(string='Insentif Incomplete Data', compute='_compute_insentif', store=True, precompute=True)
 	insentif_alw_pkwt = fields.Float(string='Insentif PKWT', compute='_compute_insentif', store=True, precompute=True)
 	insentif_alw_ppkwt = fields.Float(string='Insentif PPKWT', compute='_compute_insentif', store=True, precompute=True)
-	insentif_total = fields.Float(string='Insentif Total', compute='_compute_insentif', store=True, precompute=True)
+	total_insentif = fields.Float(string='Insentif Total', compute='_compute_insentif', store=True, precompute=True)
+	potongan_absen = fields.Float(string='Potongan Absen', compute='_compute_insentif', store=True, precompute=True)
 
 	usulan_kabag = fields.Float(string='Usulan Kabag')
 	penyesuaian_kabag = fields.Float(string='Penyesuaian Kabag', compute='_compute_penyesuaian_kabag')
 	alasan_penyesuaian = fields.Char(string='Alasan Penyesuaian')
-	komite = fields.Float(string='Komite')
+	penyesuaian = fields.Float(string='Komite')
 	# penyesuaian kabag usulan kabag	Periode Sebelumnya Komite
 	
-	state = fields.Selection(string='State', related='employee_kpi_batch_id.state')
+	state = fields.Selection(string='State', related='employee_kro_kpi_id.state')
 
 	alw_monthly_kpi_line = fields.One2many(comodel_name='alw.monthly.kpi.line', inverse_name='employee_alw_kpi_id', string='ALW Monthly KPI')
 
-	@api.depends('usulan_kabag', 'insentif_total')
+	@api.depends('usulan_kabag', 'total_insentif')
 	def _compute_penyesuaian_kabag(self):
 		for rec in self:
-			rec.penyesuaian_kabag = rec.usulan_kabag > 0 and rec.usulan_kabag - rec.insentif_total 
+			rec.penyesuaian_kabag = rec.usulan_kabag > 0 and rec.usulan_kabag - rec.total_insentif 
 
 	@api.depends('alw_monthly_kpi_line.absen')
 	def _compute_absen(self):
@@ -56,6 +64,7 @@ class EmployeeAlwKpi(models.Model):
 			rec.absen = sum(l.absen for l in rec.alw_monthly_kpi_line)
 
 	@api.depends(
+		'alw_monthly_kpi_line.potongan_absen',
 		'grade_incomplete_data_id',
 		'grade_pkwt_id',
 		'grade_ppkwt_id',
@@ -67,10 +76,12 @@ class EmployeeAlwKpi(models.Model):
 			rec.insentif_alw_pkwt = rec.grade_pkwt_id.insentif_alw_pkwt
 			rec.insentif_alw_ppkwt = rec.grade_ppkwt_id.insentif_alw_ppkwt
 			rec.insentif_alw_resign = rec.grade_kesalahan_resign_id.insentif_alw_resign
-			rec.insentif_total = sum([rec.insentif_alw_incomplete_data, rec.insentif_alw_pkwt, rec.insentif_alw_ppkwt, rec.insentif_alw_resign])
+			rec.potongan_absen = sum(line.potongan_absen for line in rec.alw_monthly_kpi_line)
+			rec.total_insentif = sum([rec.insentif_alw_incomplete_data, rec.insentif_alw_pkwt, rec.insentif_alw_ppkwt, rec.insentif_alw_resign]) - rec.potongan_absen
 
 
 	@api.depends(
+		
 		'alw_monthly_kpi_line.karyawan_terakhir',
 		'alw_monthly_kpi_line.aktif',
 		'alw_monthly_kpi_line.resign',
@@ -95,6 +106,7 @@ class EmployeeAlwKpi(models.Model):
 			rec.total_pkwt = sum(line.pkwt for line in rec.alw_monthly_kpi_line)
 			rec.total_ppkwt = sum(line.ppkwt for line in rec.alw_monthly_kpi_line)
 			rec.total_kesalahan_resign = sum(line.kesalahan_resign for line in rec.alw_monthly_kpi_line)
+			
 
 			rec.persen_incomplete_data = sum(l.persen_incomplete_data for l in rec.alw_monthly_kpi_line) / total_line
 			rec.persen_pkwt = sum(l.persen_pkwt for l in rec.alw_monthly_kpi_line) / total_line
@@ -145,7 +157,7 @@ class AlwMonthlyKpiLine(models.Model):
 	_order = 'sequence'
 
 	# name = fields.Char()
-	employee_kpi_batch_id = fields.Many2one(comodel_name='employee.kpi.batch', string='Employee KPI Batch')
+	employee_kro_kpi_id = fields.Many2one(comodel_name='employee.kro.kpi', string='Employee KPI Batch')
 	monthly_grading_id = fields.Many2one(comodel_name='monthly.grading', string='Monthly Grading')
 	employee_alw_kpi_id = fields.Many2one(comodel_name='employee.alw.kpi', string='Employee KPI')
 	employee_id = fields.Many2one(comodel_name='hr.employee', string='Karyawan', related='employee_alw_kpi_id.employee_id')
@@ -162,15 +174,19 @@ class AlwMonthlyKpiLine(models.Model):
 	pkwt = fields.Integer(string='Belum PKWT')
 	ppkwt = fields.Integer(string='Belum PPKWT')
 	kesalahan_resign = fields.Integer(string='Kesalahan Resign')
+
 	persen_incomplete_data = fields.Float(string='Incomplete Data %', compute='_compute_all', store=True, precompute=True)
 	persen_pkwt = fields.Float(string='Belum PKWT %', compute='_compute_all', store=True, precompute=True)
 	persen_ppkwt = fields.Float(string='Belum PPKWT %', compute='_compute_all', store=True, precompute=True)
 	persen_kesalahan_resign = fields.Float(string='Kesalahan Resign %', compute='_compute_all', store=True, precompute=True)
+
 	grade_absen_id = fields.Many2one('grading.template',string='Grade Absensi', compute='_compute_all', store=True, precompute=True)
 	grade_incomplete_data_id = fields.Many2one('grading.template',string='Grade Incomplete Data', compute='_compute_all', store=True, precompute=True)
 	grade_pkwt_id = fields.Many2one('grading.template',string='Grade PKWT', compute='_compute_all', store=True, precompute=True)
 	grade_ppkwt_id = fields.Many2one('grading.template',string='Grade PPKWT', compute='_compute_all', store=True, precompute=True)
 	grade_kesalahan_resign_id = fields.Many2one('grading.template',string='Grade Kesalahan Resign', compute='_compute_all', store=True, precompute=True)
+
+	potongan_absen = fields.Float(string='Potongan Absensi', related='grade_absen_id.potongan_absen', store=True,)
 	# grade_average_id = fields.Many2one(comodel_name='grading.template', string='Grade Average')
 
 	@api.depends(
@@ -193,7 +209,7 @@ class AlwMonthlyKpiLine(models.Model):
 			# percent_field_values = [rec.persen_incomplete_data, rec.persen_pkwt, rec.persen_ppkwt, rec.persen_kesalahan_resign]
 			# rec.average_alw = sum(percent_field_values) / len(percent_field_values)
 			domain_search_absen = self._get_domain_grading('absen', rec.absen)
-			# print(domain_search_absen)
+			
 			rec.grade_absen_id = self.env['grading.template'].search(domain_search_absen, limit=1, order='nilai_max_absen desc')
 
 			domain_search_incomplete_data = self._get_domain_grading('alw_incomplete_data', rec.persen_incomplete_data)

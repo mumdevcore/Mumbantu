@@ -32,9 +32,13 @@
         'security/ir_rule.xml',
         'security/ir.model.access.csv',
 
-        'views/employee_kpi.xml',
+        'views/employee_kro_kpi.xml',
+        'views/employee_ro_kpi.xml',
+        'views/employee_alw_kpi.xml',
+        'views/employee_kpi_portofolio.xml',
         'views/master.xml',
         'views/grading.xml',
+        'views/kpi_mekaar_batch.xml',
         'views/res_config_settings.xml',
         'views/menu_item.xml',
         

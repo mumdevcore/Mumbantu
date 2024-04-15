@@ -1,0 +1,23 @@
+
+
+$border-hitam : #000;
+
+.o_notebook {
+  --notebook-link-border-color-active: #{$border-hitam};
+  --notebook-link-border-color-hover: #{$gray-200};
+  --notebook-link-border-color-active-accent: #{$border-hitam};
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #000;
+  margin-bottom: 10px;
+}
+
+// .text-truncate {
+//   all: unset;
+//   text-align: center;
+// }
+
+// .o_list_number_th{
+//   text-align: center;
+// }

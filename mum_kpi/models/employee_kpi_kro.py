@@ -2,9 +2,11 @@ from odoo import _, api, fields, models, Command
 from odoo.exceptions import ValidationError
 import random
 
+# class EmployeeKpiKro(models.Model):
+# 	_name = 'employee.kpi.kro'
 
-class EmployeeKpiBatch(models.Model):
-	_name = 'employee.kpi.batch'
+class EmployeeKpiKro(models.Model):
+	_name = 'employee.kro.kpi'
 	_inherit = ['mail.activity.mixin', 'mail.thread']
 	_description = 'Insentif RO'
 	_check_company_auto = True
@@ -13,8 +15,10 @@ class EmployeeKpiBatch(models.Model):
 	tgl_dibuat = fields.Date(string='Tanggal Dibuat', default=lambda self:fields.Date.context_today(self))
 	tahun = fields.Char(string='Tahun')
 	periode_id = fields.Many2one(comodel_name='kpi.periode', string='Periode Insentif')
+	kpi_mekaar_batch_id = fields.Many2one(comodel_name='kpi.mekaar.batch', string='KPI Mekaar Batch')
 	month_ids = fields.Many2many(comodel_name='res.month', string='Bulan')
-	kro_id = fields.Many2one(comodel_name='hr.employee', string='KRO', default=lambda s:s.env.user.employee_id)
+	employee_id = fields.Many2one(comodel_name='hr.employee', string='KRO', default=lambda s:s.env.user.employee_id)
+	employee_manager_id = fields.Many2one(comodel_name='hr.employee', string='Kabag', related='employee_id.parent_id', context="{'ciyus' : True}")
 	state = fields.Selection(string='State', selection=[
 		('draft', 'Draft'), 
 		('in_progress', 'In Progress'),
@@ -36,28 +40,38 @@ class EmployeeKpiBatch(models.Model):
 	total_insentif = fields.Float(string='Total', compute='_compute_average_grade', store=True,)
 	penyesuaian = fields.Float(string='Penyesuaian Kadiv')
 	alasan_penyesuaian = fields.Char(string='Alasan Penyesuaian')
+	more = fields.Integer(string='MORE', compute='_compute_total_ro_more')
+	absen = fields.Integer(string='Absen')
+	grade_absensi_id = fields.Many2one(comodel_name='grading.template', string='Grade Absensi', compute='_compute_average_grade', store=True,)
+	potongan_absen = fields.Float(string='Potongan Absensi', compute='_compute_average_grade', store=True,)
+	
 
-	employee_alw_kpi_line = fields.One2many(comodel_name='employee.alw.kpi', inverse_name='employee_kpi_batch_id', string='ALW KPI')
+	employee_alw_kpi_line = fields.One2many(comodel_name='employee.alw.kpi', inverse_name='employee_kro_kpi_id', string='ALW KPI')
 	employee_alw_kpi_line_count = fields.Integer(string='ALW Count', compute='_compute_kpi_line_count')
-	employee_kpi_line = fields.One2many(comodel_name='employee.kpi', inverse_name='employee_kpi_batch_id', string='RO KPI')
+	employee_kpi_line = fields.One2many(comodel_name='employee.ro.kpi', inverse_name='employee_kro_kpi_id', string='RO KPI')
 	employee_kpi_line_count = fields.Integer(string='RO Count', compute='_compute_kpi_line_count')
-	alw_monthly_kpi_line = fields.One2many(comodel_name='alw.monthly.kpi.line', inverse_name='employee_kpi_batch_id', string='ALW Monthly KPI')
-	employee_monthly_kpi_line = fields.One2many(comodel_name='employee.monthly.kpi.line', inverse_name='employee_kpi_batch_id', string='RO Monthly KPI')
+	alw_monthly_kpi_line = fields.One2many(comodel_name='alw.monthly.kpi.line', inverse_name='employee_kro_kpi_id', string='ALW Monthly KPI')
+	employee_monthly_kpi_line = fields.One2many(comodel_name='employee.monthly.kpi.line', inverse_name='employee_kro_kpi_id', string='RO Monthly KPI')
 
 	def _compute_kpi_line_count(self):
 		for rec in self:
 			rec.employee_kpi_line_count = len(rec.employee_kpi_line)
 			rec.employee_alw_kpi_line_count = len(rec.employee_alw_kpi_line)
+	
+	# @api.depends('employee_kpi_line.more')
+	def _compute_total_ro_more(self):
+		for rec in self:
+			rec.more = sum(x.more for x in rec.employee_kpi_line) 
 
 	@api.model
 	def create(self, vals):
 		# CODE HERE
-		vals['name'] = self.env['ir.sequence'].next_by_code('employee.kpi.batch.seq', fields.Date.to_date(vals.get('tgl_dibuat')))
+		vals['name'] = self.env['ir.sequence'].next_by_code('employee.kro.kpi.seq', fields.Date.to_date(vals.get('tgl_dibuat')))
 		vals['tahun'] = fields.Date.to_date(vals.get('tgl_dibuat')).strftime("%Y")
-		return super(EmployeeKpiBatch, self).create(vals)
+		return super(EmployeeKpiKro, self).create(vals)
 	
 	# Lanjutkan yang ini.
-	@api.depends('employee_kpi_line.average', 'employee_alw_kpi_line.average_alw')
+	@api.depends('employee_kpi_line.average', 'employee_alw_kpi_line.average_alw', 'absen')
 	def _compute_average_grade(self):
 		for rec in self:
 			total_ro = len(rec.employee_kpi_line)
@@ -67,14 +81,18 @@ class EmployeeKpiBatch(models.Model):
 				rec.average_ro = sum(l.average for l in rec.employee_kpi_line) / total_ro
 			if total_alw:
 				rec.average_alw = sum(l.average_alw for l in rec.employee_alw_kpi_line) / total_alw
+
 			domain_search_avg_ro = self._get_domain_grading('ro_avg', rec.average_ro)
 			rec.grading_ro_id = self.env['grading.template'].search(domain_search_avg_ro, limit=1, order='nilai_max_ro_avg desc')
 			domain_search_avg_alw = self._get_domain_grading('alw_avg', rec.average_alw)
 			rec.grading_alw_id = self.env['grading.template'].search(domain_search_avg_alw, limit=1, order='nilai_max_alw_avg desc')
+			domain_search_absen_kro = self._get_domain_grading('absen', rec.absen)
+			rec.grade_absensi_id = self.env['grading.template'].search(domain_search_absen_kro, limit=1, order='nilai_max_absen desc')
 
+			rec.potongan_absen = rec.grade_absensi_id.potongan_absen
 			rec.insentif_g_ro = rec.grading_ro_id.insentif_kro_ro
 			rec.insentif_g_alw = rec.grading_alw_id.insentif_kro_alw
-			rec.total_insentif = rec.insentif_g_ro + rec.insentif_g_alw
+			rec.total_insentif = rec.insentif_g_ro + rec.insentif_g_alw - rec.potongan_absen
 
 			
 	def _get_domain_grading(self, key, field):
@@ -82,10 +100,10 @@ class EmployeeKpiBatch(models.Model):
 		nilai_max = f'nilai_max_{key}'
 		return [(nilai_min, '<=', field), (nilai_max, '>', field)]
 	
-	@api.onchange('kro_id')
+	@api.onchange('employee_id')
 	def _onchange_kro_id(self):
-		self.user_approval_1 = self.kro_id.parent_id.user_id.id
-		self.user_approval_2 = self.kro_id.parent_id.parent_id.user_id.id
+		self.user_approval_1 = self.employee_id.parent_id.user_id.id
+		self.user_approval_2 = self.employee_id.parent_id.parent_id.user_id.id
 	
 	@api.onchange('periode_id')
 	def _onchange_periode(self):
@@ -93,12 +111,17 @@ class EmployeeKpiBatch(models.Model):
 	
 	def _create_employee_kpi(self):
 		params = self.env['ir.config_parameter'].sudo()
-		ro_employee_ids = self.kro_id.child_ids.filtered(lambda e:e.job_id.id == int(params.get_param('mum_kpi.default_job_ro_id')))
-		alw_employee_ids = self.kro_id.child_ids.filtered(lambda e:e.job_id.id == int(params.get_param('mum_kpi.default_job_alw_id')))
+		ro_employee_ids = self.employee_id.child_ids.filtered(lambda e:e.job_id.id == int(params.get_param('mum_kpi.default_job_ro_id')))
+		alw_employee_ids = self.employee_id.child_ids.filtered(lambda e:e.job_id.id == int(params.get_param('mum_kpi.default_job_alw_id')))
 		
 		# values utk data penilaian bulanan per karyawan
-		# 1. periksa apakah rekap grading bulanan sudah ada? gunakan method find_monthly_grading(month_id, year)
-		monthly_grading_ids = self._find_monthly_grading(self.month_ids, self.tgl_dibuat)
+		# 1. periksa apakah kpi mekaar batch sudah ada? gunakan method _find_mekaar_batch()
+		# 2. periksa apakah rekap grading bulanan sudah ada? gunakan method find_monthly_grading(month_id, year)
+		# 3. sisipkan field kpi_mekaar_batch_id ke dalam self.kpi_mekaar_batch_id
+		kpi_mekaar_batch_id = self.env['kpi.mekaar.batch']._find_mekaar_batch(self.periode_id, self.tahun, self.tgl_dibuat)
+		self.kpi_mekaar_batch_id = kpi_mekaar_batch_id.id
+		monthly_grading_ids = self.env['monthly.grading']._find_monthly_grading(self.month_ids, self.periode_id, self.tgl_dibuat)
+		monthly_grading_ids.write({'kpi_mekaar_batch_id' : self.kpi_mekaar_batch_id.id})
 		monthly_kpi_line_values = []
 		sequence = 0
 		for month in self.month_ids:
@@ -108,26 +131,35 @@ class EmployeeKpiBatch(models.Model):
 			'name' : f'{month.name} {self.tgl_dibuat.strftime("%Y")}',
 			'month_id' : month.id,
 			'monthly_grading_id' : monthly_grading_ids.filtered(lambda m:m.month_id == month).id,
-			'employee_kpi_batch_id' : self.id,
+			'employee_kro_kpi_id' : self.id,
 		})))
 		
 		
 		# values untuk KPI per karyawan
 		ro_employee_kpi_values = [{
-				'employee_kpi_batch_id' : self.id,
+				'employee_kro_kpi_id' : self.id,
+				'kpi_mekaar_batch_id' : kpi_mekaar_batch_id.id,
 				'employee_id' : employee.id,
 				'employee_monthly_kpi_line' : monthly_kpi_line_values
 			} for employee in ro_employee_ids]
 		
 		alw_kpi_values = [{
-			'employee_kpi_batch_id' : self.id,
+			'employee_kro_kpi_id' : self.id,
+			'kpi_mekaar_batch_id' : kpi_mekaar_batch_id.id,
 			'employee_id' : employee.id,
 			'alw_monthly_kpi_line' : monthly_kpi_line_values,
 		} for employee in alw_employee_ids]
 
-		ro_employee_kpi_ids = self.env['employee.kpi'].create(ro_employee_kpi_values)
+		ro_employee_kpi_ids = self.env['employee.ro.kpi'].create(ro_employee_kpi_values)
 		alw_employee_kpi_ids = self.env['employee.alw.kpi'].create(alw_kpi_values)
 		return ro_employee_kpi_ids, alw_employee_kpi_ids
+	
+	def _find_mekaar_batch(self, periode_id, tahun):
+		mekaar_batch_id = self.env['kpi.mekaar.batch'].sudo().search([('periode_id', '=', periode_id.id), ('tahun', '=', tahun)])
+		if not mekaar_batch_id:
+			mekaar_batch_id = self.env['kpi.mekaar.batch'].sudo().create({'periode_id' : periode_id.id, 'tahun' : tahun, 'tgl_dibuat' : self.tgl_dibuat})
+		
+		return mekaar_batch_id
 	
 	def _find_monthly_grading(self, monthly_ids, tgl_dibuat):
 		monthly_grading_ids = self.env['monthly.grading'].search([('month_id', 'in', monthly_ids.ids), ('tahun', '=', tgl_dibuat.strftime('%Y'))])
@@ -137,6 +169,7 @@ class EmployeeKpiBatch(models.Model):
 		if monthly_grading_to_create:
 			grading_template_values = [(Command.create({
 				'grade_template_id' : template.id,
+				'kpi_mekaar_batch_id' : self.kpi_mekaar_batch_id.id,
 				'grade' : template.grade,
 			})) for template in self.env['grading.template'].search([])]
 			values = [{
@@ -187,7 +220,7 @@ class EmployeeKpiBatch(models.Model):
 			'name': _('Detail KPI RO'),
 			'type': 'ir.actions.act_window',
 			'view_mode': 'form',
-			'res_model': 'employee.kpi',
+			'res_model': 'employee.ro.kpi',
 			'views': [(tree_view.id, 'tree'), (form_view.id, 'form')],
 			'view_id': tree_view.id,
 			'target': 'self',

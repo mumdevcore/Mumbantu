@@ -29,4 +29,12 @@ class Employee(models.Model):
 	no_npwp = fields.Char(string='No NPWP', groups="hr.group_hr_user")
 	status_pajak_id = fields.Many2one('status.pajak',string='Status Pajak', groups="hr.group_hr_user")
 	
-	
+	def name_get(self):
+		result = []
+		for employee in self:
+			name = employee.name
+			if employee._context.get('show_inisial'):
+				name = employee.inisial
+			result.append((employee.id, name))
+			# print(name)
+		return result

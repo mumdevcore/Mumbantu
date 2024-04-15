@@ -3,10 +3,15 @@
 
     <menuitem id="kpi_main_menu" name="Key Performance Indicator" web_icon="mum_kpi,static/description/icon.png"/>
 	
-	<menuitem id="kpi_menu" name="KPI Karyawan" sequence='10' parent='kpi_main_menu'>
-		<menuitem id="employee_kpi_batch_menu" name="Employee KPI Batches" action="employee_kpi_batch_action" sequence='10'/>
-		<menuitem id="monthly_grading_menu" name="Rekap Grading Bulanan" action="action_monthly_grading" sequence='20' groups='mum_kpi.group_insentif_manager'/>
+	<menuitem id="kpi_mekaar_menu" name="Mekaar" sequence='10' parent='kpi_main_menu'>
+		<menuitem id="kpi_mekaar_batch_menu" name="Rekapitulasi Mekaar" action="action_kpi_mekaar_batch" sequence='10' groups='mum_kpi.group_insentif_manager'/>
+		<menuitem id="employee_kro_kpi_menu" name="KRO" action="employee_kro_kpi_action" sequence='20'/>
+		<menuitem id="monthly_grading_menu" name="Rekap Grading Bulanan" action="action_monthly_grading" sequence='30' groups='mum_kpi.group_insentif_manager'/>
 		<!-- <menuitem id="action_employee_monthly_kpi_line_menu" name="Employee KPI Report" action="action_employee_monthly_kpi_line" sequence='30'/> -->
+	</menuitem>
+
+	<menuitem id="kpi_portofolio_main_menu" name="Portofolio" parent="kpi_main_menu" sequence='20'>
+		<menuitem id="kpi_portofolio_menu" name="Portofolio" action="action_kpi_portofolio" sequence='10' />
 	</menuitem>
 	
 	

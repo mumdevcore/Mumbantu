@@ -7,3 +7,4 @@ class ResConfigSettings(models.TransientModel):
 
     position_default_job_ro_id = fields.Many2one(comodel_name='hr.job', string='Job Position RO', config_parameter='mum_kpi.default_job_ro_id',)
     position_default_job_alw_id = fields.Many2one(comodel_name='hr.job', string='Job Position ALW', config_parameter='mum_kpi.default_job_alw_id',)
+    position_default_job_kro_id = fields.Many2one(comodel_name='hr.job', string='Job Position ALW', config_parameter='mum_kpi.default_job_kro_id',)

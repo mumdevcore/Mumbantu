@@ -33,7 +33,7 @@
 								<div class='d-inline-block mx-5'>s/d</div>  
 								<field name="nilai_max_absen" placeholder="To" class="oe_inline"/>
 							</div>
-                            <field name="insentif_absen" />
+                            <field name="potongan_absen" />
                         </group>
                         <group>
                             <label for="nilai_min_more" string="Kandidat di MORE"/>
@@ -45,91 +45,127 @@
                             <field name="insentif_more" />
                         </group>
                     </group>
+
+                    <notebook>
+                        <page name="mekaar" string="Mekaar">
+                            <separator string="Grading RO" style='font-size:2rem'/>
+                            <group>
+                                <group>
+                                    <label for="nilai_min_ro" string="Persentase RO"/>
+                                    <div>
+                                        <field name="nilai_min_ro" placeholder="From" widget="percentage" class="oe_inline"/> 
+                                        <div class='d-inline-block mx-5'>s/d</div>  
+                                        <field name="nilai_max_ro" placeholder="To" widget="percentage" class="oe_inline"/>
+                                    </div>
+                                </group>
+                                <group>
+                                    <field name="wilayah_suffer_id" />  
+                                </group>
+                                <group>
+                                    <field name="insentif_rekrutmen" />
+                                    <field name="insentif_maintain" />
+                                    <field name="insentif_tl" />
+                                </group>
+                            </group>
+        
+                            <separator string='Grading ALW' style='font-size:2rem'/>
+                            <group>
+                                <group>
+                                    <label for="nilai_min_alw_resign" string="Kesalahan Resign"/>
+                                    <div>
+                                        <field name="nilai_min_alw_resign" placeholder="From" widget="percentage" class="oe_inline"/> 
+                                        <div class='d-inline-block mx-5'>s/d</div>  
+                                        <field name="nilai_max_alw_resign" placeholder="To" widget="percentage" class="oe_inline"/>
+                                    </div>
+        
+                                    <label for="nilai_min_alw_incomplete_data" string="Incomplete Data"/>
+                                    <div>
+                                        <field name="nilai_min_alw_incomplete_data" placeholder="From" widget="percentage" class="oe_inline"/> 
+                                        <div class='d-inline-block mx-5'>s/d</div> 
+                                        <field name="nilai_max_alw_incomplete_data" placeholder="To" widget="percentage" class="oe_inline"/>
+                                    </div>
+                                </group>
+                                <group>
+                                    <label for="nilai_min_alw_pkwt" string="PKWT"/>
+                                    <div>
+                                        <field name="nilai_min_alw_pkwt" placeholder="From" widget="percentage" class="oe_inline"/> 
+                                        <div class='d-inline-block mx-5'>s/d</div>  
+                                        <field name="nilai_max_alw_pkwt" placeholder="To" widget="percentage" class="oe_inline"/>
+                                    </div>
+        
+                                    <label for="nilai_min_alw_ppkwt" string="PPKWT"/>
+                                    <div>
+                                        <field name="nilai_min_alw_ppkwt" placeholder="From" widget="percentage" class="oe_inline"/> 
+                                        <div class='d-inline-block mx-5'>s/d</div>  
+                                        <field name="nilai_max_alw_ppkwt" placeholder="To" widget="percentage" class="oe_inline"/>
+                                    </div>
+        
+                                </group>
+                                <group>
+                                    <field name="insentif_alw_resign" />
+                                    <field name="insentif_alw_incomplete_data" />
+                                </group>
+                                <group>
+                                    <field name="insentif_alw_pkwt" />
+                                    <field name="insentif_alw_ppkwt" />
+                                </group>
+                            </group>
+        
+                            <separator string='GRADING KRO' style='font-size:2rem'/>
+                            <group>
+                                <group string="RO">
+                                    <label for="nilai_min_ro_avg" string="Persentase KRO"/>
+                                    <div>
+                                        <field name="nilai_min_ro_avg" placeholder="From" widget="percentage" class="oe_inline"/> 
+                                        <div class='d-inline-block mx-5'>s/d</div>  
+                                        <field name="nilai_max_ro_avg" placeholder="To" widget="percentage" class="oe_inline"/>
+                                    </div>
+                                    <field name="insentif_kro_ro" />
+                                </group>
+                                <group string="ALW">
+                                    <label for="nilai_min_alw_avg" string="Average"/>
+                                    <div>
+                                        <field name="nilai_min_alw_avg" placeholder="From" widget="percentage" class="oe_inline"/> 
+                                        <div class='d-inline-block mx-5'>s/d</div>  
+                                        <field name="nilai_max_alw_avg" placeholder="To" widget="percentage" class="oe_inline"/>
+                                    </div>
+                                    <field name="insentif_kro_alw" />
+                                </group>
+                            </group>
+                        </page>
+                        <page name="portofolio" string="Portofolio">
+                            <group>
+                                <group>
+                                    <label for="nilai_min_portofolio_kekurangan" string="Kekurangan"/>
+                                    <div>
+                                        <field name="nilai_min_portofolio_kekurangan" placeholder="From" class="oe_inline"/> 
+                                        <div class='d-inline-block mx-5'>s/d</div>  
+                                        <field name="nilai_max_portofolio_kekurangan" placeholder="To" class="oe_inline"/>
+                                    </div>
+                                    <field name="insentif_portofolio_kekurangan" />
+
+                                    <label for="nilai_min_portofolio_incomplete_data" string="Incomplete Data"/>
+                                    <div>
+                                        <field name="nilai_min_portofolio_incomplete_data" placeholder="From" class="oe_inline" widget='percentage'/> 
+                                        <div class='d-inline-block mx-5'>s/d</div>  
+                                        <field name="nilai_max_portofolio_incomplete_data" placeholder="To" class="oe_inline" widget='percentage'/>
+                                    </div>
+                                    <field name="insentif_portofolio_incomplete_data" />
+                                </group>
+                                <group>
+                                    <label for="nilai_min_portofolio_sla" string="SLA"/>
+                                    <div>
+                                        <field name="nilai_min_portofolio_sla" placeholder="From" class="oe_inline"/> 
+                                        <div class='d-inline-block mx-5'>s/d</div>  
+                                        <field name="nilai_max_portofolio_sla" placeholder="To" class="oe_inline"/>
+                                    </div>
+                                    <field name="insentif_portofolio_sla" />                                    
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
                     
-                    <separator string="Grading RO" style='font-size:2rem'/>
-                    <group>
-                        <group>
-                            <label for="nilai_min_ro" string="Persentase RO"/>
-							<div>
-								<field name="nilai_min_ro" placeholder="From" widget="percentage" class="oe_inline"/> 
-								<div class='d-inline-block mx-5'>s/d</div>  
-								<field name="nilai_max_ro" placeholder="To" widget="percentage" class="oe_inline"/>
-							</div>
-                        </group>
-                        <group>
-                            <field name="wilayah_suffer_id" />  
-                        </group>
-                        <group>
-                            <field name="insentif_rekrutmen" />
-                            <field name="insentif_maintain" />
-                            <field name="insentif_tl" />
-                        </group>
-                    </group>
-
-                    <separator string='Grading ALW' style='font-size:2rem'/>
-                    <group>
-                        <group>
-                            <label for="nilai_min_alw_resign" string="Kesalahan Resign"/>
-							<div>
-								<field name="nilai_min_alw_resign" placeholder="From" widget="percentage" class="oe_inline"/> 
-								<div class='d-inline-block mx-5'>s/d</div>  
-								<field name="nilai_max_alw_resign" placeholder="To" widget="percentage" class="oe_inline"/>
-							</div>
-
-                            <label for="nilai_min_alw_incomplete_data" string="Incomplete Data"/>
-							<div>
-								<field name="nilai_min_alw_incomplete_data" placeholder="From" widget="percentage" class="oe_inline"/> 
-								<div class='d-inline-block mx-5'>s/d</div> 
-								<field name="nilai_max_alw_incomplete_data" placeholder="To" widget="percentage" class="oe_inline"/>
-							</div>
-                        </group>
-                        <group>
-                            <label for="nilai_min_alw_pkwt" string="PKWT"/>
-							<div>
-								<field name="nilai_min_alw_pkwt" placeholder="From" widget="percentage" class="oe_inline"/> 
-								<div class='d-inline-block mx-5'>s/d</div>  
-								<field name="nilai_max_alw_pkwt" placeholder="To" widget="percentage" class="oe_inline"/>
-							</div>
-
-                            <label for="nilai_min_alw_ppkwt" string="PPKWT"/>
-							<div>
-								<field name="nilai_min_alw_ppkwt" placeholder="From" widget="percentage" class="oe_inline"/> 
-								<div class='d-inline-block mx-5'>s/d</div>  
-								<field name="nilai_max_alw_ppkwt" placeholder="To" widget="percentage" class="oe_inline"/>
-							</div>
-
-                        </group>
-                        <group>
-                            <field name="insentif_alw_resign" />
-                            <field name="insentif_alw_incomplete_data" />
-                        </group>
-                        <group>
-                            <field name="insentif_alw_pkwt" />
-                            <field name="insentif_alw_ppkwt" />
-                        </group>
-                    </group>
-
-                    <separator string='GRADING KRO' style='font-size:2rem'/>
-                    <group>
-                        <group string="RO">
-                            <label for="nilai_min_ro_avg" string="Persentase KRO"/>
-							<div>
-								<field name="nilai_min_ro_avg" placeholder="From" widget="percentage" class="oe_inline"/> 
-								<div class='d-inline-block mx-5'>s/d</div>  
-								<field name="nilai_max_ro_avg" placeholder="To" widget="percentage" class="oe_inline"/>
-							</div>
-                            <field name="insentif_kro_ro" />
-                        </group>
-                        <group string="ALW">
-                            <label for="nilai_min_alw_avg" string="Average"/>
-							<div>
-								<field name="nilai_min_alw_avg" placeholder="From" widget="percentage" class="oe_inline"/> 
-								<div class='d-inline-block mx-5'>s/d</div>  
-								<field name="nilai_max_alw_avg" placeholder="To" widget="percentage" class="oe_inline"/>
-							</div>
-                            <field name="insentif_kro_alw" />
-                        </group>
-                    </group>
+                    
                 </sheet>
             </form>
         </field>
