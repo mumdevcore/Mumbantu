@@ -92,7 +92,7 @@ class EmployeeKpiKro(models.Model):
 			rec.potongan_absen = rec.grade_absensi_id.potongan_absen
 			rec.insentif_g_ro = rec.grading_ro_id.insentif_kro_ro
 			rec.insentif_g_alw = rec.grading_alw_id.insentif_kro_alw
-			rec.total_insentif = rec.insentif_g_ro + rec.insentif_g_alw - rec.potongan_absen
+			rec.total_insentif = rec.insentif_g_ro + rec.insentif_g_alw + rec.potongan_absen
 
 			
 	def _get_domain_grading(self, key, field):

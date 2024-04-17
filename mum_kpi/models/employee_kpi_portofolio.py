@@ -20,6 +20,8 @@ class EmployeeKpiPortofolio(models.Model):
 		('approval_1', 'Approval 1'),
 		('done', 'Done'),
 		('cancel', 'Cancel')], default='draft', copy=False, tracking=True)
+	
+	kpi_sebelumnya_id = fields.Many2one(comodel_name='employee.portofolio.kpi', string='KPI Sebelumnya')
 
 	company_id = fields.Many2one(comodel_name='res.company', string='Company', default=lambda self:self.env.company)
 	employee_portofolio_kpi_line = fields.One2many(comodel_name='employee.portofolio.kpi.line', inverse_name='employee_portofolio_kpi_id', string='Portofolio KPI Line')
@@ -35,12 +37,12 @@ class EmployeeKpiPortofolio(models.Model):
 	def _create_employee_kpi(self):
 		params = self.env['ir.config_parameter'].sudo()
 		ro_employee_ids = self.employee_id.child_ids.filtered(lambda e:e.job_id.id == int(params.get_param('mum_kpi.default_job_ro_id')))
-		# alw_employee_ids = self.employee_id.child_ids.filtered(lambda e:e.job_id.id == int(params.get_param('mum_kpi.default_job_alw_id')))
-		
+
 		# values utk data penilaian bulanan per karyawan
 		# 1. periksa apakah kpi mekaar batch sudah ada? gunakan method _find_mekaar_batch()
 		# 2. periksa apakah rekap grading bulanan sudah ada? gunakan method find_monthly_grading(month_id, year)
 		# 3. sisipkan field kpi_mekaar_batch_id ke dalam self.kpi_mekaar_batch_id
+		# 4. berikan nilai kpi sebelumnya per karyawan.
 		kpi_mekaar_batch_id = self.env['kpi.mekaar.batch']._find_mekaar_batch(self.periode_id, self.tahun, self.tgl_dibuat)
 		self.kpi_mekaar_batch_id = kpi_mekaar_batch_id.id
 		monthly_grading_ids = self.env['monthly.grading']._find_monthly_grading(self.month_ids, self.periode_id, self.tgl_dibuat)
@@ -59,10 +61,12 @@ class EmployeeKpiPortofolio(models.Model):
 		
 		
 		# values untuk KPI per karyawan
+		
 		ro_employee_kpi_values = [{
 				'employee_portofolio_kpi_id' : self.id,
 				# 'kpi_mekaar_batch_id' : kpi_mekaar_batch_id.id,
 				'employee_id' : employee.id,
+				'employee_kpi_line_sebelumnya_id' : self.kpi_sebelumnya_id.employee_portofolio_kpi_line.filtered(lambda l:l.employee_id == employee).id,
 				'portofolio_monthly_line' : monthly_kpi_line_values
 			} for employee in ro_employee_ids]
 
@@ -71,6 +75,9 @@ class EmployeeKpiPortofolio(models.Model):
 
 	# Button Actions 
 	def button_confirm(self):
+		self.kpi_sebelumnya_id = self.search([('id', '!=', self.id), ('employee_id', '=', self.employee_id.id)], limit=1, order='tahun desc, periode_id desc').id
+		if self.kpi_sebelumnya_id.state != 'done':
+			raise ValidationError(_(f"Periode {self.kpi_sebelumnya_id.name} belum terselesaikan, harap selesaikan terlebih dahulu."))
 		portofolio_line_ids = self._create_employee_kpi()
 		return self.write({'state' : 'in_progress'})
 	
@@ -110,18 +117,26 @@ class EmployeePortofolioKpiLine(models.Model):
 	total_kekurangan = fields.Float(string='Kekurangan', compute='_compute_pencapaian_karyawan')
 	total_incomplete_data = fields.Float(string='Incomplete Data', compute='_compute_pencapaian_karyawan')
 	total_sla = fields.Integer(string='SLA', compute='_compute_pencapaian_karyawan')
+	# total_absen = fields.Integer(string='Absen')
+	# total_more = fields.Integer(string='More')
 	
 	grade_incomplete_data_id = fields.Many2one(comodel_name='grading.template', string='Grade Incomplete Data', compute='_compute_pencapaian_karyawan')
 	grade_kekurangan_id = fields.Many2one(comodel_name='grading.template', string='Grade Kekurangan', compute='_compute_pencapaian_karyawan')
 	grade_sla_id = fields.Many2one(comodel_name='grading.template', string='Grade SLA', compute='_compute_pencapaian_karyawan')
+	# grade_absen_id = fields.Many2one(comodel_name='grading.template', string='Grade Absen')
+	# grade_more_id = fields.Many2one(comodel_name='grading.template', string='Grade More')
 	
 	insentif_kekurangan = fields.Float(string='Insentif Kekurangan', related='grade_kekurangan_id.insentif_portofolio_kekurangan', store=True)
 	insentif_incomplete_data = fields.Float(string='Insentif Incomplete Data', related='grade_incomplete_data_id.insentif_portofolio_incomplete_data', store=True)
 	insentif_sla = fields.Float(string='Insentif SLA', related='grade_sla_id.insentif_portofolio_sla', store=True)
+	total_insentif_more = fields.Float(string='Insentif More', compute="_compute_total_insentif", store=True)
+	total_potongan_absen = fields.Float(string='Potongan Absen', compute="_compute_total_insentif", store=True)
+
+	employee_kpi_line_sebelumnya_id = fields.Many2one(comodel_name='employee.portofolio.kpi.line', string='KPI RO Sebelumnya')
 
 	total_insentif = fields.Float(string='Total Insentif', compute='_compute_total_insentif')
-	insentif_periode_sebelumnya = fields.Float(string='Insentif Sebelumnya')
-	selisih = fields.Float(string='Selisih Insentif')
+	insentif_periode_sebelumnya = fields.Float(string='Insentif Sebelumnya', related='employee_kpi_line_sebelumnya_id.penyesuaian', store=True)
+	selisih = fields.Float(string='Selisih Insentif', compute='_compute_total_insentif', store=True)
 	penyesuaian = fields.Float(string='Penyesuaian Insentif')
 	alasan_penyesuaian = fields.Char(string='Alasan Penyesuaian')
 	
@@ -131,13 +146,19 @@ class EmployeePortofolioKpiLine(models.Model):
 	company_id = fields.Many2one(comodel_name='res.company', string='Company', related='employee_portofolio_kpi_id.company_id', store=True)
 
 	@api.depends(
+		'portofolio_monthly_line.absen',
+		'portofolio_monthly_line.more',
 		'insentif_kekurangan',
 		'insentif_incomplete_data',
-		'insentif_sla'
+		'insentif_sla',
+		'insentif_periode_sebelumnya'
 	)
 	def _compute_total_insentif(self):
 		for rec in self:
-			rec.total_insentif = rec.insentif_kekurangan + rec.insentif_incomplete_data + rec.insentif_sla
+			rec.total_potongan_absen = sum(x.potongan_absen for x in rec.portofolio_monthly_line)
+			rec.total_insentif_more = sum(x.insentif_more for x in rec.portofolio_monthly_line)
+			rec.total_insentif = rec.insentif_kekurangan + rec.insentif_incomplete_data + rec.insentif_sla + rec.total_insentif_more + rec.total_potongan_absen
+			rec.selisih = rec.total_insentif - rec.insentif_periode_sebelumnya
 
 	@api.depends(
 		'portofolio_monthly_line.kekurangan',
@@ -198,5 +219,23 @@ class EmployeePortofolioKpiMonthlyLine(models.Model):
 	kekurangan = fields.Integer(string='Kekurangan')
 	incomplete_data = fields.Float(string='Incomplete Data')
 	sla = fields.Integer(string='SLA')
+	
+	absen = fields.Integer(string='Absen')
+	more = fields.Integer(string='MORE')
+	grade_absensi_id = fields.Many2one(comodel_name='grading.template', string='Grade Absen', compute='_compute_absen_more', store=True)
+	grade_more_id = fields.Many2one(comodel_name='grading.template', string='Grade More', compute='_compute_absen_more', store=True)
+	potongan_absen = fields.Float(string='Potongan Absen', related='grade_absensi_id.potongan_absen', store=True)
+	insentif_more = fields.Float(string='Insentif MORE', related='grade_more_id.insentif_more', store=True)
 	state = fields.Selection(string='State', related='employee_portofolio_kpi_id.state', store=True)
 	company_id = fields.Many2one(comodel_name='res.company', string='Company', related='employee_portofolio_kpi_id.company_id', store=True)
+
+	@api.depends('absen', 'more')
+	def _compute_absen_more(self):
+		for rec in self:
+			domain_search_absen = [('nilai_min_absen', '<=', rec.absen), ('nilai_max_absen', '>', rec.absen)]
+			rec.grade_absensi_id = self.env['grading.template'].search(domain_search_absen, limit=1, order='nilai_max_absen desc')
+
+			domain_search_grade_more = [('nilai_min_more', '<=', rec.more), ('nilai_max_more', '>', rec.more)]
+			rec.grade_more_id = self.env['grading.template'].search(domain_search_grade_more, limit=1, order='nilai_max_more desc')
+
+			# rec.potongan_absen = rec.grade_absensi_id.potongan_absen

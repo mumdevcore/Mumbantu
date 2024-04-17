@@ -77,7 +77,7 @@ class EmployeeAlwKpi(models.Model):
 			rec.insentif_alw_ppkwt = rec.grade_ppkwt_id.insentif_alw_ppkwt
 			rec.insentif_alw_resign = rec.grade_kesalahan_resign_id.insentif_alw_resign
 			rec.potongan_absen = sum(line.potongan_absen for line in rec.alw_monthly_kpi_line)
-			rec.total_insentif = sum([rec.insentif_alw_incomplete_data, rec.insentif_alw_pkwt, rec.insentif_alw_ppkwt, rec.insentif_alw_resign]) - rec.potongan_absen
+			rec.total_insentif = sum([rec.insentif_alw_incomplete_data, rec.insentif_alw_pkwt, rec.insentif_alw_ppkwt, rec.insentif_alw_resign]) + rec.potongan_absen
 
 
 	@api.depends(

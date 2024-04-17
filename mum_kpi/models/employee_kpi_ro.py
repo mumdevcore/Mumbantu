@@ -77,7 +77,7 @@ class EmployeeKpi(models.Model):
 			rec.insentif_rekrutmen = sum(rec.employee_monthly_kpi_line.mapped('insentif_rekrutmen'))
 			rec.insentif_more = sum(rec.employee_monthly_kpi_line.mapped('insentif_more'))
 			rec.potongan_absen = sum(rec.employee_monthly_kpi_line.mapped('potongan_absen'))
-			rec.total_insentif = rec.insentif_maintain + rec.insentif_tl + rec.insentif_rekrutmen + rec.insentif_wilayah_suffer + rec.insentif_more - rec.potongan_absen
+			rec.total_insentif = rec.insentif_maintain + rec.insentif_tl + rec.insentif_rekrutmen + rec.insentif_wilayah_suffer + rec.insentif_more + rec.potongan_absen
 			
 	def _compute_absen_more(self):
 		for rec in self:
