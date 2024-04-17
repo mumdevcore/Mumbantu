@@ -24,7 +24,8 @@ class EmployeeKpi(models.Model):
 	grade_average_id = fields.Many2one('grading.template',string='Grade Average', compute='_compute_average')
 	wilayah_suffer_id = fields.Many2one(comodel_name='wilayah.suffer', string='Wilayah Suffer')
 	
-	absen = fields.Integer(string='Absen', compute='_compute_absen_more')
+	absen = fields.Integer(string='Keterlambatan (Menit)', compute='_compute_absen_more')
+	tidak_masuk = fields.Integer(string='Tidak Masuk (Hari)', compute='_compute_absen_more')
 	more = fields.Integer(string='MORE', compute='_compute_absen_more', help='Jumlah Kandidat yang ada di MORE')
 	state = fields.Selection(string='State', related='employee_kro_kpi_id.state')
 
@@ -83,6 +84,7 @@ class EmployeeKpi(models.Model):
 		for rec in self:
 			rec.absen = sum(l.absen for l in rec.employee_monthly_kpi_line)
 			rec.more = sum(l.more for l in rec.employee_monthly_kpi_line)
+			rec.tidak_masuk = sum(l.tidak_masuk for l in rec.employee_monthly_kpi_line)
 
 	@api.depends('employee_monthly_kpi_line')
 	def _compute_average(self):
@@ -129,7 +131,8 @@ class EmployeeMonthlyKpiLine(models.Model):
 	name = fields.Char(string='Name')
 	month_id = fields.Many2one(comodel_name='res.month', string='Bulan')
 	
-	absen = fields.Integer(string='Absen', )
+	absen = fields.Integer(string='Keterlambatan (Menit)', )
+	tidak_masuk = fields.Integer(string='Tidak Masuk (Hari)')
 	more = fields.Integer(string='MORE', help='Jumlah Kandidat yang ada di MORE')
 	cabang = fields.Integer(string='Cabang', )
 	formasi = fields.Integer(string='Formasi', )

@@ -8,6 +8,7 @@
 			<tree delete='0' create='0'>
 				<field name="employee_id" readonly='1' />
 				<field name="absen" />
+				<field name="tidak_masuk" />
 				<!-- <field name="grade_absen_id" invisible='1' /> -->
 				<field name="total_karyawan_terakhir" />
 				<!-- <field name="total_aktif" /> -->
@@ -91,6 +92,7 @@
 							<field name="sequence" invisible='1' />
 							<field name="name" readonly='1'/>
 							<field name="absen" />
+							<field name="tidak_masuk" />
 							<field name="grade_absen_id" invisible='1' />
 							<field name="month_id" invisible='1' />
 							<field name="karyawan_terakhir" />

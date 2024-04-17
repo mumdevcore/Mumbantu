@@ -41,7 +41,8 @@ class EmployeeKpiKro(models.Model):
 	penyesuaian = fields.Float(string='Penyesuaian Kadiv')
 	alasan_penyesuaian = fields.Char(string='Alasan Penyesuaian')
 	more = fields.Integer(string='MORE', compute='_compute_total_ro_more')
-	absen = fields.Integer(string='Absen')
+	absen = fields.Integer(string='Keterlambatan (Menit)')
+	tidak_masuk = fields.Integer(string='Tidak Masuk (Hari)')
 	grade_absensi_id = fields.Many2one(comodel_name='grading.template', string='Grade Absensi', compute='_compute_average_grade', store=True,)
 	potongan_absen = fields.Float(string='Potongan Absensi', compute='_compute_average_grade', store=True,)
 	

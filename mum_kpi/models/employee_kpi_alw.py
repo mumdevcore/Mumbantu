@@ -12,7 +12,8 @@ class EmployeeAlwKpi(models.Model):
 	employee_id = fields.Many2one(comodel_name='hr.employee', string='Karyawan')
 	employee_manager_id = fields.Many2one(comodel_name='hr.employee', string='KRO', related='employee_id.parent_id')
 
-	absen = fields.Integer(string='Absen', compute='_compute_absen', store=True, precompute=True)
+	absen = fields.Integer(string='Keterlambatan (Menit)', compute='_compute_absen', store=True, precompute=True)
+	tidak_masuk = fields.Integer(string='Tidak Masuk (Hari)', compute='_compute_absen', store=True, precompute=True)
 	total_karyawan_terakhir = fields.Integer(string='Karyawan Terakhir', compute='_compute_all', store=True, precompute=True)
 	total_aktif = fields.Integer(string='Aktif', compute='_compute_all', store=True, precompute=True)
 	total_resign = fields.Integer(string='Resign', compute='_compute_all', store=True, precompute=True)
@@ -62,6 +63,7 @@ class EmployeeAlwKpi(models.Model):
 	def _compute_absen(self):
 		for rec in self:
 			rec.absen = sum(l.absen for l in rec.alw_monthly_kpi_line)
+			rec.tidak_masuk = sum(l.tidak_masuk for l in rec.alw_monthly_kpi_line)
 
 	@api.depends(
 		'alw_monthly_kpi_line.potongan_absen',
@@ -166,7 +168,8 @@ class AlwMonthlyKpiLine(models.Model):
 	name = fields.Char(string='Name')
 	month_id = fields.Many2one(comodel_name='res.month', string='Bulan')
 	aktif = fields.Integer(string='Aktif')
-	absen = fields.Integer(string='Absen')
+	absen = fields.Integer(string='Keterlambatan (Menit)')
+	tidak_masuk = fields.Integer(string='Tidak Masuk (Hari)',)
 	karyawan_terakhir = fields.Integer(string='Jumlah Kelolaan')
 	resign = fields.Integer(string='Resign')
 	perp_kontrak = fields.Integer(string='Perp. Kontrak')

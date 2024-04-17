@@ -22,6 +22,10 @@ class EmployeeKpiPortofolio(models.Model):
 		('cancel', 'Cancel')], default='draft', copy=False, tracking=True)
 	
 	kpi_sebelumnya_id = fields.Many2one(comodel_name='employee.portofolio.kpi', string='KPI Sebelumnya')
+	
+	total_insentif = fields.Float(string='Total Insentif', compute='_compute_total_insentif')
+	total_insentif_penyesuaian = fields.Float(string='Total Penyesuaian', compute='_compute_total_insentif')
+	total_insentif_sebelumnya = fields.Float(string='Total Insentif Sebelumnya', compute='_compute_total_insentif')
 
 	company_id = fields.Many2one(comodel_name='res.company', string='Company', default=lambda self:self.env.company)
 	employee_portofolio_kpi_line = fields.One2many(comodel_name='employee.portofolio.kpi.line', inverse_name='employee_portofolio_kpi_id', string='Portofolio KPI Line')
@@ -32,6 +36,19 @@ class EmployeeKpiPortofolio(models.Model):
 		vals['name'] = self.env['ir.sequence'].next_by_code('employee.portofolio.kpi.seq', fields.Date.to_date(vals.get('tgl_dibuat')))
 		vals['tahun'] = fields.Date.to_date(vals.get('tgl_dibuat')).strftime("%Y")
 		return super().create(vals)
+	
+	# Compute Method
+	@api.depends(
+		'employee_portofolio_kpi_line.total_insentif',
+		'employee_portofolio_kpi_line.insentif_periode_sebelumnya',
+		'employee_portofolio_kpi_line.penyesuaian'
+	)
+	def _compute_total_insentif(self):
+		for rec in self:
+			rec.total_insentif = sum(x.total_insentif for x in rec.employee_portofolio_kpi_line)
+			rec.total_insentif_penyesuaian = sum(x.penyesuaian for x in rec.employee_portofolio_kpi_line)
+			rec.total_insentif_sebelumnya = sum(x.insentif_periode_sebelumnya for x in rec.employee_portofolio_kpi_line)
+
 
 	# Bussiness Logic 
 	def _create_employee_kpi(self):
@@ -220,7 +237,8 @@ class EmployeePortofolioKpiMonthlyLine(models.Model):
 	incomplete_data = fields.Float(string='Incomplete Data')
 	sla = fields.Integer(string='SLA')
 	
-	absen = fields.Integer(string='Absen')
+	absen = fields.Integer(string='Keterlambatan (Menit)')
+	tidak_masuk = fields.Integer(string='Tidak Masuk (Hari)')
 	more = fields.Integer(string='MORE')
 	grade_absensi_id = fields.Many2one(comodel_name='grading.template', string='Grade Absen', compute='_compute_absen_more', store=True)
 	grade_more_id = fields.Many2one(comodel_name='grading.template', string='Grade More', compute='_compute_absen_more', store=True)
