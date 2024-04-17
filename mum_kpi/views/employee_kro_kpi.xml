@@ -116,7 +116,8 @@
                                         <field name="total_kesalahan_resign" />
                                         <field name="average_alw" widget='percentage' groups='mum_kpi.group_insentif_manager' />
                                         <field name="grade_average_id" groups='mum_kpi.group_insentif_manager' />
-                                        
+                                        <field name="alasan_penyesuaian"  groups='mum_kpi.group_insentif_manager'/>
+                                        <field name="penyesuaian"  groups='mum_kpi.group_insentif_manager'/>
 
                                         <button name="action_show_details" type="object" icon="fa-list" width="0.1" title="Details"/>
                                     </tree>

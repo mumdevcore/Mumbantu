@@ -148,10 +148,10 @@
                             <field name="month_id" invisible='1' />
                             <field name="absen" />
                             <field name="more" />
-                            <field name="grade_absensi_id" invisible='0' />
-                            <field name="grade_more_id" invisible='0' />
-                            <field name="potongan_absen" invisible='0' />
-                            <field name="insentif_more" invisible='0' />
+                            <field name="grade_absensi_id" groups='mum_kpi.group_insentif_manager' />
+                            <field name="grade_more_id" groups='mum_kpi.group_insentif_manager' />
+                            <field name="potongan_absen" groups='mum_kpi.group_insentif_manager' />
+                            <field name="insentif_more" groups='mum_kpi.group_insentif_manager' />
                             <field name="kekurangan" />
                             <field name="incomplete_data" widget='percentage' />
                             <field name="sla" />
