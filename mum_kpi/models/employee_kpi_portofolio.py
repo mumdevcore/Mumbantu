@@ -93,7 +93,7 @@ class EmployeeKpiPortofolio(models.Model):
 	# Button Actions 
 	def button_confirm(self):
 		self.kpi_sebelumnya_id = self.search([('id', '!=', self.id), ('employee_id', '=', self.employee_id.id)], limit=1, order='tahun desc, periode_id desc').id
-		if self.kpi_sebelumnya_id.state != 'done':
+		if self.kpi_sebelumnya_id and self.kpi_sebelumnya_id.state != 'done':
 			raise ValidationError(_(f"Periode {self.kpi_sebelumnya_id.name} belum terselesaikan, harap selesaikan terlebih dahulu."))
 		portofolio_line_ids = self._create_employee_kpi()
 		return self.write({'state' : 'in_progress'})
