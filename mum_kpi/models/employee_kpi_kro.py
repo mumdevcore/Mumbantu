@@ -190,11 +190,6 @@ class EmployeeKpiKro(models.Model):
 		return self.write({'state' : 'in_progress'})
 	
 	def button_submit(self):
-		# print(any(line.absen == 0 or line.more == 0 for line in self.employee_kpi_line))
-		if any(line.absen == 0 or line.more == 0 for line in self.employee_kpi_line):
-			raise ValidationError(_("Kolom Absen dan kolom More RO tidak boleh berisi 0"))
-		if any(line.absen == 0 for line in self.employee_alw_kpi_line):
-			raise ValidationError(_("Kolom Absen ALW tidak boleh berisi 0"))
 		return self.write({'state' : 'approval_1'})
 	
 	def _compute_show_approval_button(self):
