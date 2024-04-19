@@ -96,6 +96,10 @@
                             <field name="tl" />
                             <field name="kurang" />
 
+                            <field name="grade_absen_id" invisible='1' />
+                            <field name="potongan_absen" invisible='1' />
+                            <field name="grade_more_id" invisible='1' />
+                            <field name="insentif_more" invisible='1' />
                             <field name="pencapaian_rekrutmen" widget='percentage' invisible='1' />
                             <field name="grade_rekrutmen_id" invisible='1' />
                             <field name="pencapaian_maintain" widget='percentage' invisible='1' />
@@ -135,10 +139,6 @@
                             <field name="pemenuhan" widget='percentage'  invisible='1'/>
                             <field name="employee_kro_kpi_id" invisible='1' />
                             <field name="month_id" invisible='1'/>
-                            <field name="absen" invisible='1' />
-                            <field name="grade_absen_id" invisible='1' />
-                            <field name="more" invisible='1' />
-                            <field name="grade_more_id" invisible='1' />
                             <field name="cabang" invisible='1' />
                             <field name="formasi" invisible='1' />
                             <field name="aktif" invisible='1' />

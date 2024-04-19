@@ -134,18 +134,14 @@ class EmployeePortofolioKpiLine(models.Model):
 	total_kekurangan = fields.Float(string='Kekurangan', compute='_compute_pencapaian_karyawan')
 	total_incomplete_data = fields.Float(string='Incomplete Data', compute='_compute_pencapaian_karyawan')
 	total_sla = fields.Integer(string='SLA', compute='_compute_pencapaian_karyawan')
-	# total_absen = fields.Integer(string='Absen')
-	# total_more = fields.Integer(string='More')
 	
 	grade_incomplete_data_id = fields.Many2one(comodel_name='grading.template', string='Grade Incomplete Data', compute='_compute_pencapaian_karyawan')
 	grade_kekurangan_id = fields.Many2one(comodel_name='grading.template', string='Grade Kekurangan', compute='_compute_pencapaian_karyawan')
 	grade_sla_id = fields.Many2one(comodel_name='grading.template', string='Grade SLA', compute='_compute_pencapaian_karyawan')
-	# grade_absen_id = fields.Many2one(comodel_name='grading.template', string='Grade Absen')
-	# grade_more_id = fields.Many2one(comodel_name='grading.template', string='Grade More')
-	
-	insentif_kekurangan = fields.Float(string='Insentif Kekurangan', related='grade_kekurangan_id.insentif_portofolio_kekurangan', store=True)
-	insentif_incomplete_data = fields.Float(string='Insentif Incomplete Data', related='grade_incomplete_data_id.insentif_portofolio_incomplete_data', store=True)
-	insentif_sla = fields.Float(string='Insentif SLA', related='grade_sla_id.insentif_portofolio_sla', store=True)
+	insentif_kekurangan = fields.Float(string='Insentif Kekurangan', compute='_compute_pencapaian_karyawan', store=True)
+	insentif_incomplete_data = fields.Float(string='Insentif Incomplete Data', compute='_compute_pencapaian_karyawan', store=True)
+	insentif_sla = fields.Float(string='Insentif SLA', compute='_compute_pencapaian_karyawan', store=True)
+
 	total_insentif_more = fields.Float(string='Insentif More', compute="_compute_total_insentif", store=True)
 	total_potongan_absen = fields.Float(string='Potongan Absen', compute="_compute_total_insentif", store=True)
 
@@ -177,6 +173,8 @@ class EmployeePortofolioKpiLine(models.Model):
 			rec.total_insentif = rec.insentif_kekurangan + rec.insentif_incomplete_data + rec.insentif_sla + rec.total_insentif_more + rec.total_potongan_absen
 			rec.selisih = rec.total_insentif - rec.insentif_periode_sebelumnya
 
+			
+
 	@api.depends(
 		'portofolio_monthly_line.kekurangan',
 		'portofolio_monthly_line.incomplete_data',
@@ -202,6 +200,10 @@ class EmployeePortofolioKpiLine(models.Model):
 
 			domain_search_grade_sla = self._get_domain_grading('sla', rec.total_sla)
 			rec.grade_sla_id = self.env['grading.template'].search(domain_search_grade_sla, limit=1, order='nilai_max_portofolio_sla desc')
+
+			rec.insentif_kekurangan = rec.grade_kekurangan_id.insentif_portofolio_kekurangan
+			rec.insentif_incomplete_data = rec.grade_incomplete_data_id.insentif_portofolio_incomplete_data
+			rec.insentif_sla = rec.grade_sla_id.insentif_portofolio_sla
 
 	def _get_domain_grading(self, key, field):
 		nilai_min = f'nilai_min_portofolio_{key}'

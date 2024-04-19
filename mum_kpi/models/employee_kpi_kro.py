@@ -18,7 +18,7 @@ class EmployeeKpiKro(models.Model):
 	kpi_mekaar_batch_id = fields.Many2one(comodel_name='kpi.mekaar.batch', string='KPI Mekaar Batch')
 	month_ids = fields.Many2many(comodel_name='res.month', string='Bulan')
 	employee_id = fields.Many2one(comodel_name='hr.employee', string='KRO', default=lambda s:s.env.user.employee_id)
-	employee_manager_id = fields.Many2one(comodel_name='hr.employee', string='Kabag', related='employee_id.parent_id', context="{'ciyus' : True}")
+	employee_manager_id = fields.Many2one(comodel_name='hr.employee', string='Kabag', related='employee_id.parent_id')
 	state = fields.Selection(string='State', selection=[
 		('draft', 'Draft'), 
 		('in_progress', 'In Progress'),
@@ -31,21 +31,32 @@ class EmployeeKpiKro(models.Model):
 	user_approval_1 = fields.Many2one(comodel_name='res.users', string='User Approval 1')
 	user_approval_2 = fields.Many2one(comodel_name='res.users', string='User Approval 2')
 	show_approval_button = fields.Boolean(default=False, compute='_compute_show_approval_button')
-	average_ro = fields.Float(string='Average RO', compute='_compute_average_grade', store=True, precompute=True, tracking=True)
-	average_alw = fields.Float(string='Average ALW', compute='_compute_average_grade', store=True, precompute=True, tracking=True)
-	grading_ro_id = fields.Many2one(comodel_name='grading.template', string='Grading RO', compute='_compute_average_grade', store=True, precompute=True)
-	grading_alw_id = fields.Many2one(comodel_name='grading.template', string='Grading ALW', compute='_compute_average_grade', store=True, precompute=True)
-	insentif_g_ro = fields.Float(string='Insentif G RO', compute='_compute_average_grade', store=True, )
-	insentif_g_alw = fields.Float(string='Insentif G ALW', compute='_compute_average_grade', store=True, )
-	total_insentif = fields.Float(string='Total', compute='_compute_average_grade', store=True,)
+
+	average_ro = fields.Float(string='Average RO')
+	average_alw = fields.Float(string='Average ALW')
+	grading_ro_id = fields.Many2one(comodel_name='grading.template', string='Grading RO')
+	grading_alw_id = fields.Many2one(comodel_name='grading.template', string='Grading ALW')
+	insentif_g_ro = fields.Float(string='Insentif G RO')
+	insentif_g_alw = fields.Float(string='Insentif G ALW')
+	total_insentif = fields.Float(string='Total')
+
 	penyesuaian = fields.Float(string='Penyesuaian Kadiv')
 	alasan_penyesuaian = fields.Char(string='Alasan Penyesuaian')
 	more = fields.Integer(string='MORE', compute='_compute_total_ro_more')
 	absen = fields.Integer(string='Keterlambatan (Menit)')
 	tidak_masuk = fields.Integer(string='Tidak Masuk (Hari)')
-	grade_absensi_id = fields.Many2one(comodel_name='grading.template', string='Grade Absensi', compute='_compute_average_grade', store=True,)
-	potongan_absen = fields.Float(string='Potongan Absensi', compute='_compute_average_grade', store=True,)
+
+	grade_absensi_id = fields.Many2one(comodel_name='grading.template', string='Grade Absensi')
+	potongan_absen = fields.Float(string='Potongan Absensi')
+
+	total_insentif_ro = fields.Float(string='Total Insentif', compute='_compute_total')
+	total_insentif_sebelumnya_ro = fields.Float(string='Total Insentif Sebelumnya' , compute='_compute_total')
+	total_penyesuaian_ro = fields.Float(string='Total Penyesuaian', compute='_compute_total')
+	total_insentif_alw = fields.Float(string='Total Insentif', compute='_compute_total')
+	total_insentif_sebelumnya_alw = fields.Float(string='Total Insentif Sebelumnya', compute='_compute_total')
+	total_penyesuaian_alw = fields.Float(string='Total Penyesuaian', compute='_compute_total')
 	
+	kpi_sebelumnya_id = fields.Many2one(comodel_name='employee.kro.kpi', string='KPI Sebelumnya')
 
 	employee_alw_kpi_line = fields.One2many(comodel_name='employee.alw.kpi', inverse_name='employee_kro_kpi_id', string='ALW KPI')
 	employee_alw_kpi_line_count = fields.Integer(string='ALW Count', compute='_compute_kpi_line_count')
@@ -64,6 +75,19 @@ class EmployeeKpiKro(models.Model):
 		for rec in self:
 			rec.more = sum(x.more for x in rec.employee_kpi_line) 
 
+	@api.depends(
+		'employee_alw_kpi_line',
+		'employee_kpi_line'
+	)
+	def _compute_total(self):
+		for rec in self:
+			rec.total_insentif_ro = sum(x.total_insentif for x in rec.employee_kpi_line)
+			rec.total_insentif_sebelumnya_ro = sum(x.insentif_sebelumnya for x in rec.employee_kpi_line)
+			rec.total_penyesuaian_ro = sum(x.penyesuaian for x in rec.employee_kpi_line)
+			rec.total_insentif_alw = sum(x.total_insentif for x in rec.employee_alw_kpi_line)
+			rec.total_insentif_sebelumnya_alw = sum(x.insentif_sebelumnya for x in rec.employee_alw_kpi_line)
+			rec.total_penyesuaian_alw = sum(x.penyesuaian for x in rec.employee_alw_kpi_line)
+
 	@api.model
 	def create(self, vals):
 		# CODE HERE
@@ -72,7 +96,7 @@ class EmployeeKpiKro(models.Model):
 		return super(EmployeeKpiKro, self).create(vals)
 	
 	# Lanjutkan yang ini.
-	@api.depends('employee_kpi_line.average', 'employee_alw_kpi_line.average_alw', 'absen')
+	# @api.depends('employee_kpi_line.average', 'employee_alw_kpi_line.average_alw', 'absen')
 	def _compute_average_grade(self):
 		for rec in self:
 			total_ro = len(rec.employee_kpi_line)
@@ -141,6 +165,7 @@ class EmployeeKpiKro(models.Model):
 				'employee_kro_kpi_id' : self.id,
 				'kpi_mekaar_batch_id' : kpi_mekaar_batch_id.id,
 				'employee_id' : employee.id,
+				'employee_kpi_line_sebelumnya_id' : self.kpi_sebelumnya_id.employee_kpi_line.filtered(lambda l:l.employee_id == employee).id,
 				'employee_monthly_kpi_line' : monthly_kpi_line_values
 			} for employee in ro_employee_ids]
 		
@@ -148,6 +173,7 @@ class EmployeeKpiKro(models.Model):
 			'employee_kro_kpi_id' : self.id,
 			'kpi_mekaar_batch_id' : kpi_mekaar_batch_id.id,
 			'employee_id' : employee.id,
+			'employee_kpi_line_sebelumnya_id' : self.kpi_sebelumnya_id.employee_alw_kpi_line.filtered(lambda l:l.employee_id == employee).id,
 			'alw_monthly_kpi_line' : monthly_kpi_line_values,
 		} for employee in alw_employee_ids]
 
@@ -186,10 +212,19 @@ class EmployeeKpiKro(models.Model):
 		return monthly_grading_ids
 	
 	def button_confirm(self):
+		self.kpi_sebelumnya_id = self.search([('id', '!=', self.id), ('employee_id', '=', self.employee_id.id)], limit=1, order='tahun desc, periode_id desc').id
+		if self.kpi_sebelumnya_id.state != 'done':
+			raise ValidationError(_(f"Periode {self.kpi_sebelumnya_id.name} belum terselesaikan, harap selesaikan terlebih dahulu."))
 		ro_employee_kpi_ids, alw_employee_kpi_ids = self._create_employee_kpi()
 		return self.write({'state' : 'in_progress'})
 	
+	def button_inprogress(self):
+		return self.write({'state' : 'in_progress'})
+	
 	def button_submit(self):
+		# print(any(line.absen == 0 or line.more == 0 for line in self.employee_kpi_line))
+		self.employee_alw_kpi_line.action_confirm()
+		self._compute_average_grade()
 		return self.write({'state' : 'approval_1'})
 	
 	def _compute_show_approval_button(self):
