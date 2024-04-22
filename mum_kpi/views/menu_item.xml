@@ -13,6 +13,19 @@
 	<menuitem id="kpi_portofolio_main_menu" name="Portofolio" parent="kpi_main_menu" sequence='20'>
 		<menuitem id="kpi_portofolio_menu" name="Portofolio" action="action_kpi_portofolio" sequence='10' />
 	</menuitem>
+
+	<menuitem id="kpi_reporting_main_menu" name="Reporting" parent="kpi_main_menu" sequence='30'>
+		<menuitem id="kpi_reporting_ro_main_menu" name="RO" sequence='10'>
+			<menuitem id="kpi_reporting_summary_ro_menu" name="Summary RO" action="action_reporting_summary_ro" sequence='10' />
+			<menuitem id="kpi_reporting_bulanan_ro_menu" name="Bulanan RO" action="action_reporting_bulanan_ro" sequence='20' />
+		</menuitem>
+		<menuitem id="kpi_reporting_alw_main_menu" name="ALW" sequence='20'>
+			<menuitem id="kpi_reporting_summary_alw_menu" name="Summary RO" action="action_reporting_summary_alw" sequence='10' />
+		</menuitem>
+		<menuitem id="kpi_reporting_kro_main_menu" name="KRO" sequence='30'>
+			<menuitem id="kpi_reporting_summary_kro_menu" name="Summary KRO" action="action_reporting_summary_kro" sequence='10' />
+		</menuitem>
+	</menuitem>
 	
 	
 	<menuitem id="kpi_config_menu" name="Configuration" sequence='99' parent='kpi_main_menu' groups='mum_kpi.group_insentif_manager'>

@@ -120,4 +120,44 @@
 		</field>
 	</record> 
 
+	<!-- Untuk Reporting -->
+
+	<record id="reporting_summary_alw_view_tree" model="ir.ui.view">
+		<field name="name">reporting_summary_alw.view.tree</field>
+		<field name="model">employee.alw.kpi</field>
+		<field name="arch" type="xml">
+			<tree create='0' edit='0' delete='0'>
+				<field name="employee_id" />
+				<field name="employee_kpi_line_sebelumnya_id" invisible='1' />
+				<field name="absen" />
+				<field name="tidak_masuk" />
+				
+				<field name="total_karyawan_terakhir" />
+				<!-- <field name="total_aktif" /> -->
+				<field name="total_resign" />
+				<field name="total_perp_kontrak" />
+				<field name="total_incomplete_data" />
+				<field name="total_pkwt" />
+				<field name="total_ppkwt" />
+				<field name="total_kesalahan_resign" />
+				<field name="average_alw" widget='percentage' groups='mum_kpi.group_insentif_manager' />
+				<field name="grade_average_id" groups='mum_kpi.group_insentif_manager' />
+				<field name="total_insentif" />
+				<field name="insentif_sebelumnya" />
+				<field name="alasan_penyesuaian"  groups='mum_kpi.group_insentif_manager'/>
+				<field name="penyesuaian"  groups='mum_kpi.group_insentif_manager'/>				
+			</tree>
+		</field>
+	</record>
+
+	
+	<record id="action_reporting_summary_alw" model="ir.actions.act_window">
+        <field name="name">Report Summary ALW</field>
+        <field name="res_model">employee.alw.kpi</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="reporting_summary_alw_view_tree"/>
+    </record>
+
+	
+
 </odoo>

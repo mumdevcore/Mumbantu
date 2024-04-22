@@ -157,4 +157,92 @@
         </field>
     </record>
 
+
+    <!-- Untuk Reporting -->
+
+    
+    <record id="reporting_summary_ro_view_tree" model="ir.ui.view">
+        <field name="name">reporting_summary_ro.view.tree</field>
+        <field name="model">employee.ro.kpi</field>
+        <field name="arch" type="xml">
+            <tree create='0' delete='0'>
+                <field name="employee_id" readonly='1' />
+                <field name="absen" />
+                <field name="tidak_masuk" />
+                <field name="more" />
+                <field name="total_resign" />
+                <field name="total_rekrutmen" />
+                <field name="total_tl" />
+                <field name="average" widget='percentage' groups='mum_kpi.group_insentif_manager' />
+                <field name="grade_average_id" groups='mum_kpi.group_insentif_manager' />
+                <field name="company_id" invisible='1' />
+                <field name="insentif_maintain"/>
+                <field name="insentif_rekrutmen"/>
+                <field name="insentif_tl"/>
+                <field name="wilayah_suffer_id" groups='mum_kpi.group_insentif_manager' />
+                <field name="insentif_wilayah_suffer"/>
+                <field name="total_insentif"/>
+                <field name="employee_monthly_kpi_line" invisible='1' />
+            </tree>
+        </field>
+    </record>
+
+    <record id="reporting_bulanan_ro_view_tree" model="ir.ui.view">
+        <field name="name">reporting_bulanan_ro.view.tree</field>
+        <field name="model">employee.monthly.kpi.line</field>
+        <field name="arch" type="xml">
+            <tree edit='0' create='0' delete='0' default_order='employee_id'>
+                <field name="sequence" invisible='1' />
+                <field name="employee_id" />
+                <field name="name" />                                
+                <field name="employee_kro_kpi_id" invisible='1' />
+                <field name="month_id" invisible='1'/>
+                <field name="absen" />
+                <field name="tidak_masuk" />
+                <field name="grade_absen_id" invisible='1' />
+                <field name="more" />
+                <field name="grade_more_id" invisible='1' />
+                <field name="cabang" />
+                <field name="formasi" />
+                <field name="aktif" />
+                <field name="resign" />
+                <field name="rekrutmen" />
+                <field name="tl" />
+                <field name="kurang" />
+
+                <field name="grade_absen_id"/>
+                <field name="potongan_absen"/>
+                <field name="grade_more_id"/>
+                <field name="insentif_more"/>
+                <field name="pencapaian_rekrutmen" widget='percentage'/>
+                <field name="grade_rekrutmen_id"/>
+                <field name="pencapaian_maintain" widget='percentage'/>
+                <field name="grade_maintain_id"/>
+                <field name="pencapaian_tl" widget='percentage'/>
+                <field name="grade_tl_id"/>
+                <field name="insentif_maintain"/>
+                <field name="insentif_rekrutmen"/>
+                <field name="insentif_tl"/>
+                <field name="pemenuhan"/>
+                
+                <field name="company_id" invisible='1' />
+            </tree>
+        </field>
+    </record>
+    
+    <record id="action_reporting_summary_ro" model="ir.actions.act_window">
+        <field name="name">Report Summary RO</field>
+        <field name="res_model">employee.ro.kpi</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="reporting_summary_ro_view_tree"/>
+    </record>
+    
+    <record id="action_reporting_bulanan_ro" model="ir.actions.act_window">
+        <field name="name">Report Bulanan RO</field>
+        <field name="res_model">employee.monthly.kpi.line</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="reporting_bulanan_ro_view_tree"/>
+    </record>
+    
+
 </odoo>

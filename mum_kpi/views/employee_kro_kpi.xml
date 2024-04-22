@@ -120,7 +120,7 @@
                             <page name="karyawan_alw_ids" string="Karyawan ALW">
                                 <field name="employee_alw_kpi_line">
                                     <tree editable='bottom' create='0'>
-                                        <field name="employee_id" readonly='1' />
+                                        <field name="employee_id" />
                                         <field name="employee_kpi_line_sebelumnya_id" invisible='1' />
                                         <field name="absen" />
                                         <field name="tidak_masuk" />
@@ -147,21 +147,21 @@
                             <page name="karyawan_kro" string="Karyawan KRO" groups='mum_kpi.group_insentif_manager' attrs="{'invisible' : [('state', 'not in', ('approval_1', 'approval_2', 'done'))]}">
                                 <group>
                                     <group string="RO">
-                                        <field name="average_ro" widget='percentage' />
-                                        <field name="grading_ro_id" />
-                                        <field name="insentif_g_ro" />
+                                        <field name="average_ro" widget='percentage' attrs="{'readonly' : [('state','not in', ('draft','in_progress'))]}" />
+                                        <field name="grading_ro_id" attrs="{'readonly' : [('state','not in', ('draft','in_progress'))]}" />
+                                        <field name="insentif_g_ro" attrs="{'readonly' : [('state','not in', ('draft','in_progress'))]}" />
                                     </group>
                                     <group string="ALW">
-                                        <field name="average_alw" widget='percentage' />
-                                        <field name="grading_alw_id" />
-                                        <field name="insentif_g_alw" />
+                                        <field name="average_alw" widget='percentage' attrs="{'readonly' : [('state','not in', ('draft','in_progress'))]}" />
+                                        <field name="grading_alw_id" attrs="{'readonly' : [('state','not in', ('draft','in_progress'))]}" />
+                                        <field name="insentif_g_alw" attrs="{'readonly' : [('state','not in', ('draft','in_progress'))]}" />
                                     </group>
                                     <group string="Individu">
                                         <field name="more" />
                                         <field name="absen" />
                                         <field name="tidak_masuk" />
-                                        <field name="grade_absensi_id" />
-                                        <field name="potongan_absen" />
+                                        <field name="grade_absensi_id" attrs="{'readonly' : [('state','not in', ('draft','in_progress', 'approval_2'))]}" />
+                                        <field name="potongan_absen" attrs="{'readonly' : [('state','not in', ('draft','in_progress', 'approval_2'))]}" />
                                     </group>
                                     <group string="Total">
                                         <field name="total_insentif" />
@@ -207,6 +207,40 @@
                 </p>
             </field>
         </record>
+
+        <!-- Untuk Reporting -->
+
+        <record id="reporting_summary_kro_view_tree" model="ir.ui.view">
+            <field name="name">reporting_summary_kro.view.tree</field>
+            <field name="model">employee.kro.kpi</field>
+            <field name="arch" type="xml">
+                <tree create='0' edit='0' delete='0'>
+                    <field name="employee_id" />
+                    <field name="absen" />
+                    <field name="more" />
+                    <field name="tidak_masuk" />
+                    <field name="average_ro" widget='percentage'/>
+                    <field name="grading_ro_id"/>
+                    <field name="insentif_g_ro"/>
+                    <field name="average_alw" widget='percentage'/>
+                    <field name="grading_alw_id"/>
+                    <field name="insentif_g_alw"/>       
+                    <field name="grade_absensi_id"/>
+                    <field name="potongan_absen"/>
+                    <field name="total_insentif" />
+                    <field name="penyesuaian" />
+                    <field name="alasan_penyesuaian" />                  
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_reporting_summary_kro" model="ir.actions.act_window">
+            <field name="name">Report Summary KRO</field>
+            <field name="res_model">employee.kro.kpi</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="reporting_summary_kro_view_tree"/>
+        </record>
+        
         
         
     </data>
