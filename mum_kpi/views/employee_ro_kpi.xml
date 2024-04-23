@@ -10,7 +10,7 @@
                 <field name="absen" />
                 <field name="tidak_masuk" />
                 <field name="more" />
-                <field name="total_resign" />
+                <field name="total_resign" invisible='1'/>
                 <field name="total_rekrutmen" />
                 <field name="total_tl" />
                 <field name="average" widget='percentage' groups='mum_kpi.group_insentif_manager' />
@@ -36,7 +36,7 @@
                 <sheet>
                     <group string="Total">
                         <group>
-                            <field name="total_resign" />
+                            <field name="total_resign" invisible='1' />
                             <field name="total_rekrutmen" />
                             <field name="total_tl" />
                             
@@ -47,7 +47,7 @@
                         </group>
                         
                         <group>
-                            <field name="avg_maintain_pertama" widget='percentage'  attrs="{'readonly' : [('state', 'in', ('draft', 'done', 'cancel'))]}" />
+                            <!-- <field name="avg_maintain_pertama" widget='percentage'  attrs="{'readonly' : [('state', 'in', ('draft', 'done', 'cancel'))]}" /> -->
                             <field name="average" widget='percentage' groups='mum_kpi.group_insentif_manager' />
                             <field name="grade_average_id" groups='mum_kpi.group_insentif_manager'/>
                         </group>
@@ -91,7 +91,7 @@
                             <field name="cabang" />
                             <field name="formasi" />
                             <field name="aktif" />
-                            <field name="resign" />
+                            <field name="resign" invisible='1' />
                             <field name="rekrutmen" />
                             <field name="tl" />
                             <field name="kurang" />
@@ -170,7 +170,7 @@
                 <field name="absen" />
                 <field name="tidak_masuk" />
                 <field name="more" />
-                <field name="total_resign" />
+                <field name="total_resign" invisible='1' />
                 <field name="total_rekrutmen" />
                 <field name="total_tl" />
                 <field name="average" widget='percentage' groups='mum_kpi.group_insentif_manager' />
@@ -205,7 +205,7 @@
                 <field name="cabang" />
                 <field name="formasi" />
                 <field name="aktif" />
-                <field name="resign" />
+                <field name="resign" invisible='1' />
                 <field name="rekrutmen" />
                 <field name="tl" />
                 <field name="kurang" />

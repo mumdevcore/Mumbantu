@@ -20,7 +20,7 @@
 			<menuitem id="kpi_reporting_bulanan_ro_menu" name="Bulanan RO" action="action_reporting_bulanan_ro" sequence='20' />
 		</menuitem>
 		<menuitem id="kpi_reporting_alw_main_menu" name="ALW" sequence='20'>
-			<menuitem id="kpi_reporting_summary_alw_menu" name="Summary RO" action="action_reporting_summary_alw" sequence='10' />
+			<menuitem id="kpi_reporting_summary_alw_menu" name="Summary ALW" action="action_reporting_summary_alw" sequence='10' />
 		</menuitem>
 		<menuitem id="kpi_reporting_kro_main_menu" name="KRO" sequence='30'>
 			<menuitem id="kpi_reporting_summary_kro_menu" name="Summary KRO" action="action_reporting_summary_kro" sequence='10' />

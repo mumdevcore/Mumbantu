@@ -222,9 +222,15 @@ class EmployeeKpiKro(models.Model):
 		return self.write({'state' : 'in_progress'})
 	
 	def button_submit(self):
-		# print(any(line.absen == 0 or line.more == 0 for line in self.employee_kpi_line))
+		# Trigger untuk ALW 
 		self.employee_alw_kpi_line.action_confirm()
+
+		# Trigger untuk RO
+		self.employee_monthly_kpi_line._compute_pencapaian_maintain()
+
 		self._compute_average_grade()
+
+
 		return self.write({'state' : 'approval_1'})
 	
 	def _compute_show_approval_button(self):

@@ -95,7 +95,7 @@
                                         <!-- <field name="grade_absen_id" invisible='1' /> -->
                                         <field name="more" />
                                         <!-- <field name="grade_more_id" invisible='1' /> -->
-                                        <field name="total_resign" />
+                                        <field name="total_resign" invisible='1' />
                                         <field name="total_rekrutmen" />
                                         <field name="total_tl" />
                                         <field name="average" widget='percentage' groups='mum_kpi.group_insentif_manager' />

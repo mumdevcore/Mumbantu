@@ -102,10 +102,7 @@ class EmployeeKpiPortofolio(models.Model):
 	
 	def button_adjust_month_employee_name(self):
 		for portofolio_line in self.employee_portofolio_kpi_line:
-			# print(portofolio_line.employee_id.name)
-			# print(portofolio_line.portofolio_monthly_line)
 			portofolio_line.portofolio_monthly_line.write({'employee_id' : portofolio_line.employee_id.id})
-			print(portofolio_line.portofolio_monthly_line.mapped('employee_id'))
 	
 	def button_submit(self):
 

@@ -150,7 +150,7 @@ class EmployeeMonthlyKpiLine(models.Model):
 	rekrutmen = fields.Integer(string='Rekrutmen', )
 	tl = fields.Integer(string='TL', )
 	kurang = fields.Integer(string='Kurang', compute='_compute_kurang_pemenuhan')
-	pemenuhan = fields.Float(string='Pemenuhan', compute='_compute_kurang_pemenuhan')
+	pemenuhan = fields.Float(string='Maintain', compute='_compute_kurang_pemenuhan')
 
 	pencapaian_rekrutmen = fields.Float(string='Pencapaian Rekrutment')
 	pencapaian_maintain = fields.Float(string='Pencapaian Maintain')
@@ -213,7 +213,8 @@ class EmployeeMonthlyKpiLine(models.Model):
 				rec.pencapaian_tl = min(1,pencapaian_tl)
 
 			# rec.pencapaian_maintain = pencapaian_maintain_dict[rec.sequence]
-			rec.employee_kpi_id._compute_pencapaian_maintain()
+			# rec.employee_kpi_id._compute_pencapaian_maintain()
+			# rec._compute_pencapaian_maintain()
 				
 			# Hitung Grading
 			domain_search_grade_absen = [('nilai_min_absen', '<=', rec.absen), ('nilai_max_absen', '>', rec.absen)]
@@ -249,6 +250,13 @@ class EmployeeMonthlyKpiLine(models.Model):
 				rec.kurang = kurang > 0 and kurang
 				pemenuhan = rec.aktif / rec.formasi
 				rec.pemenuhan = pemenuhan <= 1 and pemenuhan or 1
+
+	# @api.depends('formasi', 'aktif', 'resign', 'rekrutmen')
+	def _compute_pencapaian_maintain(self):
+		for rec in self:
+			if rec.formasi > 0:
+				pencapaian_maintain = rec.aktif / rec.formasi
+				rec.pencapaian_maintain = min(1,pencapaian_maintain)
 
 	def _create_employee_kpi_grading(self, monthly_grading_ids):
 		for line in self:
