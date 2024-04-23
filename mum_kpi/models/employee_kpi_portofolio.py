@@ -96,7 +96,16 @@ class EmployeeKpiPortofolio(models.Model):
 		if self.kpi_sebelumnya_id and self.kpi_sebelumnya_id.state != 'done':
 			raise ValidationError(_(f"Periode {self.kpi_sebelumnya_id.name} belum terselesaikan, harap selesaikan terlebih dahulu."))
 		portofolio_line_ids = self._create_employee_kpi()
+		for portofolio in portofolio_line_ids:
+			portofolio.portofolio_monthly_line.write({'employee_id' : portofolio.employee_id.id})
 		return self.write({'state' : 'in_progress'})
+	
+	def button_adjust_month_employee_name(self):
+		for portofolio_line in self.employee_portofolio_kpi_line:
+			# print(portofolio_line.employee_id.name)
+			# print(portofolio_line.portofolio_monthly_line)
+			portofolio_line.portofolio_monthly_line.write({'employee_id' : portofolio_line.employee_id.id})
+			print(portofolio_line.portofolio_monthly_line.mapped('employee_id'))
 	
 	def button_submit(self):
 
