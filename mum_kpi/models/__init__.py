@@ -7,4 +7,7 @@ from . import employee_kpi_kro
 from . import employee_kpi_ro
 from . import employee_kpi_alw
 from . import employee_kpi_portofolio
+from . import manajemen_kpi_bagian
+from . import hr_job
 from . import kpi_mekaar_batch
+from . import kpi_manajemen_batch

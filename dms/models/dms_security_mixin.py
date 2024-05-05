@@ -33,21 +33,25 @@ class DmsSecurityMixin(models.AbstractModel):
         compute="_compute_permissions",
         search="_search_permission_read",
         string="Read Access",
+        precompute=True,
     )
     permission_create = fields.Boolean(
         compute="_compute_permissions",
         search="_search_permission_create",
         string="Create Access",
+        precompute=True,
     )
     permission_write = fields.Boolean(
         compute="_compute_permissions",
         search="_search_permission_write",
         string="Write Access",
+        precompute=True,
     )
     permission_unlink = fields.Boolean(
         compute="_compute_permissions",
         search="_search_permission_unlink",
         string="Delete Access",
+        precompute=True,
     )
 
     @api.model
@@ -84,6 +88,10 @@ class DmsSecurityMixin(models.AbstractModel):
         unlinkable = self._filter_access_rules("unlink")
         writeable = self._filter_access_rules("write")
         for one in self:
+            print(f"creatable == {creatable}")
+            print(f"readable == {readable}")
+            print(f"unlinkable == {unlinkable}")
+            print(f"writeable == {writeable}")
             one.update(
                 {
                     "permission_create": bool(one & creatable),

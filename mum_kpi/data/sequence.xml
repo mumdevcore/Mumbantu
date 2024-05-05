@@ -33,19 +33,20 @@
         <field name='use_date_range' eval='True'/>
         <field name='range_reset'>yearly</field>
     </record>
+    
 
-    <!-- <record id="employee_ro_kpi_seq" model='ir.sequence'>
-        <field name='name'>RO KPI Sequence</field>
-        <field name="code">employee.ro.kpi.seq</field>
-        <field name='suffix'>/%(range_year)s//MUM-KPI-RO</field>
-        <field name='padding'>5</field>
+    <record id="employee_manajemen_kpi_seq" model='ir.sequence'>
+        <field name='name'>KPI Manajemen Sequence</field>
+        <field name="code">employee.manajemen.kpi.seq</field>
+        <field name='suffix'>/%(range_year)s/MUM-KPI-MGMT</field>
+        <field name='padding'>3</field>
         <field eval="1" name="number_next"/>
         <field eval="1" name="number_increment"/>
         <field name='use_date_range' eval='True'/>
         <field name='range_reset'>yearly</field>
     </record>
 
-    <record id="employee_alw_kpi_seq" model='ir.sequence'>
+    <!-- <record id="employee_alw_kpi_seq" model='ir.sequence'>
         <field name='name'>ALW KPI Sequence</field>
         <field name="code">employee.alw.kpi.seq</field>
         <field name='suffix'>/%(range_year)s//MUM-KPI-ALW</field>

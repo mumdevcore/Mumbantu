@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_job_view_form" model="ir.ui.view">
+        <field name="name">mum_kpi.hr.job.view.form</field>
+        <field name="model">hr.job</field>
+        <field name="inherit_id" ref="hr.view_hr_job_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position='inside'>
+                <page string="KPI Templates" name='kpi_template'>
+                    <group>
+                        <field name="total_bobot" />
+                    </group>
+                    <separator string="Templates"/>
+                    <field name='kpi_template_manajemen_ids'>
+                        <tree editable='bottom'>
+                            <field name="ski" required='1' />
+                            <field name="kpi" />
+                            <field name="bobot"/>
+                            <field name="target" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

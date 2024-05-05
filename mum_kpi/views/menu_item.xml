@@ -14,7 +14,12 @@
 		<menuitem id="kpi_portofolio_menu" name="Portofolio" action="action_kpi_portofolio" sequence='10' />
 	</menuitem>
 
-	<menuitem id="kpi_reporting_main_menu" name="Reporting" parent="kpi_main_menu" sequence='30' groups='mum_kpi.group_insentif_manager'>
+	<menuitem id="kpi_manajemen_main_menu" name="Manajemen" parent="kpi_main_menu" sequence='30'>
+		<menuitem id="employee_manajemen_kpi_menu" name="KPI Bagian" action="action_employee_manajemen_kpi" />
+		<menuitem id="kpi_manajemen_batch_menu" name="Rekapitulasi Manajemen" action="action_kpi_manajemen_batch" />
+	</menuitem>
+
+	<menuitem id="kpi_reporting_main_menu" name="Reporting" parent="kpi_main_menu" sequence='80' groups='mum_kpi.group_insentif_manager'>
 		<menuitem id="kpi_reporting_ro_main_menu" name="RO" sequence='10'>
 			<menuitem id="kpi_reporting_summary_ro_menu" name="Summary RO" action="action_reporting_summary_ro" sequence='10' />
 			<menuitem id="kpi_reporting_bulanan_ro_menu" name="Bulanan RO" action="action_reporting_bulanan_ro" sequence='20' />

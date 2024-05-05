@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
     <data>
+		<!-- KPI Bisnis -->
         <record id="category_insentif_karyawan" model="ir.module.category">
 	        <field name="name">KPI</field>
 	    </record>
@@ -16,6 +17,25 @@
 	        <field name="category_id" ref="category_insentif_karyawan" />
 			<field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
 	        <field name="implied_ids" eval="[(4, ref('group_insentif_user'))]" />
+		</record>
+
+		<!-- KPI Manajemen -->
+
+		<record id="category_kpi_manajemen" model="ir.module.category">
+	        <field name="name">KPI Manajemen</field>
+	    </record>
+
+		<record id="group_kpi_manajemen_user" model="res.groups">
+			<field name="name">KPI Manajemen User</field>
+	        <field name="category_id" ref="category_kpi_manajemen" />
+			<field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+		</record>
+
+		<record id="group_kpi_manajemen_manager" model="res.groups">
+			<field name="name">KPI Manajemen Administrator</field>
+	        <field name="category_id" ref="category_kpi_manajemen" />
+			<field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+	        <field name="implied_ids" eval="[(4, ref('group_kpi_manajemen_user'))]" />
 		</record>
     </data>
 </odoo>

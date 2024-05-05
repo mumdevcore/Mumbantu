@@ -28,6 +28,7 @@ class Employee(models.Model):
 	nama_ibu = fields.Char(string='Nama Ibu', groups="hr.group_hr_user")
 	no_npwp = fields.Char(string='No NPWP', groups="hr.group_hr_user")
 	status_pajak_id = fields.Many2one('status.pajak',string='Status Pajak', groups="hr.group_hr_user")
+	department_kelolaan_id = fields.Many2one(comodel_name='hr.department', string='Bagian')
 	
 	def name_get(self):
 		result = []

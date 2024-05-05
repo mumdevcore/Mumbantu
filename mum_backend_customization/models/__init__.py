@@ -3,6 +3,7 @@
 from . import master_data
 from . import hr_certification
 from . import job_position
+from . import hr_department
 from . import hr_employee
 from . import hr_employee_public
 from . import calendar
