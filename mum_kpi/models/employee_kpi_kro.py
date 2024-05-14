@@ -65,6 +65,8 @@ class EmployeeKpiKro(models.Model):
 	alw_monthly_kpi_line = fields.One2many(comodel_name='alw.monthly.kpi.line', inverse_name='employee_kro_kpi_id', string='ALW Monthly KPI')
 	employee_monthly_kpi_line = fields.One2many(comodel_name='employee.monthly.kpi.line', inverse_name='employee_kro_kpi_id', string='RO Monthly KPI')
 
+	attachment_ids = fields.Many2many(comodel_name='ir.attachment', string='Attachments')
+
 	def _compute_kpi_line_count(self):
 		for rec in self:
 			rec.employee_kpi_line_count = len(rec.employee_kpi_line)

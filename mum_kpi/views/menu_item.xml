@@ -14,9 +14,9 @@
 		<menuitem id="kpi_portofolio_menu" name="Portofolio" action="action_kpi_portofolio" sequence='10' />
 	</menuitem>
 
-	<menuitem id="kpi_manajemen_main_menu" name="Manajemen" parent="kpi_main_menu" sequence='30'>
-		<menuitem id="employee_manajemen_kpi_menu" name="KPI Bagian" action="action_employee_manajemen_kpi" />
-		<menuitem id="kpi_manajemen_batch_menu" name="Rekapitulasi Manajemen" action="action_kpi_manajemen_batch" />
+	<menuitem id="kpi_manajemen_main_menu" name="Manajemen" parent="kpi_main_menu" sequence='30' groups='mum_kpi.group_kpi_manajemen_user'>
+		<menuitem id="employee_manajemen_kpi_menu" name="KPI Bagian" action="action_employee_manajemen_kpi" groups='mum_kpi.group_kpi_manajemen_user' />
+		<menuitem id="kpi_manajemen_batch_menu" name="Rekapitulasi Manajemen" action="action_kpi_manajemen_batch" groups='mum_kpi.group_kpi_manajemen_user' />
 	</menuitem>
 
 	<menuitem id="kpi_reporting_main_menu" name="Reporting" parent="kpi_main_menu" sequence='80' groups='mum_kpi.group_insentif_manager'>

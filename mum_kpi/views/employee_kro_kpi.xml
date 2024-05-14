@@ -69,6 +69,7 @@
                                 <field name="user_approval_1" invisible='1'/>
                                 <field name="user_approval_2" invisible='1'/>
                                 <field name="show_approval_button" invisible='1'/>
+                                <field name="attachment_ids" widget='many2many_attachment_preview' />
                             </group>
                         </group>
                         <group>
