@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="dms_file_view_form" model="ir.ui.view">
+        <field name="name">dms.file.view.form</field>
+        <field name="model">dms.file</field>
+        <field name="inherit_id" ref="dms.view_dms_file_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position='inside'>
+                <button name="create_revision" string="Create Revision" type="object"/>
+            </xpath>
+
+            <field name="mimetype" position='after'>
+                <label for="masa_berlaku_awal" string="Masa Berlaku"/>
+                <div>
+                    <field name="masa_berlaku_awal" placeholder="Mulai" widget="daterange" class="oe_inline" options="{'related_end_date': 'masa_berlaku_akhir'}"/> 
+                    s/d 
+                    <field name="masa_berlaku_akhir" placeholder="Selesai" widget="daterange" class="oe_inline" options="{'related_start_date': 'masa_berlaku_awal'}"/>
+                </div>
+            </field>
+
+            <field name='storage_id' position='after'>
+                <field name="attachment_ids" widget='many2many_attachment_preview' />
+            </field>
+        </field>
+    </record>
+
+</odoo>
