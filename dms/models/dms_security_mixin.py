@@ -88,10 +88,6 @@ class DmsSecurityMixin(models.AbstractModel):
         unlinkable = self._filter_access_rules("unlink")
         writeable = self._filter_access_rules("write")
         for one in self:
-            print(f"creatable == {creatable}")
-            print(f"readable == {readable}")
-            print(f"unlinkable == {unlinkable}")
-            print(f"writeable == {writeable}")
             one.update(
                 {
                     "permission_create": bool(one & creatable),

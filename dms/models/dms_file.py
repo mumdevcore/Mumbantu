@@ -297,58 +297,60 @@ class File(models.Model):
         return expression.AND([comodel_domain, [(field, "in", files_ids)]])
 
     @api.model
-    def search_panel_select_range(self, field_name, **kwargs):
-        """This method is overwritten to make it 'similar' to v13.
-        The goal is that the directory searchpanel shows all directories
-        (even if some folders have no files)."""
-        if field_name == "directory_id":
-            domain = [["is_hidden", "=", False]]
-            # If we pass by context something, we filter more about it we filter
-            # the directories of the files or we show all of them
-            if self.env.context.get("active_model", False) == "dms.directory":
-                active_id = self.env.context.get("active_id")
-                # para saber que directorios, buscamos las posibles carpetas que nos interesan
-                files = self.env["dms.file"].search(
-                    [["directory_id", "child_of", active_id]]
-                )
-                all_directories = files.mapped("directory_id")
-                all_directories += files.mapped("directory_id.parent_id")
-                domain.append(["id", "in", all_directories.ids])
-            # Get all possible directories
-            comodel_records = (
-                self.env["dms.directory"]
-                .with_context(directory_short_name=True)
-                .search_read(domain, ["display_name", "parent_id"])
-            )
-            all_record_ids = [rec["id"] for rec in comodel_records]
-            field_range = {}
-            enable_counters = kwargs.get("enable_counters")
-            for record in comodel_records:
-                record_id = record["id"]
-                parent = record["parent_id"]
-                record_values = {
-                    "id": record_id,
-                    "display_name": record["display_name"],
-                    # If the parent directory is not in all the records we should not
-                    # set parent_id because the user does not have access to parent.
-                    "parent_id": (
-                        parent[0] if parent and parent[0] in all_record_ids else False
-                    ),
-                }
-                if enable_counters:
-                    record_values["__count"] = 0
-                field_range[record_id] = record_values
-            if enable_counters:
-                res = super().search_panel_select_range(field_name, **kwargs)
-                for item in res["values"]:
-                    field_range[item["id"]]["__count"] = item["__count"]
-            return {"parent_field": "parent_id", "values": list(field_range.values())}
-        context = {}
-        if field_name == "category_id":
-            context["category_short_name"] = True
-        return super(File, self.with_context(**context)).search_panel_select_range(
-            field_name, **kwargs
-        )
+    # def search_panel_select_range(self, field_name, **kwargs):
+    #     """This method is overwritten to make it 'similar' to v13.
+    #     The goal is that the directory searchpanel shows all directories
+    #     (even if some folders have no files)."""
+    #     if field_name == "directory_id":
+    #         domain = [["is_hidden", "=", False]]
+    #         # If we pass by context something, we filter more about it we filter
+    #         # the directories of the files or we show all of them
+    #         if self.env.context.get("active_model", False) == "dms.directory":
+    #             active_id = self.env.context.get("active_id")
+    #             # para saber que directorios, buscamos las posibles carpetas que nos interesan
+    #             files = self.env["dms.file"].search(
+    #                 [["directory_id", "child_of", active_id]]
+    #             )
+    #             all_directories = files.mapped("directory_id")
+    #             all_directories += files.mapped("directory_id.parent_id")
+    #             domain.append(["id", "in", all_directories.ids])
+    #         # Get all possible directories
+    #         comodel_records = (
+    #             self.env["dms.directory"]
+    #             .with_context(directory_short_name=True)
+    #             .search_read(domain, ["display_name", "parent_id"])
+    #         )
+    #         all_record_ids = [rec["id"] for rec in comodel_records]
+    #         field_range = {}
+    #         enable_counters = kwargs.get("enable_counters")
+    #         for record in comodel_records:
+    #             record_id = record["id"]
+    #             parent = record["parent_id"]
+    #             record_values = {
+    #                 "id": record_id,
+    #                 "display_name": record["display_name"],
+    #                 # If the parent directory is not in all the records we should not
+    #                 # set parent_id because the user does not have access to parent.
+    #                 "parent_id": (
+    #                     parent[0] if parent and parent[0] in all_record_ids else False
+    #                 ),
+    #             }
+    #             if enable_counters:
+    #                 record_values["__count"] = 0field_range
+    #             field_range[record_id] = record_values
+    #         if enable_counters:
+    #             res = super().search_panel_select_range(field_name, **kwargs)
+    #             for item in res["values"]:
+    #                 print(f"search_panel_select_range -------------- {item}")
+    #                 print(field_range)
+    #                 field_range[item["id"]]["__count"] = item["__count"]
+    #         return {"parent_field": "parent_id", "values": list(field_range.values())}
+    #     context = {}
+    #     if field_name == "category_id":
+    #         context["category_short_name"] = True
+    #     return super(File, self.with_context(**context)).search_panel_select_range(
+    #         field_name, **kwargs
+    #     )
 
     @api.model
     def search_panel_select_multi_range(self, field_name, **kwargs):
