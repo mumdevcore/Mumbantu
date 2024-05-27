@@ -14,5 +14,6 @@ class EmployeePublic(models.Model):
 	kota_id = fields.Many2one('vit.kota',string='Kota/Kabupaten', related='employee_id.kota_id')
 	contract_type_id = fields.Many2one('hr.contract.type', string='Status Karyawan', related='employee_id.contract_type_id')
 	job_title_id = fields.Many2one('job.title',string='Title', related='employee_id.job_title_id')
+	department_kelolaan_id = fields.Many2one(comodel_name='hr.department', string='Bagian', related='employee_id.department_kelolaan_id')
 
 	hr_certification_line = fields.One2many('hr.certification', 'employee_id', string='HR Employee Certification',)
