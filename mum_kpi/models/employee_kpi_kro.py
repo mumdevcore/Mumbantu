@@ -214,7 +214,8 @@ class EmployeeKpiKro(models.Model):
 		return monthly_grading_ids
 	
 	def button_confirm(self):
-		self.kpi_sebelumnya_id = self.search([('id', '!=', self.id), ('employee_id', '=', self.employee_id.id)], limit=1, order='tahun desc, periode_id desc').id
+		if not self.kpi_sebelumnya_id:
+			self.kpi_sebelumnya_id = self.search([('id', '!=', self.id), ('employee_id', '=', self.employee_id.id)], limit=1, order='tahun desc, periode_id desc').id
 		if self.kpi_sebelumnya_id.state != 'done':
 			raise ValidationError(_(f"Periode {self.kpi_sebelumnya_id.name} belum terselesaikan, harap selesaikan terlebih dahulu."))
 		ro_employee_kpi_ids, alw_employee_kpi_ids = self._create_employee_kpi()

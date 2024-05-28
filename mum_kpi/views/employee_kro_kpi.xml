@@ -60,7 +60,7 @@
                                 <field name="tgl_dibuat" attrs="{'readonly' : [('state', '!=', 'draft')]}" />
                                 <field name="tahun" readonly='1' />
                                 <field name="employee_id"  attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
-                                <field name="kpi_sebelumnya_id" invisible='1'  />
+                                <field name="kpi_sebelumnya_id" groups="base.group_system" />
                             </group>
                             <group>
                                 <field name="periode_id" attrs="{'readonly' : [('state', '!=', 'draft')]}" />
