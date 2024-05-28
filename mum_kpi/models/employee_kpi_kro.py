@@ -167,7 +167,7 @@ class EmployeeKpiKro(models.Model):
 				'employee_kro_kpi_id' : self.id,
 				'kpi_mekaar_batch_id' : kpi_mekaar_batch_id.id,
 				'employee_id' : employee.id,
-				'employee_kpi_line_sebelumnya_id' : self.kpi_sebelumnya_id.employee_kpi_line.filtered(lambda l:l.employee_id == employee).id,
+				'employee_kpi_line_sebelumnya_id' : self.kpi_sebelumnya_id.sudo().employee_kpi_line.filtered(lambda l:l.employee_id == employee).id,
 				'employee_monthly_kpi_line' : monthly_kpi_line_values
 			} for employee in ro_employee_ids]
 		
@@ -175,7 +175,7 @@ class EmployeeKpiKro(models.Model):
 			'employee_kro_kpi_id' : self.id,
 			'kpi_mekaar_batch_id' : kpi_mekaar_batch_id.id,
 			'employee_id' : employee.id,
-			'employee_kpi_line_sebelumnya_id' : self.kpi_sebelumnya_id.employee_alw_kpi_line.filtered(lambda l:l.employee_id == employee).id,
+			'employee_kpi_line_sebelumnya_id' : self.kpi_sebelumnya_id.sudo().employee_alw_kpi_line.filtered(lambda l:l.employee_id == employee).id,
 			'alw_monthly_kpi_line' : monthly_kpi_line_values,
 		} for employee in alw_employee_ids]
 
@@ -216,7 +216,7 @@ class EmployeeKpiKro(models.Model):
 	def button_confirm(self):
 		if not self.kpi_sebelumnya_id:
 			self.kpi_sebelumnya_id = self.search([('id', '!=', self.id), ('employee_id', '=', self.employee_id.id)], limit=1, order='tahun desc, periode_id desc').id
-		if self.kpi_sebelumnya_id.state != 'done':
+		if self.kpi_sebelumnya_id.sudo().state != 'done':
 			raise ValidationError(_(f"Periode {self.kpi_sebelumnya_id.name} belum terselesaikan, harap selesaikan terlebih dahulu."))
 		ro_employee_kpi_ids, alw_employee_kpi_ids = self._create_employee_kpi()
 		return self.write({'state' : 'in_progress'})
