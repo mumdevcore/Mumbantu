@@ -28,7 +28,7 @@
                         <button string="In Progress" name="button_inprogress" type="object" class="oe_highlight" groups='base.group_system'/>
                         <button string="Approve 1" name="button_approve_1" type="object" class="oe_highlight" attrs="{'invisible' : ['|', ('show_approval_button', '=', False), ('state', '!=', 'approval_1')]}" />
                         <button string="Approve 2" name="button_done" type="object" class="oe_highlight" attrs="{'invisible' : ['|', ('show_approval_button', '=', False), ('state', '!=', 'approval_2')]}" />
-                        <button string="Cancel" attrs="{'invisible' : [('state', 'in', ('draft', 'cancel'))]}" name="button_cancel" type="object" groups='base.group_system'/>
+                        <button string="Cancel" attrs="{'invisible' : [('state', 'in', ('draft', 'cancel'))]}" name="button_cancel" type="object"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
                     </header>
                     <sheet>
@@ -110,7 +110,7 @@
                                         
                                         <field name="wilayah_suffer_id"  groups='mum_kpi.group_insentif_manager'/>
                                         <field name="total_insentif"  groups='mum_kpi.group_insentif_manager'/>
-                                        <field name="insentif_sebelumnya" />
+                                        <field name="insentif_sebelumnya" groups='mum_kpi.group_insentif_manager' />
                                         <field name="alasan_penyesuaian"  groups='mum_kpi.group_insentif_manager'/>
                                         <field name="penyesuaian"  groups='mum_kpi.group_insentif_manager'/>
                                         <field name="total_insentif" invisible='1' groups='mum_kpi.group_insentif_manager'/>
@@ -137,8 +137,8 @@
                                         <field name="total_kesalahan_resign" />
                                         <field name="average_alw" widget='percentage' groups='mum_kpi.group_insentif_manager' />
                                         <field name="grade_average_id" groups='mum_kpi.group_insentif_manager' />
-                                        <field name="total_insentif" />
-                                        <field name="insentif_sebelumnya" />
+                                        <field name="total_insentif" groups='mum_kpi.group_insentif_manager' />
+                                        <field name="insentif_sebelumnya" groups='mum_kpi.group_insentif_manager' />
                                         <field name="alasan_penyesuaian"  groups='mum_kpi.group_insentif_manager'/>
                                         <field name="penyesuaian"  groups='mum_kpi.group_insentif_manager'/>
 
