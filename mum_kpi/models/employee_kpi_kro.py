@@ -215,7 +215,7 @@ class EmployeeKpiKro(models.Model):
 	
 	def button_confirm(self):
 		if not self.kpi_sebelumnya_id:
-			self.kpi_sebelumnya_id = self.search([('id', '!=', self.id), ('employee_id', '=', self.employee_id.id)], limit=1, order='tahun desc, periode_id desc').id
+			self.kpi_sebelumnya_id = self.search([('id', '!=', self.id), ('employee_id', '=', self.employee_id.id), ('state', '!=', 'cancel')], limit=1, order='tahun desc, periode_id desc').id
 		if self.kpi_sebelumnya_id.sudo().state != 'done':
 			raise ValidationError(_(f"Periode {self.kpi_sebelumnya_id.name} belum terselesaikan, harap selesaikan terlebih dahulu."))
 		ro_employee_kpi_ids, alw_employee_kpi_ids = self._create_employee_kpi()
