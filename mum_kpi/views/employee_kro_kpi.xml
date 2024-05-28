@@ -28,7 +28,7 @@
                         <button string="In Progress" name="button_inprogress" type="object" class="oe_highlight" groups='base.group_system'/>
                         <button string="Approve 1" name="button_approve_1" type="object" class="oe_highlight" attrs="{'invisible' : ['|', ('show_approval_button', '=', False), ('state', '!=', 'approval_1')]}" />
                         <button string="Approve 2" name="button_done" type="object" class="oe_highlight" attrs="{'invisible' : ['|', ('show_approval_button', '=', False), ('state', '!=', 'approval_2')]}" />
-                        <button string="Cancel" states='in_progress' attrs="{'invisible' : [('state', 'in', ('draft', 'cancel'))]}" name="button_cancel" type="object" groups='base.group_system'/>
+                        <button string="Cancel" attrs="{'invisible' : [('state', 'in', ('draft', 'cancel'))]}" name="button_cancel" type="object" groups='base.group_system'/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
                     </header>
                     <sheet>
