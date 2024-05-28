@@ -130,10 +130,18 @@ class EmployeeAlwKpi(models.Model):
 	def _compute_grade(self):
 		for rec in self:
 			total_line = len(rec.alw_monthly_kpi_line)
-			rec.persen_incomplete_data = sum(l.incomplete_data for l in rec.alw_monthly_kpi_line) / sum(l.karyawan_terakhir for l in rec.alw_monthly_kpi_line)
-			rec.persen_pkwt = sum(l.pkwt for l in rec.alw_monthly_kpi_line) / sum(l.karyawan_terakhir for l in rec.alw_monthly_kpi_line)
-			rec.persen_ppkwt = sum(l.ppkwt for l in rec.alw_monthly_kpi_line) / sum(l.perp_kontrak for l in rec.alw_monthly_kpi_line)
-			rec.persen_kesalahan_resign = sum(l.kesalahan_resign for l in rec.alw_monthly_kpi_line) / sum(l.resign for l in rec.alw_monthly_kpi_line)
+			rec.persen_incomplete_data = 0
+			if rec.total_karyawan_terakhir > 0:
+				rec.persen_incomplete_data = sum(l.incomplete_data for l in rec.alw_monthly_kpi_line) / sum(l.karyawan_terakhir for l in rec.alw_monthly_kpi_line)
+			rec.persen_pkwt = 0
+			if rec.total_karyawan_terakhir > 0:
+				rec.persen_pkwt = sum(l.pkwt for l in rec.alw_monthly_kpi_line) / sum(l.karyawan_terakhir for l in rec.alw_monthly_kpi_line)
+			rec.persen_ppkwt = 0
+			if rec.total_perp_kontrak > 0:
+				rec.persen_ppkwt = sum(l.ppkwt for l in rec.alw_monthly_kpi_line) / rec.total_perp_kontrak
+			rec.persen_kesalahan_resign = 0
+			if rec.total_resign > 0:
+				rec.persen_kesalahan_resign = sum(l.kesalahan_resign for l in rec.alw_monthly_kpi_line) / rec.total_resign
 
 			percent_field_values = [rec.persen_incomplete_data, rec.persen_pkwt, rec.persen_ppkwt, rec.persen_kesalahan_resign]
 			rec.average_alw = sum(percent_field_values) / len(percent_field_values)
