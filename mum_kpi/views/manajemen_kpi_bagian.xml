@@ -26,6 +26,7 @@
             <form>
                 <header>
                     <button string="Submit" name="button_submit" type="object" class="oe_highlight" states='draft'/>
+                    <button string="Cancel" name="button_cancel" type="object" states='draft,in_progress,approval_1'/>
                     <field name="state" widget='statusbar' statusbar_visible='draft,done' />
                 </header>
                 <sheet>

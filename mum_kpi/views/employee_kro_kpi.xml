@@ -73,7 +73,7 @@
                                 <field name="attachment_ids" widget='many2many_attachment_preview' />
                             </group>
                         </group>
-                        <group>
+                        <group groups='mum_kpi.group_insentif_manager'>
                             <group string="Summary RO">
                                 <field name="total_insentif_ro" />
                                 <field name="total_insentif_sebelumnya_ro" />

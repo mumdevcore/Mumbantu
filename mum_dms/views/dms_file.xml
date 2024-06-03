@@ -20,6 +20,7 @@
             </field>
 
             <field name='storage_id' position='after'>
+                <field name="revisi" readonly='1' />
                 <field name="attachment_ids" widget='many2many_attachment_preview' />
             </field>
         </field>

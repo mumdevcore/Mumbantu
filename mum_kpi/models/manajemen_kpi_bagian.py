@@ -87,6 +87,9 @@ class EmployeeManagementKpi(models.Model):
 	def button_submit(self):
 		employee_kpi_line_ids = self._create_employee_manajemen()
 		return self.write({'state' : 'in_progress'})
+
+	def button_cancel(self):
+		return self.write({'state' : 'cancel'})
  
 	# Action Method
 	def action_show_ski(self):
