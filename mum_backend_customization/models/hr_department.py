@@ -5,6 +5,9 @@ class HrDepartment(models.Model):
 	_inherit = 'hr.department'
 	_rec_name = 'name'
 
+	divisi = fields.Boolean(string='Divisi')
+	divisi_id = fields.Many2one(comodel_name='hr.department', string='Divisi')
+
 	@api.depends('name', 'parent_id.name')
 	def _compute_complete_name(self):
 		for department in self:

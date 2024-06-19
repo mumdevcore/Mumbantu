@@ -1,12 +1,12 @@
 from odoo import _, api, fields, models
 
 
-class ResMonth(models.Model):
-	_name = 'res.month'
-	_description = 'Res Month'
+# class ResMonth(models.Model):
+# 	_name = 'res.month'
+# 	_description = 'Res Month'
 
-	sequence = fields.Char(string='Urutan')
-	name = fields.Char(string='Nama Bulan')
+# 	sequence = fields.Char(string='Urutan')
+# 	name = fields.Char(string='Nama Bulan')
 
 class KpiPeriode(models.Model):
 	_name = 'kpi.periode'

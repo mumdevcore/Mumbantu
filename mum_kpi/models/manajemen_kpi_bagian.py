@@ -120,8 +120,11 @@ class EmployeeManajemenKpiLine(models.Model):
 	employee_manajemen_kpi_id = fields.Many2one(comodel_name='employee.manajemen.kpi', string='KPI Manajemen')
 	kpi_manajemen_batch_id = fields.Many2one(comodel_name='kpi.manajemen.batch', string='KPI Manajemen Batch')
 	total_bobot = fields.Float(string='Total Bobot', compute='_compute_bobot_pencapaian')
-	nilai_pencapaian = fields.Float(string='Nilai Pencapaian', compute='_compute_bobot_pencapaian')
 	state = fields.Selection(string='State', related='employee_manajemen_kpi_id.state')
+	nilai_pencapaian = fields.Float(string='Nilai Pencapaian', compute='_compute_bobot_pencapaian')
+	service = fields.Float(string='Service')
+	absen = fields.Float(string='Absensi')
+	total_pencapaian = fields.Float(string='Total Pencapaian', compute='_compute_bobot_pencapaian')
 
 	detail_ids = fields.One2many(comodel_name='employee.manajemen.kpi.line.detail', inverse_name='employee_manajemen_kpi_line_id', string='Details')
 
@@ -143,6 +146,7 @@ class EmployeeManajemenKpiLine(models.Model):
 		for rec in self:
 			rec.total_bobot = sum(x.bobot for x in rec.detail_ids)
 			rec.nilai_pencapaian = sum(x.nilai_pencapaian for x in rec.detail_ids)
+			rec.total_pencapaian = rec.nilai_pencapaian + rec.service + rec.absen
 
 class EmployeeManajemenKpiLineDetails(models.Model):
 	# Class untuk mengisi detail Sasaran Kerja Individu
@@ -170,7 +174,7 @@ class EmployeeManajemenKpiLineDetails(models.Model):
 	@api.depends('bobot', 'target', 'realisasi')
 	def _compute_pencapaian(self):
 		for rec in self:
-			rec.pencapaian = rec.realisasi / rec.target
+			rec.pencapaian = rec.target and rec.realisasi / rec.target or 0
 			rec.nilai_pencapaian = rec.pencapaian * rec.bobot
 
 

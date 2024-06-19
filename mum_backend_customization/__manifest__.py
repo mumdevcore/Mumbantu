@@ -47,6 +47,7 @@
         'views/hr_certification.xml',
         'views/training_needs_analysis.xml',
         'views/hr_employee.xml',
+        'views/hr_department.xml',
         'views/hr_employee_public.xml',
         'views/calendar.xml',
         # 'views/employee_kpi.xml',

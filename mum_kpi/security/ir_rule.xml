@@ -22,5 +22,27 @@
         <field eval="1" name="perm_create" />
         <field name="groups" eval="[(4, ref('mum_kpi.group_insentif_manager'))]"/>
     </record>
-    User
+
+    <record id="kpi_manajemen_user_role" model="ir.rule">
+        <field name="name">KPI Manajemen User Role</field>
+        <field name="model_id" ref="mum_kpi.model_employee_manajemen_kpi"/>
+        <field name="domain_force">['|', ('employee_id','=', user.employee_id.id), ('employee_parent_id','=', user.employee_id.id)]</field>
+        <field eval="1" name="perm_unlink" />
+        <field eval="1" name="perm_write" />
+        <field eval="1" name="perm_read" />
+        <field eval="1" name="perm_create" />
+        <field name="groups" eval="[(4, ref('mum_kpi.group_kpi_manajemen_user'))]"/>
+    </record>
+
+    <record id="kpi_manajemen_manager_role" model="ir.rule">
+        <field name="name">KPI Manajemen Admin Role</field>
+        <field name="model_id" ref="mum_kpi.model_employee_manajemen_kpi"/>
+        <field name="domain_force">[(1,'=', 1)]</field>
+        <field eval="1" name="perm_unlink" />
+        <field eval="1" name="perm_write" />
+        <field eval="1" name="perm_read" />
+        <field eval="1" name="perm_create" />
+        <field name="groups" eval="[(4, ref('mum_kpi.group_kpi_manajemen_manager'))]"/>
+    </record>
+
 </odoo>

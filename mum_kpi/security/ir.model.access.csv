@@ -1,6 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_res_month,access_res_month,model_res_month,base.group_user,1,0,0,0
-access_res_month_admin,access_res_month_admin,model_res_month,base.group_erp_manager,1,1,1,1
 access_kpi_periode,access_kpi_periode,model_kpi_periode,base.group_user,1,0,0,0
 access_kpi_periode_admin,access_kpi_periode_admin,model_kpi_periode,base.group_erp_manager,1,1,1,1
 access_employee_kro_kpi,access_employee_kro_kpi,model_employee_kro_kpi,base.group_user,1,0,0,0

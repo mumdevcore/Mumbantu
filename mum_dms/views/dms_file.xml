@@ -6,9 +6,9 @@
         <field name="model">dms.file</field>
         <field name="inherit_id" ref="dms.view_dms_file_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//header" position='inside'>
+            <!-- <xpath expr="//header" position='inside'>
                 <button name="create_revision" string="Create Revision" type="object"/>
-            </xpath>
+            </xpath> -->
 
             <field name="mimetype" position='after'>
                 <label for="masa_berlaku_awal" string="Masa Berlaku"/>
@@ -22,7 +22,19 @@
             <field name='storage_id' position='after'>
                 <field name="revisi" readonly='1' />
                 <field name="attachment_ids" widget='many2many_attachment_preview' />
+                <field name="user_allowed_ids" invisible='0' widget='many2many_tags'  />
             </field>
+        </field>
+    </record>
+
+    <record id="dms_file_view_kanban" model="ir.ui.view">
+        <field name="name">dms.file.view.kanban</field>
+        <field name="model">dms.file</field>
+        <field name="inherit_id" ref="dms.view_dms_file_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//templates" position="before">
+                <field name="user_allowed_ids" />
+            </xpath>
         </field>
     </record>
 
