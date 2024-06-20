@@ -125,6 +125,7 @@ class EmployeeManajemenKpiLine(models.Model):
 	service = fields.Float(string='Service')
 	absen = fields.Float(string='Absensi')
 	total_pencapaian = fields.Float(string='Total Pencapaian', compute='_compute_bobot_pencapaian')
+	komite = fields.Float(string='Komite (Rp)')
 
 	detail_ids = fields.One2many(comodel_name='employee.manajemen.kpi.line.detail', inverse_name='employee_manajemen_kpi_line_id', string='Details')
 
@@ -170,6 +171,7 @@ class EmployeeManajemenKpiLineDetails(models.Model):
 	realisasi = fields.Float(string='Realisasi')
 	pencapaian = fields.Float(string='Pencapaian', compute='_compute_pencapaian')
 	nilai_pencapaian = fields.Float(string='Nilai Pencapaian', compute='_compute_pencapaian')
+	
 
 	@api.depends('bobot', 'target', 'realisasi')
 	def _compute_pencapaian(self):
