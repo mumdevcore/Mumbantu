@@ -34,6 +34,23 @@
         </field>
     </record>
 
+    <record id="kpi_manajemen_service_view_tree" model="ir.ui.view">
+        <field name="name">kpi.service.quality.view.tree</field>
+        <field name="model">kpi.service.quality</field>
+        <field name="arch" type="xml">
+            <tree editable='bottom'>
+                <field name="name" />
+                <field name="nilai"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_kpi_service_quality" model="ir.actions.act_window">
+        <field name="name">Service Quality</field>
+        <field name="res_model">kpi.service.quality</field>
+        <field name="view_mode">tree</field>
+    </record>
+
     <record id="action_res_month" model="ir.actions.act_window">
         <field name="name">Bulan</field>
         <field name="res_model">res.month</field>

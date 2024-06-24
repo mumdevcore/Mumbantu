@@ -118,17 +118,19 @@ class EmployeeManajemenKpiLine(models.Model):
 	employee_id = fields.Many2one(comodel_name='hr.employee', string='Karyawan', index=True)
 	employee_job_id = fields.Many2one(comodel_name='hr.job', string='Posisi', related='employee_id.job_id', store=True)
 	job_title_id = fields.Many2one(comodel_name='job.title', string='Job Title')
-	service_quality_id = fields.Many2one(comodel_name='kpi.service.quality', string='Service Excelent')
 	employee_parent_id = fields.Many2one(comodel_name='hr.employee', string='Manajer', related='employee_id.parent_id')
 	employee_manajemen_kpi_id = fields.Many2one(comodel_name='employee.manajemen.kpi', string='KPI Manajemen')
 	kpi_manajemen_batch_id = fields.Many2one(comodel_name='kpi.manajemen.batch', string='KPI Manajemen Batch')
 	total_bobot = fields.Float(string='Total Bobot', compute='_compute_bobot_pencapaian')
 	state = fields.Selection(string='State', related='employee_manajemen_kpi_id.state')
-	absen_value = fields.Float(string='Absensi (Rp)')
+	absen = fields.Integer(string='Absensi (Jam)')
+	insentif_absen = fields.Float(string='Absensi (Rp)')
 	nilai_pencapaian = fields.Float(string='Nilai Pencapaian', compute='_compute_bobot_pencapaian')
-	service_value = fields.Float(string='Service (Rp)')
-	absen = fields.Float(string='Absensi')
-	total_pencapaian = fields.Float(string='Total Pencapaian', compute='_compute_bobot_pencapaian')
+	insentif_pencapaian = fields.Float(string='Pencapaian (Rp)')
+	service_quality_id = fields.Many2one(comodel_name='kpi.service.quality', string='Service Excelent')
+	insentif_service = fields.Float(string='Service (Rp)')
+	# total_pencapaian = fields.Float(string='Total Pencapaian', compute='_compute_bobot_pencapaian')
+	total_insentif = fields.Float(string='Total Insentif (Rp)', compute='_compute_total_insentif')
 	komite = fields.Float(string='Komite (Rp)')
 
 	detail_ids = fields.One2many(comodel_name='employee.manajemen.kpi.line.detail', inverse_name='employee_manajemen_kpi_line_id', string='Details')
@@ -147,11 +149,21 @@ class EmployeeManajemenKpiLine(models.Model):
 			'res_id': self.id,
 		}
 	
+	@api.onchange('service_quality_id')
+	def _onchange_service_quality_id(self):
+		self.insentif_service = self.service_quality_id and self.service_quality_id.nilai
+	
 	def _compute_bobot_pencapaian(self):
 		for rec in self:
 			rec.total_bobot = sum(x.bobot for x in rec.detail_ids)
 			rec.nilai_pencapaian = sum(x.nilai_pencapaian for x in rec.detail_ids)
-			rec.total_pencapaian = rec.nilai_pencapaian + rec.absen
+			# rec.total_pencapaian = rec.nilai_pencapaian
+
+	@api.depends('insentif_absen', 'insentif_service', 'insentif_pencapaian')
+	def _compute_total_insentif(self):
+		for rec in self:
+			rec.total_insentif = rec.insentif_absen + rec.insentif_service + rec.insentif_pencapaian
+
 
 class EmployeeManajemenKpiLineDetails(models.Model):
 	# Class untuk mengisi detail Sasaran Kerja Individu
