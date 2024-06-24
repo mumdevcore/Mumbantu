@@ -68,6 +68,7 @@ class EmployeeManagementKpi(models.Model):
 				'employee_manajemen_kpi_id' : self.id,
 				'kpi_manajemen_batch_id' : manajemen_batch_id.id,
 				'employee_id' : employee.id,
+				'job_title_id' : employee.job_title_id.id,
 				'detail_ids' : employee.job_id._prepare_ski_values(employee)
 			} for employee in self.employee_id.child_ids]
 
@@ -116,13 +117,16 @@ class EmployeeManajemenKpiLine(models.Model):
 
 	employee_id = fields.Many2one(comodel_name='hr.employee', string='Karyawan', index=True)
 	employee_job_id = fields.Many2one(comodel_name='hr.job', string='Posisi', related='employee_id.job_id', store=True)
+	job_title_id = fields.Many2one(comodel_name='job.title', string='Job Title')
+	service_quality_id = fields.Many2one(comodel_name='kpi.service.quality', string='Service Excelent')
 	employee_parent_id = fields.Many2one(comodel_name='hr.employee', string='Manajer', related='employee_id.parent_id')
 	employee_manajemen_kpi_id = fields.Many2one(comodel_name='employee.manajemen.kpi', string='KPI Manajemen')
 	kpi_manajemen_batch_id = fields.Many2one(comodel_name='kpi.manajemen.batch', string='KPI Manajemen Batch')
 	total_bobot = fields.Float(string='Total Bobot', compute='_compute_bobot_pencapaian')
 	state = fields.Selection(string='State', related='employee_manajemen_kpi_id.state')
+	absen_value = fields.Float(string='Absensi (Rp)')
 	nilai_pencapaian = fields.Float(string='Nilai Pencapaian', compute='_compute_bobot_pencapaian')
-	service = fields.Float(string='Service')
+	service_value = fields.Float(string='Service (Rp)')
 	absen = fields.Float(string='Absensi')
 	total_pencapaian = fields.Float(string='Total Pencapaian', compute='_compute_bobot_pencapaian')
 	komite = fields.Float(string='Komite (Rp)')
@@ -147,7 +151,7 @@ class EmployeeManajemenKpiLine(models.Model):
 		for rec in self:
 			rec.total_bobot = sum(x.bobot for x in rec.detail_ids)
 			rec.nilai_pencapaian = sum(x.nilai_pencapaian for x in rec.detail_ids)
-			rec.total_pencapaian = rec.nilai_pencapaian + rec.service + rec.absen
+			rec.total_pencapaian = rec.nilai_pencapaian + rec.absen
 
 class EmployeeManajemenKpiLineDetails(models.Model):
 	# Class untuk mengisi detail Sasaran Kerja Individu

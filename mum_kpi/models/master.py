@@ -21,3 +21,18 @@ class WilayahSuffer(models.Model):
 
 	name = fields.Char(string='Wilayah Suffer')
 	nilai_insentif = fields.Float(string='Nilai Insentif')
+
+
+class ServiceQuality(models.Model):
+	_name = 'kpi.service.quality'
+	_description = 'Service Quality'
+
+	name = fields.Char(string='Code')
+	nilai = fields.Float(string='Nilai')
+
+class ManajemenAbsensi(models.Model):
+	_name = 'kpi.manajemen.absensi'
+	_description = 'Manajemen Absensi'
+
+	name = fields.Char(string='Code')
+	nilai = fields.Float(string='Nilai')

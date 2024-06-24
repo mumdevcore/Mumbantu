@@ -67,10 +67,13 @@
                                     <field name="employee_id" />
                                     <field name="employee_job_id" />
                                     <field name="employee_parent_id" invisible='1' />
+                                    <field name="job_title_id" />
                                     <field name="kpi_manajemen_batch_id" invisible='1' />
                                     <field name="total_bobot" />
                                     <field name="nilai_pencapaian" />
-                                    <field name="service" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" />
+                                    <field name="absen_value" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" />
+                                    <field name="service_quality_id" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" />
+                                    <field name="service_value" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" />
                                     <field name="absen" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" />
                                     <field name="total_pencapaian" />
                                     <field name="komite" groups="mum_kpi.group_kpi_manajemen_manager" />
