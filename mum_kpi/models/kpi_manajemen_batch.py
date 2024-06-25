@@ -14,6 +14,6 @@ class KpiManajemenBatch(models.Model):
 	def _find_manajemen_batch(self, periode_id, tahun, tgl_dibuat):
 		manajemen_batch_id = self.sudo().search([('periode_id', '=', periode_id.id), ('tahun', '=', tahun)])
 		if not manajemen_batch_id:
-			manajemen_batch_id = self.sudo().create({'periode_id' : periode_id.id, 'tahun' : tahun})
+			manajemen_batch_id = self.sudo().create({'name' : f"{periode_id.name}-{tahun}",'periode_id' : periode_id.id, 'tahun' : tahun})
 		
 		return manajemen_batch_id

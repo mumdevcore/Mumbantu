@@ -37,6 +37,8 @@ class EmployeeManagementKpi(models.Model):
 		# ('approval_2', 'Approval 2'),
 		('done', 'Done'),
 		('cancel', 'Cancel')], default='draft', copy=False, tracking=True)
+	
+	show_approval_button = fields.Boolean(default=False, compute='_compute_show_approval_button')
 
 	employee_kpi_count = fields.Integer(string='Count', compute='_compute_employee_kpi_count')
 	employee_manajemen_kpi_line_ids = fields.One2many(comodel_name='employee.manajemen.kpi.line', inverse_name='employee_manajemen_kpi_id', string='Manajemen KPI Line')
@@ -57,6 +59,11 @@ class EmployeeManagementKpi(models.Model):
 
 	
 	# Logic Method	
+	def _compute_show_approval_button(self):
+		self.show_approval_button = False
+		if (self.state == 'approval_1' and self.env.user == self.employee_parent_id) or self.user_has_groups('base.group_system'):
+			self.show_approval_button = True
+
 	def _create_employee_manajemen(self):
 		manajemen_batch_id = self.env['kpi.manajemen.batch']._find_manajemen_batch(self.periode_id, self.tahun, self.tgl_dibuat)
 		self.kpi_manajemen_batch_id = manajemen_batch_id.id
@@ -85,12 +92,18 @@ class EmployeeManagementKpi(models.Model):
 			rec.employee_kpi_count = len(rec.employee_manajemen_kpi_line_ids)
 
 	# Button Method
-	def button_submit(self):
+	def button_confirm(self):
 		employee_kpi_line_ids = self._create_employee_manajemen()
 		return self.write({'state' : 'in_progress'})
 
 	def button_cancel(self):
 		return self.write({'state' : 'cancel'})
+	
+	def button_submit(self):
+		return self.write({'state' : 'approval_1'})
+	
+	def button_done(self):
+		return self.write({'state' : 'done'})
  
 	# Action Method
 	def action_show_ski(self):
@@ -124,6 +137,7 @@ class EmployeeManajemenKpiLine(models.Model):
 	total_bobot = fields.Float(string='Total Bobot', compute='_compute_bobot_pencapaian')
 	state = fields.Selection(string='State', related='employee_manajemen_kpi_id.state')
 	absen = fields.Integer(string='Absensi (Jam)')
+	absensi_id = fields.Many2one(comodel_name='kpi.manajemen.absensi', string='Absen')
 	insentif_absen = fields.Float(string='Absensi (Rp)')
 	nilai_pencapaian = fields.Float(string='Nilai Pencapaian', compute='_compute_bobot_pencapaian')
 	insentif_pencapaian = fields.Float(string='Pencapaian (Rp)')
@@ -152,6 +166,10 @@ class EmployeeManajemenKpiLine(models.Model):
 	@api.onchange('service_quality_id')
 	def _onchange_service_quality_id(self):
 		self.insentif_service = self.service_quality_id and self.service_quality_id.nilai
+
+	@api.onchange('absensi_id')
+	def _onchange_absensi_id(self):
+		self.insentif_absen = self.absensi_id and self.absensi_id.nilai
 	
 	def _compute_bobot_pencapaian(self):
 		for rec in self:

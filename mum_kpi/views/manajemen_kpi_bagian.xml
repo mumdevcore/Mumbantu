@@ -25,8 +25,11 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button string="Submit" name="button_submit" type="object" class="oe_highlight" states='draft'/>
+                    <button string="Confirm" name="button_confirm" type="object" class="oe_highlight" states='draft'/>
+                    <button string="Submit" name="button_submit" type="object" class="oe_highlight" states='in_progress'/>
+                    <button string="Approve" name="button_done" type="object" class="oe_highlight" states='approval_1' attrs="{'invisible' : ['|', ('show_approval_button', '=', False), ('state', '!=', 'approval_1')]}"/>
                     <button string="Cancel" name="button_cancel" type="object" states='draft,in_progress,approval_1'/>
+                    <field name="show_approval_button" invisible='1' />
                     <field name="state" widget='statusbar' statusbar_visible='draft,done' />
                 </header>
                 <sheet>
@@ -73,9 +76,10 @@
                                     <field name="nilai_pencapaian" />
                                     <field name="insentif_pencapaian" groups="mum_kpi.group_kpi_manajemen_manager" />
                                     <field name="absen" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" />
-                                    <field name="insentif_absen" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" groups="mum_kpi.group_kpi_manajemen_manager" />
+                                    <field name="absensi_id" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" />
+                                    <field name="insentif_absen" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress', 'approval_1'))]}" groups="mum_kpi.group_kpi_manajemen_manager" />
                                     <field name="service_quality_id" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" />
-                                    <field name="insentif_service" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" groups="mum_kpi.group_kpi_manajemen_manager" />
+                                    <field name="insentif_service" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress', 'approval_1'))]}" groups="mum_kpi.group_kpi_manajemen_manager" />
                                     <field name="total_insentif" />
                                     <field name="komite" groups="mum_kpi.group_kpi_manajemen_manager" />
                                     <field name="state" />

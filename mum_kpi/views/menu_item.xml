@@ -44,6 +44,7 @@
 		<menuitem id='res_month_menu' name='Bulan' action='action_res_month' sequence='30'/>
 		<menuitem id="wilayah_suffer_menu" name="Wilayah Suffer" action="action_wilayah_suffer" sequence='40' />
 		<menuitem id="kpi_service_quality_menu" name="Service Quality" action="action_kpi_service_quality" sequence='50' />
+		<menuitem id="kpi_manajemen_absensi_menu" name="Kamus Absensi Manajemen" action="action_kpi_manajemen_absensi" sequence='50' />
 	</menuitem>
 
 </odoo>
