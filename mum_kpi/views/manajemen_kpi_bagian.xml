@@ -80,7 +80,7 @@
                                     <field name="insentif_absen" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress', 'approval_1'))]}" groups="mum_kpi.group_kpi_manajemen_manager" />
                                     <field name="service_quality_id" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" />
                                     <field name="insentif_service" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress', 'approval_1'))]}" groups="mum_kpi.group_kpi_manajemen_manager" />
-                                    <field name="total_insentif" />
+                                    <field name="total_insentif" groups="mum_kpi.group_kpi_manajemen_manager" />
                                     <field name="komite" groups="mum_kpi.group_kpi_manajemen_manager" />
                                     <field name="state" />
                                     <field name="detail_ids" invisible='1' />
