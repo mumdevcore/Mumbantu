@@ -230,6 +230,7 @@ class EmployeeKpiKro(models.Model):
 
 		# Trigger untuk RO
 		self.employee_monthly_kpi_line._compute_pencapaian_maintain()
+		self.employee_monthly_kpi_line._compute_pencapaian_karyawan()
 
 		self._compute_average_grade()
 

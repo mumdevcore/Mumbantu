@@ -183,19 +183,19 @@ class EmployeeMonthlyKpiLine(models.Model):
 			
 
 
-	@api.onchange(
-		'absen',
-		'more',
-		'formasi',
-		'employee_kpi_id',
-		'employee_kpi_id.avg_maintain_pertama',
-		'aktif',
-		'resign',
-		'rekrutmen',
-		'tl',
-		'kurang',
-		'pemenuhan'
-		)
+	# @api.onchange(
+	# 	'absen',
+	# 	'more',
+	# 	'formasi',
+	# 	'employee_kpi_id',
+	# 	'employee_kpi_id.avg_maintain_pertama',
+	# 	'aktif',
+	# 	'resign',
+	# 	'rekrutmen',
+	# 	'tl',
+	# 	'kurang',
+	# 	'pemenuhan'
+	# 	)
 	def _compute_pencapaian_karyawan(self):
 		kpi_grading_ids = self.monthly_grading_id.resume_kpi_grading_ids
 		
@@ -247,11 +247,11 @@ class EmployeeMonthlyKpiLine(models.Model):
 			rec.kurang = rec.pemenuhan = 0
 			if rec.formasi > 0:
 				kurang = rec.formasi - rec.aktif 
-				rec.kurang = kurang > 0 and kurang
+				rec.kurang = max(kurang,0)
 				pemenuhan = rec.aktif / rec.formasi
-				rec.pemenuhan = pemenuhan <= 1 and pemenuhan or 1
+				rec.pemenuhan = min(pemenuhan, 1)
 
-	# @api.depends('formasi', 'aktif', 'resign', 'rekrutmen')
+	@api.depends('formasi', 'aktif', 'resign', 'rekrutmen')
 	def _compute_pencapaian_maintain(self):
 		for rec in self:
 			if rec.formasi > 0:
