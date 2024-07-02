@@ -74,8 +74,9 @@
                                     <field name="kpi_manajemen_batch_id" invisible='1' />
                                     <field name="total_bobot" />
                                     <field name="nilai_pencapaian" />
+                                    <field name="grade_id" domain="[('job_title_id', '=', job_title_id)]" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" />
                                     <field name="insentif_pencapaian" groups="mum_kpi.group_kpi_manajemen_manager" />
-                                    <field name="absen" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" />
+                                    <!-- <field name="absen" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" /> -->
                                     <field name="absensi_id" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" />
                                     <field name="insentif_absen" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress', 'approval_1'))]}" groups="mum_kpi.group_kpi_manajemen_manager" />
                                     <field name="service_quality_id" attrs="{'readonly' : [('parent.state', 'not in', ('draft','in_progress'))]}" />

@@ -140,9 +140,11 @@ class EmployeeManajemenKpiLine(models.Model):
 	absensi_id = fields.Many2one(comodel_name='kpi.manajemen.absensi', string='Absen')
 	insentif_absen = fields.Float(string='Absensi (Rp)')
 	nilai_pencapaian = fields.Float(string='Nilai Pencapaian', compute='_compute_bobot_pencapaian')
+	grade_id = fields.Many2one(comodel_name='kpi.manajemen.grade', string='Grade')
 	insentif_pencapaian = fields.Float(string='Pencapaian (Rp)')
 	service_quality_id = fields.Many2one(comodel_name='kpi.service.quality', string='Service Excelent')
 	insentif_service = fields.Float(string='Service (Rp)')
+	
 	# total_pencapaian = fields.Float(string='Total Pencapaian', compute='_compute_bobot_pencapaian')
 	total_insentif = fields.Float(string='Total Insentif (Rp)', compute='_compute_total_insentif')
 	komite = fields.Float(string='Komite (Rp)')
@@ -163,13 +165,20 @@ class EmployeeManajemenKpiLine(models.Model):
 			'res_id': self.id,
 		}
 	
+	@api.onchange('grade_id')
+	def _onchange_grade_id(self):
+		for rec in self:
+			rec.insentif_pencapaian = rec.grade_id and rec.grade_id.nilai
+	
 	@api.onchange('service_quality_id')
 	def _onchange_service_quality_id(self):
-		self.insentif_service = self.service_quality_id and self.service_quality_id.nilai
+		for rec in self:
+			rec.insentif_service = rec.service_quality_id and rec.service_quality_id.nilai
 
 	@api.onchange('absensi_id')
 	def _onchange_absensi_id(self):
-		self.insentif_absen = self.absensi_id and self.absensi_id.nilai
+		for rec in self:
+			rec.insentif_absen = rec.absensi_id and rec.absensi_id.nilai
 	
 	def _compute_bobot_pencapaian(self):
 		for rec in self:

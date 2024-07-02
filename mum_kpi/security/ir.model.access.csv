@@ -36,3 +36,5 @@ access_service_quality,access_service_quality,model_kpi_service_quality,mum_kpi.
 access_service_quality_user,access_service_quality_user,model_kpi_service_quality,base.group_user,1,0,0,0
 access_manajemen_absensi,access_manajemen_absensi,model_kpi_manajemen_absensi,mum_kpi.group_kpi_manajemen_manager,1,1,1,1
 access_manajemen_absensi_user,access_manajemen_absensi_user,model_kpi_manajemen_absensi,base.group_user,1,0,0,0
+access_manajemen_grade,access_manajemen_grade,model_kpi_manajemen_grade,mum_kpi.group_kpi_manajemen_manager,1,1,1,1
+access_manajemen_grade_user,access_manajemen_grade_user,model_kpi_manajemen_grade,base.group_user,1,0,0,0

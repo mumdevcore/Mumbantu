@@ -8,6 +8,7 @@ from odoo import _, api, fields, models
 # 	sequence = fields.Char(string='Urutan')
 # 	name = fields.Char(string='Nama Bulan')
 
+
 class KpiPeriode(models.Model):
 	_name = 'kpi.periode'
 	_description = "KPI Periode"
@@ -36,3 +37,17 @@ class ManajemenAbsensi(models.Model):
 
 	name = fields.Char(string='Code')
 	nilai = fields.Float(string='Nilai')
+
+class KpiManajemenGrading(models.Model):
+	_name = 'kpi.manajemen.grade'
+	_description = 'KPI Manajemen Grade'
+
+	name = fields.Char(string='Grade')
+	nilai = fields.Float(string='Nilai')
+	job_title_id = fields.Many2one(comodel_name='job.title', string='Title')
+
+
+class JobTitle(models.Model):
+	_inherit = 'job.title'
+
+	manajemen_grade_ids = fields.One2many(comodel_name='kpi.manajemen.grade', inverse_name='job_title_id', string='KPI Manajemen Grade')
