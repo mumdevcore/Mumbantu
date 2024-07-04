@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_laporan_rekap_mekaar_xlsx" model="ir.actions.report">
+        <field name="name">Laporaan Rekap Mekaar Xlsx</field>
+        <field name="model">kpi.mekaar.batch</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">mum_report.kpi_mekaar_report_xlsx</field>
+        <field name="report_file">mum_report.kpi_mekaar_report_xlsx</field>
+        <!-- <field name="print_report_name">'Laporan Rekap Penjualan POS %s - %s' % (object.date_from and object.date_from.strftime('%d-%m-%Y'), object.date_to and object.date_to.strftime('%d-%m-%Y'))</field> -->
+        <field name='attachment_use' eval='False'/>
+    </record>
+
+</odoo>
