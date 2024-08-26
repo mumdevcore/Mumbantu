@@ -4,6 +4,9 @@ from odoo import _, api, fields, models, Command
 class HelpdeskTicket(models.Model):
     _inherit = 'helpdesk.ticket'
 
+    helpdesk_attachment_ids = fields.Many2many(comodel_name='ir.attachment', string='Attachments')
+    perihal = fields.Text('Perihal')
+
     #CRUD METHOD
     @api.model
     def create(self,vals):
