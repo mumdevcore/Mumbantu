@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="helpdesk_mgmt.helpdesk_ticket_personal_rule" model="ir.rule">
+        <field name="domain_force">
+            ["|", ('user_id', '=', user.id), ('user_id','=',False)]
+        </field>
+    </record>
+
+    <record id="helpdesk_mgmt.helpdesk_ticket_rule_internal_user" model="ir.rule">
+        <field name="active" eval="False" />
+    </record>
+
+</odoo>

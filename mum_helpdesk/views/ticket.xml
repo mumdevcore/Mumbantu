@@ -7,7 +7,9 @@
         <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_form"/>
         <field name="arch" type="xml">
             <field name='team_id' position='before'>
+                <!-- <field name="user_create_id" /> -->
                 <field name="category_id" position='move'/>
+                <field name="readonly" />
             </field>
 
             <field name='user_ids' position='attributes'>

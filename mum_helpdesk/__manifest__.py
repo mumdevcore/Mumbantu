@@ -10,7 +10,7 @@
     """,
 
     'author': "Agus Priyanto",
-    'website': "https://www.yourcompany.com",
+    'website': "https://hci.mum.co.id",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
@@ -19,11 +19,15 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'helpdesk_mgmt', 'mum_backend_customization'],
+    'depends': ['base', 'helpdesk_mgmt'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
+        # 'security/ir_rule.xml',
+
+
+        'views/stage.xml',
         'views/ticket.xml',
         'views/category.xml',
     ],
