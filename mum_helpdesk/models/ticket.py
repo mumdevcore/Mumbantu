@@ -9,6 +9,7 @@ class HelpdeskTicket(models.Model):
     perihal = fields.Text('Perihal')
     readonly = fields.Boolean('Readonly', compute='_compute_readonly')
     partner_id = fields.Many2one(default=lambda s:s.env.user.partner_id.id)
+    user_ids = fields.Many2many(related="category_id.user_ids")
 
     #CRUD METHOD
     @api.model
