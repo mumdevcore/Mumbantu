@@ -18,9 +18,31 @@
             </field>
 
             <field name='sequence' position='after'>
-                <field name="perihal" />
+                <field name="perihal" required='1' />
+                <field name="description" position='move' />
                 <field name="helpdesk_attachment_ids" widget='many2many_attachment_preview' />
+                <field name="stage_sequence" invisible='1' />
+                <field name="team_user" invisible='1' />
+                <div class="row" colspan='2' attrs="{'invisible' : ['|', ('stage_sequence', 'not in', (2,3,200)), ('team_user', '=', False)]}">
+                    <div class="col-3"/>
+                    <div class="col-2">
+                        <button string="Selesai" name="button_selesai" type="object" class="btn-success"/>
+                    </div>
+                    <div class="col-2">
+                        <button string="Revisi" name="button_revisi" type="object" class="btn-warning"/>
+                    </div>
+
+                    <div class="col-2">
+                        <button string="Ditolak" name="button_reject" type="object" class="btn-danger"/>
+                    </div>
+                    <div class="col-3"/>
+                </div>
+                <field name="catatan_tim" attrs="{'invisible' : ['|', ('stage_sequence', 'not in', (2,3,100,200,999)), ('team_user', '=', False)]}" />
             </field>
+
+            <xpath expr="//page[@name='description']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
 
             <field name='channel_id' position='attributes'>
                 <attribute name='invisible'>1</attribute>
