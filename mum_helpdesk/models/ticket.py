@@ -17,6 +17,8 @@ class HelpdeskTicket(models.Model):
     partner_id = fields.Many2one(default=lambda s:s.env.user.partner_id.id)
     user_ids = fields.Many2many(related="category_id.user_ids")
     team_user = fields.Boolean(compute='_compute_team_user')
+    add_attachment = fields.Boolean()
+    has_attachment = fields.Boolean(compute='_compute_has_attachment')
 
     #CRUD METHOD
     @api.model
@@ -32,6 +34,11 @@ class HelpdeskTicket(models.Model):
 
 
     #LOGIC METHOD
+    @api.depends('helpdesk_attachment_ids', 'add_attachment')
+    def _compute_has_attachment(self):
+        for rec in self:
+            rec.has_attachment = rec.helpdesk_attachment_ids or rec.add_attachment
+            
     def _compute_team_user(self):
         for rec in self:
             rec.team_user = self.env.user.id in rec.user_ids.ids or self.user_has_groups('helpdesk_mgmt.group_helpdesk_user')
@@ -48,6 +55,9 @@ class HelpdeskTicket(models.Model):
 
 
     #BUTTON METHOD
+    def button_add_attachment(self):
+        self.add_attachment = True
+
     """
         staging sequence:
         baru                    = 1

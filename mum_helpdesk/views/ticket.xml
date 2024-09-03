@@ -23,7 +23,15 @@
             <field name='sequence' position='after'>
                 <field name="perihal" required='1' attrs="{'readonly' : [('readonly', '=', True)]}"/>
                 <field name="description" position='move'/>
-                <field name="helpdesk_attachment_ids" widget='many2many_attachment_preview' attrs="{'readonly' : [('readonly', '=', True)]}" />
+                <field name="helpdesk_attachment_ids" widget='many2many_attachment_preview' attrs="{'readonly' : [('readonly', '=', True)], 'invisible' : [('has_attachment', '=', False)]}" />
+                <div class="row">
+                    <div class="col-3">
+                        <field name="has_attachment" invisible='1' />
+                        <field name="add_attachment" invisible='1' />
+                        
+                        <button string="Add Attachment" name="button_add_attachment" type="object" class="oe_highlight" attrs="{'invisible' : [('has_attachment', '=', True)]}"/>
+                    </div>
+                </div>
                 <field name="stage_sequence" invisible='1' />
                 <field name="team_user" invisible='1' />
                 <!-- Tombol untuk User yang membuat -->
