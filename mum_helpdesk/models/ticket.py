@@ -69,6 +69,10 @@ class HelpdeskTicket(models.Model):
         stage_id = self.env['helpdesk.ticket.stage'].search([('sequence', '=', 999)], limit=1)
         self.write({'stage_id' : stage_id.id})
 
+    def button_confirm(self):
+        stage_id = self.env['helpdesk.ticket.stage'].search([('sequence', '=', 3)], limit=1)
+        self.write({'stage_id' : stage_id.id})
+
 
 
 
