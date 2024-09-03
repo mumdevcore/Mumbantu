@@ -5,8 +5,12 @@ class HelpdeskTicket(models.Model):
     _inherit = 'helpdesk.ticket'
 
     # user_create_id = fields.Many2one(comodel_name='res.users', string='Diajukan Oleh', default=lambda s:s.env.user.id)
+    name = fields.Char(tracking=True)
+    team_id = fields.Many2one(tracking=True)
+    category_id = fields.Many2one(tracking=True)
+    description = fields.Text('Description', tracking=True)
     helpdesk_attachment_ids = fields.Many2many(comodel_name='ir.attachment', string='Attachments')
-    perihal = fields.Text('Perihal')
+    perihal = fields.Text('Perihal', tracking=True)
     readonly = fields.Boolean('Readonly', compute='_compute_readonly')
     stage_sequence = fields.Integer(string='Stage Sequence', related='stage_id.sequence')
     catatan_tim = fields.Text(string='Catatan Tim', tracking=True)
