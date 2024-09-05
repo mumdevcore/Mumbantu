@@ -50,6 +50,7 @@
         'views/hr_department.xml',
         'views/hr_employee_public.xml',
         'views/calendar.xml',
+        'views/res_bank.xml',
         # 'views/employee_kpi.xml',
         # 'views/grading_master_template.xml',
         # 'views/grading.xml',

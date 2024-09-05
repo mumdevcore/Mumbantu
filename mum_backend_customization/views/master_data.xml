@@ -25,6 +25,7 @@
                 <tree string='Cabang' editable='bottom'>
                     <field name='name'/>
                     <field name="kota_id"/>
+                    <field name="pusat" />
                 </tree>
             </field>
         </record>

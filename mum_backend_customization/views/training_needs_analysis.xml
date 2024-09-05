@@ -66,6 +66,6 @@
     		<field name="view_mode">tree,form</field>
     	</record>
 
-    	<menuitem id="training_needs_analysis_menu" name="Training Needs Analysis" parent="training_menu" action="action_training_needs_analysis"/>
+    	
     </data>
 </odoo>

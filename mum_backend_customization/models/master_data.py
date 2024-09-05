@@ -36,6 +36,7 @@ class ResCabang(models.Model):
 	_description = 'Res Cabang'
 
 	name = fields.Char(string='Nama Cabang',)
+	pusat = fields.Boolean('Pusat')
 	kota_id = fields.Many2one('vit.kota',string='Kota',)
 	# company_id = fields.Many2one('source.model.name',string='Field Label',)
 

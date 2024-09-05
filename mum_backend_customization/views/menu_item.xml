@@ -2,7 +2,7 @@
 <odoo>
 
 	<!-- MAIN MENU -->
-	<menuitem id="training_main_menu" name="Training &amp; Sertifikasi" groups="hr.group_hr_user"  web_icon="mum_backend_customization,static/description/icon.png"/>
+	<menuitem id="training_main_menu" name="Training &amp; Sertifikasi"  groups="group_training_eksternal,group_training_manajemen,group_training_manager"  web_icon="mum_backend_customization,static/description/icon.png"/>
 	
 
 	<!-- SUB MENU -->
@@ -15,6 +15,7 @@
 	<menuitem id="training_menu" name="Training" sequence='20' parent='training_main_menu'>
 		<menuitem id="hr_certification_manajemen_menu" name="Report Training Manajemen" action="action_hr_certification_manajemen" groups="group_training_manajemen,group_training_manager" sequence='10'/>
 		<menuitem id="hr_certification_eksternal_menu" name="Report Training Kelolaan" action="action_hr_certification_eksternal" groups="group_training_eksternal,group_training_manager" sequence='20'/>
+		<menuitem id="training_needs_analysis_menu" name="Training Needs Analysis" action="action_training_needs_analysis" groups="group_training_eksternal,group_training_manajemen,group_training_manager"/>
 	</menuitem>
 
 	<menuitem id="training_configuration_menu" name="Configuration" sequence='100' groups="group_training_manager" parent='training_main_menu'>
