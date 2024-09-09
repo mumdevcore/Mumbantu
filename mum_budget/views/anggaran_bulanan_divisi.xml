@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="anggaran_bulanan_divisi_view_tree" model="ir.ui.view">
+        <field name="name">anggaran.bulanan.divisi.view.tree</field>
+        <field name="model">anggaran.bulanan.divisi</field>
+        <field name="arch" type="xml">
+            <tree create='0' edit='0' delete='0'>
+                <field name="name" />
+                <field name="divisi_id" />
+                <field name="month_id" />
+                <field name="tahun" />
+                <field name="company_id" />
+                <field name="total_anggaran" />
+                <field name="pengajuan_anggaran" />
+                <field name="realisasi_anggaran" />
+                <field name="sisa_anggaran" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="anggaran_bulanan_divisi_view_form" model="ir.ui.view">
+        <field name="name">anggaran.bulanan.divisi.view.form</field>
+        <field name="model">anggaran.bulanan.divisi</field>
+        <field name="arch" type="xml">
+            <form create='0' edit='0' delete='0'>
+                <header>
+                    <button string="Open" name="button_open" states='draft' type="object" class="oe_highlight"/>
+                    <button string="Close" name="button_close" states='open' type="object" class="oe_highlight"/>
+                    <button string="Re-Open" name="button_reopen" states='done' type="object"/>
+                    <field name="state" widget='statusbar' statusbar_visible='draft,open' />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <!-- <button name="action_show_details_ro" type="object" class="oe_stat_button" icon="fa-pencil">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="employee_kpi_line_count" widget="statinfo" nolabel="1" string="RO Count"/>
+                                </span>
+                                <span class="o_stat_text">Detail RO</span>
+                            </div>
+                        </button> -->
+
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly='1'/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="divisi_id" domain="[('divisi', '=', True)]" />
+                            <field name="month_id" />
+                            <field name="tahun" />
+                            <field name="company_id" />
+                        </group>
+                        <group>
+                            <field name="total_anggaran" />
+                            <field name="pengajuan_anggaran" />
+                            <field name="realisasi_anggaran" />
+                            <field name="sisa_anggaran" />
+                            <field name="currency_id" />    
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="pengajuan_anggaran" string="Pengajuan Anggaran">
+                            <field name="pengajuan_anggaran_ids" readonly='1'>
+                                <tree editable='bottom'>
+                                    <!-- <field name="name" /> -->
+                                    <field name="employee_id" />
+                                    <field name="tanggal_pengajuan" />
+                                    <field name="tanggal_pertanggungjawaban" string="Tgl PJ" />
+                                    <field name="divisi_id" />
+                                    <field name="bagian_id" />
+                                    <field name="product_id" />
+                                    <field name="tax_ids" />
+                                    <field name="nilai_pengajuan" />
+                                    <field name="nilai_realisasi" />
+                                    <field name="state" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_anggaran_bulanan_divisi" model="ir.actions.act_window">
+        <field name="name">Anggaran Divisi</field>
+        <field name="res_model">anggaran.bulanan.divisi</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+</odoo>

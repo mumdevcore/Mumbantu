@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="job_title_view_tree" model="ir.ui.view">
+        <field name="name">job.title.view.tree</field>
+        <field name="model">job.title</field>
+        <field name="inherit_id" ref="mum_backend_customization.job_title_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position='after'>
+                <field name="uang_saku_spd" />
+                <field name="uang_penginapan_spd" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

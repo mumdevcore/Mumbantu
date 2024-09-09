@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="anggaran_divisi_bulanan_sequence" model='ir.sequence'>
+        <field name='name'>Sequence Anggaran Divisi Bulanan</field>
+        <field name="code">anggaran.divisi.bulanan.seq</field>
+        <field name='suffix'>/%(range_year)s/%(range_month)s/MUM-DIV-BUDGET</field>
+        <field name='padding'>3</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field name='use_date_range' eval='True'/>
+        <field name='range_reset'>monthly</field>
+    </record>
+
+    <record id="pengajuan_anggaran_sequence" model='ir.sequence'>
+        <field name='name'>Pengajuan Anggaran Sequence</field>
+        <field name="code">pengajuan.anggaran.seq</field>
+        <field name='suffix'>/%(range_year)s/%(range_month)s/MUM-BUDGET-REQ</field>
+        <field name='padding'>3</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field name='use_date_range' eval='True'/>
+        <field name='range_reset'>monthly</field>
+    </record>
+
+    <record id="hr_expense_reimbursment_ho_sequence" model='ir.sequence'>
+        <field name='name'>Expense / Reimbursment Sequence</field>
+        <field name="code">expense.seq</field>
+        <field name='suffix'>/%(range_year)s/%(range_month)s/MUM-RVP</field>
+        <field name='padding'>3</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field name='use_date_range' eval='True'/>
+        <field name='range_reset'>monthly</field>
+    </record>
+
+    <record id="hr_expense_sequence" model='ir.sequence'>
+        <field name='name'>Expense / Reimbursment Sequence</field>
+        <field name="code">expense.seq</field>
+        <field name='suffix'>/%(range_year)s/%(range_month)s/MUM-RVP</field>
+        <field name='padding'>3</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field name='use_date_range' eval='True'/>
+        <field name='range_reset'>monthly</field>
+    </record>
+
+    <record id="spd_pusat_sequence" model='ir.sequence'>
+        <field name='name'>SPD Pusat Sequence</field>
+        <field name="code">spd.pusat.seq</field>
+        <field name='suffix'>/MUM-HO/%(range_y)s</field>
+        <field name='padding'>3</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field name='use_date_range' eval='True'/>
+        <field name='range_reset'>yearly</field>
+    </record>
+
+    <record id="spd_cabang_sequence" model='ir.sequence'>
+        <field name='name'>SPD Cabang Sequence</field>
+        <field name="code">spd.cabang.seq</field>
+        <field name='suffix'>/MUM-RO/%(range_y)s</field>
+        <field name='padding'>3</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field name='use_date_range' eval='True'/>
+        <field name='range_reset'>yearly</field>
+    </record>
+
+    <record id="memo_pembayaran_sequence" model='ir.sequence'>
+        <field name='name'>Memo Pembayaran Sequence</field>
+        <field name="code">memo.pembayaran.seq</field>
+        <field name='suffix'>/MUM-KEU/%(rom_month)s/%(range_y)s</field>
+        <field name='padding'>3</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field name='use_date_range' eval='True'/>
+        <field name='range_reset'>yearly</field>
+    </record>
+
+</odoo>

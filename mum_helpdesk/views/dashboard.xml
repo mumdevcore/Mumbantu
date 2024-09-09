@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="helpdesk_ticket_kanban_view" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.team.view.kanban</field>
+        <field name="model">helpdesk.ticket.team</field>
+        <field name="inherit_id" ref="helpdesk_mgmt.helpdesk_ticket_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_kanban_primary_right')]" position="attributes">
+                <attribute name='invisible'>1</attribute>
+            </xpath>
+
+            <field name='name' position='after'>
+                <field name="stage_ids" />
+                <field name="new_ticket_count" />
+                <field name="in_progress_ticket_count" />
+                <field name="waiting_ticket_count" />
+                <field name="revision_ticket_count" />
+            </field>
+
+            <xpath expr="//div[hasclass('o_kanban_card_content')]/div" position='inside'>
+                <div class="col-6 o_kanban_primary_right">
+                    <div class="row">
+                        <div class="col-9">
+                            <a name="action_button_new" type="object">
+                                Baru
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <t t-esc="record.new_ticket_count.value"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-9">
+                            <a name="action_button_in_progress" type="object">
+                                Diproses
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <t t-esc="record.in_progress_ticket_count.value"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-9">
+                            <a name="action_button_waiting" type="object">
+                                Konfirmasi
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <t t-esc="record.waiting_ticket_count.value"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-9">
+                            <a name="action_button_revision" type="object">
+                                Revisi
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <t t-esc="record.revision_ticket_count.value"/>
+                        </div>
+                    </div>
+                    <!-- cari cara biar semua stage bisa masuk secara dinamis, kalo ga bisa terpaksa kita hardcode -->
+                    
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

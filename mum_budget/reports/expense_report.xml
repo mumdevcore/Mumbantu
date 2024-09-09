@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_hr_expenses" name="MUM Expenses Report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <style>
+                        tr, td,th {border: 1px solid black; padding : 2px;}
+                        table {margin-top:0px;margin-bottom:0px; }
+                    </style>
+                    <div class='page'>
+                        <table class='table' style='margin-bottom:0px;'>
+                            <tr>
+                                <th width="20%" rowspan="3" class="align-middle">
+                                    <img style="height:60px;" class="img" t-att-src="image_data_uri(o.env.company.logo)" border="1"/>
+                                </th>
+                                <th width="50%" rowspan="2">				
+                                    <span>REIMBURSE<br/>VOUCHER/PETTY CASH</span>
+                                </th>
+                                <th width="30%" class='text-start'>
+                                    <span>No : </span>
+                                    <span t-esc="o.name"/>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class='text-start'>
+                                    <span>Wil : </span>
+                                    <span t-esc="o.employee_id.cabang_id.name"/>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span>MUM/FR-043/R.1</span>
+                                </th>
+                                <th class='text-start'>
+                                    <span>Date : </span>
+                                    <span t-esc="o.date.strftime('%d-%m-%Y')"/>
+                                </th>
+                            </tr>
+                        </table>
+                        <table class="table" style='margin-bottom:0px;'>
+                            <thead>
+                                <tr>
+                                    <th width="5%" >No</th>
+                                    <th width="65%" >Keterangan</th>
+                                    <th width="30%" >Nominal</th>
+                                </tr>
+                            </thead>
+                            <t t-set="len_lines" t-value='len(o.expense_line_ids)'/>
+                            <t t-set='line_templates' t-value='11'/>
+                            <t t-set='no' t-value='1'/>
+                            <tbody>
+                                <tr t-foreach="o.expense_line_ids" t-as='line'>
+                                    <td class='text-center'>
+                                        <t t-esc='no'/>
+                                    </td>
+                                    <td class='text-center'>
+                                        <t t-esc="line.name"/>
+                                    </td>
+                                    <td class='text-end'>
+                                        <t t-esc="line.total_amount" t-options="{'widget' : 'float', 'precision' : 0}" />
+                                    </td>
+                                    <t t-set='no' t-value='no+1'/>
+                                </tr>		
+                                <tr t-foreach="range(line_templates - len_lines)" t-as="i" style="height:30px;">
+                                    <th></th>
+                                    <td />
+                                    <td />
+                                </tr>
+                                <tr>
+                                    <td colspan='2' class='text-center'>
+                                        <strong>Total</strong>
+                                    </td>
+                                    <td class='text-end'>
+                                        <strong>
+                                            Rp <t t-esc='o.total_amount' t-options="{'widget' : 'float', 'precision' : 0}" />
+                                        </strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class='table' style='margin-bottom:0px;'>
+                            <tr>
+                                <td>Requested By :</td>
+                                <td>Checker By :</td>
+                                <td>Approved By :</td>
+                                <td rowspan='3' width="30%" align="left">Notes :
+                                    <br/>
+                                    <t t-esc='o.description'/>
+                                </td>
+                            </tr>
+                            <tr height="120px">
+                                <td>			</td>
+                                <td>			</td>
+                                <td>			</td>
+                            </tr>
+                            <tr>
+                                <td class='text-center'>
+                                    <t t-esc="o.employee_id.inisial"/>
+                                </td>
+                                <td class='text-center'>
+                                    <t t-esc="o.user_id.employee_id.inisial"/>
+                                </td>
+                                <td class='text-center'>
+                                    <t t-esc="o.divisi_id.manager_id.inisial"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="hr_expense.action_report_hr_expense_sheet" model="ir.actions.report">
+        <field name="report_name">mum_budget.report_hr_expenses</field>
+        <field name="report_file">mum_budget.report_hr_expenses</field>
+    </record>
+</odoo>

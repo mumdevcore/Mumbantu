@@ -27,12 +27,9 @@
         # 'security/ir_rule.xml',
 
 
+        'views/dashboard.xml',
         'views/stage.xml',
         'views/ticket.xml',
         'views/category.xml',
-    ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    ]
 }

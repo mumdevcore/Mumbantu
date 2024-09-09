@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="anggaran_main_menu" name="Anggaran" web_icon="mum_budget,static/description/icon.png">
+        <menuitem id="pengajuan_anggaran_sub_menu" name="Pengajuan" sequence="10" >
+            <menuitem id="reimbursment_menu" name="Reimbursment" action="mum_budget.action_hr_expense_reimbursment" />
+            <menuitem id="petty_cash_menu" name="Petty Cash" action="mum_budget.action_hr_expense_petty_cash" />
+        </menuitem>
+        <!-- <menuitem id="pengajuan_anggaran_sub_menu" name="Perintah Perjalanan Dinas" sequence="10" >
+        
+        </menuitem> -->
+        <menuitem id="mum_spd_menu" name="SPD" action="action_mum_spd" />
+        <menuitem id="anggaran_sub_menu" name="Anggaran" sequence="30" >
+            <!-- <menuitem id="anggaran_tahunan_menu" name="Anggaran Tahunan" action="action_anggaran_tahunan" sequence="10"/> -->
+            <menuitem id="anggaran_bulanan_menu" name="Anggaran Divisi" action="action_anggaran_divisi" sequence="20"/>
+            <menuitem id="anggaran_bulanan_divisi_menu" name="Anggaran Bulanan" action="action_anggaran_bulanan_divisi" sequence="30" />
+        </menuitem>
+        <menuitem id="anggaran_configuration_menu" name="Configuration" sequence="100">
+            <menuitem id="program_kerja_menu" name="Program Kerja" action="action_program_kerja" />
+            <menuitem id="product_menu" name="Item" action="account.product_product_action_sellable" />
+        </menuitem>
+    </menuitem>
+
+    <menuitem id="memo_pembayaran_menu" name="Memo Pembayaran" action="action_memo_pembayaran" parent="account.menu_finance_payables" />
+    <menuitem id="template_lampiran_invoice_menu" name="Template Lampiran Invoice" action="action_template_lampiran_invoice" parent="account.menu_finance_configuration" />
+    <!-- groups="account.group_account_invoice" -->
+
+</odoo>

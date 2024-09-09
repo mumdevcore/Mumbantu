@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="account_move_view_form" model="ir.ui.view">
+		<field name="name">account.move.view.form</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account.view_move_form"/>
+		<field name="arch" type="xml">
+			<field name='ref' position='after'>
+				<field name="memo_pembayaran_id" invisible='1' />
+				<field name="bukti_transfer_attachment_ids" nolabel='1' widget='many2many_attachment_preview' attrs="{'invisible' : [('state', '!=', 'posted')]}" />
+			</field>
+
+			<field name='partner_shipping_id' position='before'>
+				<field name="jenis_form" widget='radio' />
+			</field>
+
+			<button name='button_cancel' position="before">
+				<button string="To Pajak" name="button_pajak" states='draft' type="object" class="oe_highlight"/>
+				<button string="To Anggaran" name="button_anggaran" type="object"  states='pajak' class="oe_highlight"/>
+				<button string="To Kabag" name="button_kabag" type="object"  states='anggaran' class="oe_highlight"/>
+				<button string="To Kadiv" name="button_kadiv" type="object"  states='kabag' class="oe_highlight"/>
+			</button>
+
+			<xpath expr="//page[@name='aml_tab']" position="before">
+				<page name='attachment' string='Lampiran'>
+					<label for='lampiran_invoice_ids' string="Lampiran Dokumen Pendukung"/>
+					<field name="lampiran_invoice_ids" >
+						<tree editable='bottom' create='0' edit='1' delete='0'>
+							<field name="sequence" readonly='1' />
+							<field name="name" readonly='1' />
+							<field name="checklist" />
+							<field name="description" string='Tahap Pengambilan UM' />
+						</tree>
+					</field>
+					<group string="Attachments">
+						<group>
+							
+							<label for='source_attachment_ids' string="Source Document"/>
+							<div>
+								<field name="source_attachment_ids" nolabel='1' widget='many2many_attachment_preview'/>
+							</div>
+							<label for='move_invoice_attachment_ids' string="Invoice/Kwitansi"/>
+							<div>
+								<field name="has_invoice" nolabel='1' />
+								<field name="move_invoice_attachment_ids" nolabel='1' widget='many2many_attachment_preview' attrs="{'invisible' : [('has_invoice', '=', False)]}" />
+							</div>
+
+							<label for='move_faktur_attachment_ids' string="Faktur Pajak &amp;/ NPWP"/>
+							<div>
+								<field name="has_faktur_npwp" nolabel='1' />
+								<field name="move_faktur_attachment_ids" nolabel='1' widget='many2many_attachment_preview' attrs="{'invisible' : [('has_faktur_npwp', '=', False)]}" />
+							</div>
+
+							<label for='move_spk_attachment_ids' string="SPK &amp;/ PKS"/>
+							<div>
+								<field name="has_spk_pks" nolabel='1' />
+								<field name="move_spk_attachment_ids" widget='many2many_attachment_preview' nolabel='1' attrs="{'invisible' : [('has_spk_pks', '=', False)]}" />
+							</div>
+
+							<label for='move_memo_attachment_ids' string="Memo Persetujuan"/>
+							<div>
+								<field name="has_memo" nolabel='1' />
+								<field name="move_memo_attachment_ids" widget='many2many_attachment_preview' nolabel='1' attrs="{'invisible' : [('has_memo', '=', False)]}" />
+							</div>
+
+							<label for='move_surat_penawaran_attachment_ids' string="Surat Penawaran"/>
+							<div>
+								<field name="has_surat_penawaran" nolabel='1' />
+								<field name="move_surat_penawaran_attachment_ids" widget='many2many_attachment_preview' nolabel='1' attrs="{'invisible' : [('has_surat_penawaran', '=', False)]}" />
+							</div>
+						</group>
+						<group>
+							<label for='move_form_pengadaan_attachment_ids' string="Form Pengadaan"/>
+							<div>
+								<field name="has_form_pengadaan" nolabel='1' />
+								<field name="move_form_pengadaan_attachment_ids" widget='many2many_attachment_preview' nolabel='1' attrs="{'invisible' : [('has_form_pengadaan', '=', False)]}" />
+							</div>
+
+							<label for='move_tanda_terima_attachment_ids' string="Tanda Terima / BAST"/>
+							<div>
+								<field name="has_tanda_terima" nolabel='1' />
+								<field name="move_tanda_terima_attachment_ids" widget='many2many_attachment_preview' nolabel='1' attrs="{'invisible' : [('has_tanda_terima', '=', False)]}" />  
+							</div>
+
+							<label for='move_no_rekening_attachment_ids' string="No Rekening / Virtual Account"/>
+							<div>
+								<field name="has_no_rekening" nolabel='1' />
+								<field name="move_no_rekening_attachment_ids" widget='many2many_attachment_preview' nolabel='1' attrs="{'invisible' : [('has_no_rekening', '=', False)]}" />
+							</div>
+
+							<label for='move_lainnya_attachment_ids' string="Lainnya"/>
+							<div>
+								<field name="has_lainnya" nolabel='1' />
+								<field name="move_lainnya_attachment_ids" widget='many2many_attachment_preview' nolabel='1' attrs="{'invisible' : [('has_lainnya', '=', False)]}" />
+							</div>
+						</group>
+					</group>
+				</page>
+				<!-- <page name="verifikasi_pajak" string="Verifikasi Pajak">
+					<group>
+						<field name="dpp" />
+						<field name="ppn" />
+						<field name="dpp_ppn" />
+						<field name="materai" />
+						<field name="not_dpp" />
+						<field name="total_tagihan" />
+						<field name="pph" />
+						<field name="uang_muka" />
+					</group>
+				</page> -->
+				<page name='keterangan_anggaran' string="Keterangan Anggaran" attrs="{'invisible' : [('state', 'not in', ('anggaran', 'posted')), ('move_type', '=', 'entry')]}">
+					<separator string="ANGGARAN BULANAN"/>
+					<field name='anggaran_bulanan_line_ids' readonly='0' forcesave='1'>
+						<tree editable='bottom' create='0' delete='0'>
+							<field name="account_id" readonly='1' />
+							<field name='currency_id' invisible='1'/>
+							<field name="nominal_anggaran_bulanan" />
+							<field name="sisa_anggaran_bulanan" />
+						</tree>
+					</field>
+					<group>
+						<field name="anggaran_bulanan_selection" widget='radio' />
+						<field name="note_anggaran_bulanan" />
+					</group>
+
+					<separator string="ANGGARAN TAHUNAN"/>
+					<field name='anggaran_tahunan_line_ids' readonly='0' forcesave='1'>
+						<tree editable='bottom' create='0' delete='0'>
+							<field name="account_id" readonly='1' />
+							<field name='currency_id' invisible='1'/>
+							<field name="nominal_anggaran_tahunan" />
+							<field name="sisa_anggaran_tahunan" />
+						</tree>
+					</field>
+					<group>
+						<field name="anggaran_tahunan_selection" widget='radio' />
+						<field name="note_anggaran_tahunan" />
+					</group>
+				</page>
+				<page name='keterangan_trops' string="Keterangan Trops" attrs="{'invisible' : [('state', 'not in', ('posted')), ('move_type', '=', 'entry')]}">
+					<group>
+						<field name="trops_selection" widget='radio' />
+						<field name="note_trops" />
+						<field name="tgl_dibayar" />
+					</group>
+				</page>
+			</xpath>
+
+			<field name='tax_totals' position='attributes'>
+				<attribute name='invisible'>True</attribute>
+			</field>
+
+			<field name='tax_totals' position='after'>
+				<field name="dpp" />
+				<field name="ppn" />
+				<field name="dpp_ppn" />
+				<field name="materai" />
+				<field name="not_dpp" />
+				<field name="total_tagihan" />
+				<field name="pph" />
+				<field name="ppn_wapu" />
+				<field name="uang_muka" />
+				<field name="amount_total" />
+			</field>
+
+			<!-- <xpath expr="//group[hasclass('oe_invoice_lines_tab')]/group[1]" position='inside'>
+				<group>
+					<group colspan='4' class='oe_subtotal_footer oe_right'>
+						<field name="dpp" />
+						<field name="ppn" />
+						<field name="dpp_ppn" />
+						<field name="materai" />
+						<field name="not_dpp" />
+						<field name="total_tagihan" />
+						<field name="pph" />
+						<field name="uang_muka" />
+					</group>
+				</group>
+			</xpath> -->
+		</field>
+	</record>
+
+	<record model="ir.actions.server" id="action_create_memo_pembayaran">
+		<field name="name">Memo Pembayaran</field>
+		<field name="model_id" ref="account.model_account_move"/>
+		<field name="groups_id" eval="[(4, ref('mum_budget.group_budget_trops'))]"/>
+		<field name="binding_model_id" ref="account.model_account_move" />
+		<field name="state">code</field>
+		<field name="code">
+if records:
+	action = records.action_memo_pembayaran()
+		</field>
+	</record>
+
+</odoo>

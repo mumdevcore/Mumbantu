@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="template_lampiran_invoice_view_tree" model="ir.ui.view">
+        <field name="name">template.lampiran.invoice.view.tree</field>
+        <field name="model">template.lampiran.invoice</field>
+        <field name="arch" type="xml">
+            <tree editable='bottom'>
+                <field name="sequence" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_template_lampiran_invoice" model="ir.actions.act_window">
+        <field name="name">Template Lampiran Invoice</field>
+        <field name="res_model">template.lampiran.invoice</field>
+        <field name="view_mode">tree</field>
+    </record>
+    
+
+</odoo>

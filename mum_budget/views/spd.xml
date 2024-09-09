@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mum_spd_view_tree" model="ir.ui.view">
+        <field name="name">mum.spd.view.tree</field>
+        <field name="model">mum.spd</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="tgl_dokumen" />
+                <field name="program_kerja_id" />
+                <field name="divisi_id" />
+                <field name="pemberi_tugas_id" />
+                <field name="employee_id" />
+                <field name="description" />
+                <field name="lokasi" />
+                <field name="date_from" />
+                <field name="date_to" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="mum_spd_view_form" model="ir.ui.view">
+        <field name="name">mum.spd.view.form</field>
+        <field name="model">mum.spd</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Submit" name="button_submit" states="draft" type="object" class="oe_highlight"/>
+                    <button string="Confirm" name="button_confirm" states="confirm" type="object" class="oe_highlight"/>
+                    <button string="Approve" name="button_approve_1" states="approval_1" type="object" class="oe_highlight"/>
+                    <button string="Approve" name="button_approve_2" states="approval_2" type="object" class="oe_highlight"/>
+                    <!-- <button string="Approve" name="button_approve_3" states="approval_3" type="object" class="oe_highlight"/> -->
+                    <button string="Done" name="button_done" states="pelaporan" type="object" class="oe_highlight"/>
+                    <button string="Cancel" name="button_cancel" type="object"/>
+                    <field name='state' widget='statusbar' statusbar_visible='draft,confirm,pelaporan,done'/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <!-- <button name="action_show_details_ro" type="object" class="oe_stat_button" icon="fa-pencil">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="employee_kpi_line_count" widget="statinfo" nolabel="1" string="RO Count"/>
+                                </span>
+                                <span class="o_stat_text">Detail RO</span>
+                            </div>
+                        </button> -->
+                    </div>
+                    <div class="oe_title">
+                        <label for='name' string='Nomor SPD'/>
+                        <h1>
+                            <field name="name" readonly='1'/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string='Pemberi Tugas'>
+                            <field name="pemberi_tugas_id" required='1' string='Nama' attrs="{'readonly' : [('state', '!=', 'draft')]}" />
+                            <field name="jabatan_pemberi_tugas_id" required='1' attrs="{'readonly' : [('state', '!=', 'draft')]}" />
+                            <field name="bagian_pemberi_tugas_id" required='1' attrs="{'readonly' : [('state', '!=', 'draft')]}" />
+                        </group>
+                        <group string='Penerima Tugas'>
+                            <field name="employee_id" required='1' string='Nama' attrs="{'readonly' : [('state', '!=', 'draft')]}" />
+                            <field name="employee_title_id" required='1' attrs="{'readonly' : [('state', '!=', 'draft')]}" />
+                            <field name="employee_department_id" required='1' attrs="{'readonly' : [('state', '!=', 'draft')]}" />
+                        </group>
+                    </group>
+                    <group string="Informasi Perjalanan Dinas">
+                        <group>
+                            <field name="tgl_dokumen" required='1' attrs="{'readonly' : [('state', '!=', 'draft')]}" />
+                            <field name="divisi_id" required='1' attrs="{'readonly' : [('state', '!=', 'draft')]}" />
+                            <field name="program_kerja_id" required='1' attrs="{'readonly' : [('state', 'not in', ('draft', 'done'))]}" />
+
+                        </group>
+                        <group>
+                            <field name="description" required='1' attrs="{'readonly' : [('state', 'not in', ('draft', 'done'))]}"/>
+                            <field name="lokasi" required='1' attrs="{'readonly' : [('state', 'not in', ('draft', 'done'))]}"/>
+                            <label for="date_from" string="Tanggal Perjalanan Dinas"/>
+							<div>
+								<field name="date_from" placeholder="From" widget="daterange" class="oe_inline" options="{'related_end_date': 'date_to'}" attrs="{'readonly' : [('state', 'not in', ('draft', 'done'))]}"/> 
+								s/d 
+								<field name="date_to" placeholder="To" widget="daterange" class="oe_inline" options="{'related_start_date': 'date_from'}" attrs="{'readonly' : [('state', 'not in', ('draft', 'done'))]}"/>
+							</div>
+                            <!-- <field name="tanggal_perjalanan_dinas" required='1' attrs="{'readonly' : [('state', 'not in', ('draft', 'done'))]}"/> -->
+                            <field name="karyawan_pengikut_ids" widget='many2many_tags' attrs="{'readonly' : [('state', '!=', 'draft')]}" />
+                        </group>
+                    </group>
+                    <notebook attrs="{'invisible' : [('state', '=', 'draft')]}">
+                        <page name="detail" string="Detail Biaya">
+                            <separator string='Uang Saku Perjalanan Dinas'/>
+                            <field name="uang_saku_ids" attrs="{'readonly' : [('state', 'in', ('pelaporan', 'done', 'cancel'))]}">
+                                <tree editable='bottom' create='0'>
+                                    <field name="employee_id" readonly='1' />
+                                    <field name="product_id" readonly='1'/>
+                                    <field name="jml_hari"/>
+                                    <field name="amount" readonly='1'/>
+                                    <field name="total"/>
+                                </tree>
+                            </field>
+
+                            <separator string='Uang Penginapan'/>
+                            <field name="uang_penginapan_ids" attrs="{'readonly' : [('state', 'in', ('pelaporan', 'done', 'cancel'))]}">
+                                <tree editable='bottom' create='0'>
+                                    <field name="employee_id" readonly='1' />
+                                    <field name="product_id" readonly='1'/>
+                                    <field name="jml_hari"/>
+                                    <field name="amount" readonly='1'/>
+                                    <field name="total"/>
+                                </tree>
+                            </field>
+
+                            <separator string='Transportasi Lokal'/>
+                            <field name="biaya_transportasi_lokal_ids" attrs="{'readonly' : [('state', 'in', ('pelaporan', 'done', 'cancel'))]}">
+                                <tree editable='bottom' create='1'>
+                                    <field name="employee_id" readonly='1' />
+                                    <field name="product_id" readonly='1'/>
+                                    <field name="jml_hari"/>
+                                    <field name="amount" readonly='1'/>
+                                    <field name="total"/>
+                                </tree>
+                            </field>
+
+                            <separator string='Transportasi Utama'/>
+                            <field name="biaya_transportasi_utama_ids" attrs="{'readonly' : [('state', 'in', ('pelaporan', 'done', 'cancel'))]}">
+                                <tree editable='bottom' create='1'>
+                                    <field name="employee_id" readonly='1' />
+                                    <field name="product_id" readonly='1'/>
+                                    <field name="jenis_transportasi"/>
+                                    <field name="tiket_uang"/>
+                                    <field name="amount" readonly='1'/>
+                                    <field name="airport_tax"/>
+                                </tree>
+                            </field>
+
+                            <separator string='Biaya Penjamuan'/>
+                            <field name="biaya_penjamuan_ids" attrs="{'readonly' : [('state', 'in', ('pelaporan', 'done', 'cancel'))]}">
+                                <tree editable='bottom'>
+                                    <field name="employee_id" readonly='1' />
+                                    <field name="product_id" readonly='1'/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+
+                            <separator string='Biaya Lain-lain'/>
+                            <field name="biaya_lainnya_ids" attrs="{'readonly' : [('state', 'in', ('pelaporan', 'done', 'cancel'))]}">
+                                <tree editable='bottom'>
+                                    <field name="employee_id" readonly='1' />
+                                    <field name="product_id"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mum_spd" model="ir.actions.act_window">
+        <field name="name">Surat Perjalanan Dinas</field>
+        <field name="res_model">mum.spd</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+</odoo>

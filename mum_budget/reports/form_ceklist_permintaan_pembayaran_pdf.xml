@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="a4_no_margin" model="report.paperformat">
+        <field name="name">A4 No Margin</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">18</field>
+        <field name="dpi">120</field>
+    </record>
+
+    <template id="form_ceklist_permintaan_pembayaran_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <style>
+                        .border-black{
+                            border: 1px solid black !important; 
+                        }
+                    </style>
+                    <div class='page' style='border:2px solid black;'>
+                        
+                        <table class="table table-borderless">
+                            <tr>
+                                <td class="header" width="20%" rowspan="3">
+                                    
+                                </td>
+                                <th class="header" width="60%" colspan="7">
+                                    <h1>FORM CEKLIS PERMINTAAN PEMBAYARAN</h1>
+                                </th>
+                            </tr>
+                        
+                            <tr>
+                                <th class="header align-middle" width="80%" colspan="7">
+                                    <input type="checkbox" t-att-checked="o.jenis_form == 'uang_muka'" class="form-check-input mx-2"/>
+                                    <span>UANG MUKA</span>
+                                    <input type="checkbox" t-att-checked="o.jenis_form == 'laporan_pertanggungjawaban'" class="form-check-input mx-2"/>
+                                    <span>LAPORAN PERTANGGUNGJAWABAN</span>
+                                    <input type="checkbox" t-att-checked="o.jenis_form == 'reimbursment'" class="form-check-input mx-2"/>
+                                    <span>REIMBURSEMENT</span>
+                                    
+                                    
+                                    
+                                </th>
+                            </tr>
+                        </table>
+
+                        <div class="row px-2" style='border:1px solid black'>
+                            <table class='table table-borderless'>
+                                <tr>
+                                    <td >
+                                        Perihal : <br/>
+                                        <t t-raw="o.narration"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    
+                    <table class="table table-borderless">
+                        <tr class='border border-dark'>
+                            <td colspan="3" width="50%">
+                                Lampiran Dokumen Pendukung :
+                            </td>
+                            <td class='border border-left border-dark' colspan="2" width="50%">
+                                Tahap Pengambilan UM :
+                            </td>
+                        </tr>
+                    
+                        <tr class='border border-dark' t-foreach="o.lampiran_invoice_ids" t-as='lampiran'>
+                            <td class="text-center border border-left border-right border-dark" width="5%" >
+                                <t t-esc="lampiran.sequence"/>
+                            </td>
+                            <td  width="40%">
+                                <t t-esc="lampiran.name"/>
+                            </td>
+                            <td class="tengah" width="5%">        
+                                <input type="checkbox" t-att-checked="lampiran.checklist" class="form-check-input"/>
+                            </td>
+                            
+                            <td class="text-center border border-left border-right border-dark" width="5%">
+                                <t t-esc="lampiran.sequence"/>
+                            </td>
+                            <td  width="45%">
+                                <t t-esc="lampiran.description"/>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    
+                            <table class="table">
+                                <tr>
+                                    <td class='text-center border border-dark' width="20%">Verified By:<br/>(Sign, Date &amp; Initial)</td>
+                                    <td class='text-center border border-dark' width="20%">Verified By:<br/>(Sign, Date &amp; Initial)</td>
+                                    <td class='text-center border border-dark' width="20%">Checked By:<br/>(Sign, Date &amp; Initial)</td>
+                                    <td class='text-center border border-dark' width="20%">Aproved By:<br/>(Sign, Date &amp; Initial)</td>
+                                    <td class='text-center border border-dark' width="20%">Paid By:<br/>(Sign, Date &amp; Initial)</td>
+                                </tr>
+                    
+                                <tr>
+                                    <td class='text-center border border-dark' style="height:90px">
+                                        
+                                    </td>
+                                    <td class='text-center border border-dark' style="height:90px">
+                                        
+                                    </td>
+                                    <td class='text-center border border-dark' style="height:90px">
+                                        
+                                    </td>
+                                    <td class='text-center border border-dark' style="height:90px">
+                                        
+                                    </td>
+                                    <td class='text-center border border-dark' style="height:90px">
+                                        
+                                    </td>
+                                </tr>
+                    
+                                <tr>
+                                    <td class='text-center border border-dark' width="20%">PAJAK</td>
+                                    <td class='text-center border border-dark' width="20%">ANGGARAN</td>
+                                    <td class='text-center border border-dark' width="20%">BAG. KEU</td>
+                                    <td class='text-center border border-dark' width="20%">DIV. KDO</td>
+                                    <td class='text-center border border-dark' width="20%">TROPS</td>
+                                </tr>
+                            </table>
+                    
+                    
+                    <div class="row">
+                        <div class="col-6 p-2" style="border:1px solid black;">
+                            <div class="row pb-2">
+                                <div class="col-12" style="text-decoration : underline;">
+                                    <h4><strong>KETERANGAN ANGGARAN</strong></h4>
+                                </div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col-12">
+                                    <strong>
+                                        NOMOR ANGGARAN : <t t-esc="o.nomor_anggaran"/>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <hr style='border:2px solid black' />
+                                </div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col-12" style="text-decoration : underline;">
+                                    <h5><strong>ANGGARAN BULANAN</strong></h5>
+                                </div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col-12" style='padding-left:10px;'>
+                                    <strong>
+                                        KATEGORI ANGGARAN : 
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col-12" style='font-size:1rem'>
+                                    <input type="checkbox" t-att-checked="o.anggaran_bulanan_selection == 'within_budgeted'" class="form-check-input mx-2"/>
+                                    <span>Within Budgeted</span>
+                                    <input type="checkbox" t-att-checked="o.anggaran_bulanan_selection == 'over_budgeted'" class="form-check-input mx-2"/>
+                                    <span>Over Budgeted</span>
+                                    <input type="checkbox" t-att-checked="o.anggaran_bulanan_selection == 'non_budgeted'" class="form-check-input mx-2"/>
+                                    <span>Non Budgeted</span>
+                                </div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col-1"/>
+                                <div class="col-5" >
+                                    Komentar/Alasan: <br/>
+                                    <span style="font-size:0.75rem;">
+                                        "Bila Over Budgeted / Non Budgeted"
+                                    </span>
+                                </div>
+                                <div class="col-6 text-center pt-2" style='border:1px solid black'>
+                                    <t t-esc="o.note_anggaran_bulanan"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <hr style='border:2px solid black' />
+                                </div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col-12" style='text-decoration : underline;'>
+                                    <h5>
+                                        <strong>
+                                            ANGGARAN TAHUNAN
+                                        </strong>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col-12" style='padding-left:10px;'>
+                                    <strong>
+                                        KATEGORI ANGGARAN : 
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col-12" style='font-size:1rem'>
+                                    <input type="checkbox" t-att-checked="o.anggaran_tahunan_selection == 'within_budgeted'" class="form-check-input mx-2"/>
+                                    <span>Within Budgeted</span>
+                                    <input type="checkbox" t-att-checked="o.anggaran_tahunan_selection == 'over_budgeted'" class="form-check-input mx-2"/>
+                                    <span>Over Budgeted</span>
+                                    <input type="checkbox" t-att-checked="o.anggaran_tahunan_selection == 'non_budgeted'" class="form-check-input mx-2"/>
+                                    <span>Non Budgeted</span>
+                                </div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col-1"/>
+                                <div class="col-5">
+                                    Komentar/Alasan: <br/>
+                                    <span style="font-size:0.75rem;">
+                                        "Bila Over Budgeted / Non Budgeted"
+                                    </span>
+                                </div>
+                                <div class="col-6 text-center pt-2" style='border:1px solid black'>
+                                    <t t-esc="o.note_anggaran_tahunan"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 p-2" style="border:1px solid black;">
+                            <div class="row pb-2">
+                                <div class="col-12">
+                                    <h4>
+                                        <strong>VERIFIKASI PAJAK</strong>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="row py-2">
+                                <table class="table table-borderless">
+                                    <colgroup>
+                                        <col width='50%'/>
+                                        <col width="3%"/>
+                                        <col width='47%'/>
+                                    </colgroup>
+                                    <tr>
+                                        <td>DPP</td>
+                                        <td>=</td>
+                                        <td class='text-end'>
+                                            <t t-esc="o.dpp" t-options="{'widget' : 'float', 'precision' : 0}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PPN</td>
+                                        <td>=</td>
+                                        <td class='text-end'>
+                                            <t t-esc="o.ppn" t-options="{'widget' : 'float', 'precision' : 0}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>DPP+PPN</td>
+                                        <td>=</td>
+                                        <td class='text-end'>
+                                            <t t-esc="o.dpp_ppn" t-options="{'widget' : 'float', 'precision' : 0}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>MATERAI</td>
+                                        <td>=</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bukan Unsur DPP</td>
+                                        <td>=</td>
+                                        <td class='text-end'>
+                                            <t t-esc="o.not_dpp" t-options="{'widget' : 'float', 'precision' : 0}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            TOTAL Tagihan
+                                        </td>
+                                        <td>=</td>
+                                        <td class='text-end'>
+                                            <t t-esc="o.total_tagihan" t-options="{'widget' : 'float', 'precision' : 0}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan='3'>
+                                            Pemotongan Pajak
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class='pl-3'>
+                                            Tarif PPh
+                                        </td>
+                                        <td>=</td>
+                                        <td class='text-end'>
+                                            <t t-esc="o.pph" t-options="{'widget' : 'float', 'precision' : 0}"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class='pl-3'>
+                                            PPN WAPU
+                                        </td>
+                                        <td>=</td>
+                                        <td class='text-end'>
+                                            <!-- <t t-esc="ppn_wapu" t-options="{'widget' : 'float', 'precision' : 0}"/> -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>UANG MUKA</td>
+                                        <td>=</td>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>TOTAL DIBAYARKAN</strong>
+                                        </td>
+                                        <td>=</td>
+                                        <td class='text-end'>
+                                            <t t-esc="o.amount_total" t-options="{'widget' : 'float', 'precision' : 0}"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="row" style='border:2px solid black;'/>
+                            <div class="row py-2">
+                                <h4><strong>KETERANGAN TROPS</strong></h4>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col-12" style='font-size:1rem'>
+                                    <input type="checkbox" t-att-checked="o.trops_selection == 'dapat_dibayar'" class="form-check-input mx-2"/>
+                                    <span>Dapat Dibayar</span>
+                                    <input type="checkbox" t-att-checked="o.trops_selection == 'ditunda'" class="form-check-input mx-2"/>
+                                    <span>Pemb. Ditunda</span>
+                                    <input type="checkbox" t-att-checked="o.trops_selection == 'tidak_dibayar'" class="form-check-input mx-2"/>
+                                    <span>Tdk Dapat Dibayar</span>
+                                </div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="row py-2">
+                                    <div class="col-1"/>
+                                    <div class="col-5">
+                                        Komentar/Alasan: <br/>
+                                        <span style="font-size:0.75rem;text-wrap:wrap">
+                                            "Bila Pembayaran Ditunda / tidak dapat dibayarkan"
+                                        </span>
+                                    </div>
+                                    <div class="col-6 text-center pt-2" style='border:1px solid black'>
+                                        <t t-esc="o.note_trops"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row py-2" style='border:1px solid black;'>
+                                <div class="col-12">
+                                    Dibayar Pada Tanggal : <br/>
+                                    <span t-if="o.tgl_dibayar" t-esc="o.tgl_dibayar.strftime('%d-%m-%Y')"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <br/>
+                    <br/>
+                    </div>
+                    <div style='page-break-before:always;'/>
+                    <div class="page">
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <h3>
+                                    <strong>
+                                        RINCIAN ANGGARAN BULANAN
+                                    </strong>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table table-borderless">
+                                <colgroup>
+                                    <col width='50%'/>
+                                    <col width='25%'/>
+                                    <col width='25%'/>
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th class='border-black'>Biaya</th>
+                                        <th class='border-black'>Nominal Anggaran</th>
+                                        <th class='border-black'>Sisa Anggaran</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach='o.anggaran_bulanan_line_ids' t-as='line'>
+                                        <td class='border-black'>
+                                            <t t-esc="line.account_id.display_name"/>
+                                        </td>
+                                        <td class='text-end border-black'>
+                                            <t t-esc="line.nominal_anggaran_bulanan" t-options="{'widget' : 'float', 'precision' : 0}"/>
+                                        </td>
+                                        <td class='text-end border-black'>
+                                            <t t-esc="line.sisa_anggaran_bulanan" t-options="{'widget' : 'float', 'precision' : 0}"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="row" style='border-top:1px solid black;margin-top:10px;margin-bottom:5px;'/>
+
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <h3>
+                                    <strong>
+                                        RINCIAN ANGGARAN TAHUNAN
+                                    </strong>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table table-borderless">
+                                <colgroup>
+                                    <col width='50%'/>
+                                    <col width='25%'/>
+                                    <col width='25%'/>
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th class='border-black'>Biaya</th>
+                                        <th class='border-black'>Nominal Anggaran</th>
+                                        <th class='border-black'>Sisa Anggaran</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach='o.anggaran_tahunan_line_ids' t-as='line'>
+                                        <td class='border-black'>
+                                            <t t-esc="line.account_id.display_name"/>
+                                        </td>
+                                        <td class='text-end border-black'>
+                                            <t t-esc="line.nominal_anggaran_tahunan" t-options="{'widget' : 'float', 'precision' : 0}"/>
+                                        </td>
+                                        <td class='text-end border-black'>
+                                            <t t-esc="line.sisa_anggaran_tahunan" t-options="{'widget' : 'float', 'precision' : 0}"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_form_ceklist_pembayaran" model="ir.actions.report">
+        <field name="name">Form Permintaan Pembayaran</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mum_budget.form_ceklist_permintaan_pembayaran_document</field>
+        <field name="report_file">mum_budget.form_ceklist_permintaan_pembayaran_document</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name='paperformat_id' ref='mum_budget.a4_no_margin'/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

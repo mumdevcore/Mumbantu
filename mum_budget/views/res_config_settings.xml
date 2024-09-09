@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div
+                    class="app_settings_block"
+                    data-string="Budget Management"
+                    string="Budget Management"
+                    data-key="mum_budget">
+
+                    <h2>Surat Perjalanan Dinas</h2>
+                    <div class="row mt16 o_settings_container" title="Surat Perjalanan Dinas">
+                        <div class="col-12 col-md-6 o_setting_box" id="item_uang_saku_spd_id">
+                            <div class="o_setting_right_pane">
+                                <div class="row">
+                                    <div class="text-muted col-lg-8">
+                                        Uang Saku
+                                    </div>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="item_uang_saku_spd_id" required="1"
+                                            class="o_light_label"
+                                            context="{'default_company_id': company_id}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 o_setting_box" id="item_penginapan_spd_id">
+                            <div class="o_setting_right_pane">
+                                <div class="row">
+                                    <div class="text-muted col-lg-8">
+                                        Uang Penginapan
+                                    </div>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="item_penginapan_spd_id" required="1"
+                                            class="o_light_label"
+                                            context="{'default_company_id': company_id}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 o_setting_box" id="item_transportasi_lokal_spd_id">
+                            <div class="o_setting_right_pane">
+                                <div class="row">
+                                    <div class="text-muted col-lg-8">
+                                        Uang Transportasi Lokal
+                                    </div>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="item_transportasi_lokal_spd_id" required="1"
+                                            class="o_light_label"
+                                            context="{'default_company_id': company_id}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 o_setting_box" id="item_trans_utama_berangkat_spd_id">
+                            <div class="o_setting_right_pane">
+                                <div class="row">
+                                    <div class="text-muted col-lg-8">
+                                        Uang Transportasi Utama Berangkat
+                                    </div>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="item_trans_utama_berangkat_spd_id" required="1"
+                                            class="o_light_label"
+                                            context="{'default_company_id': company_id}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 o_setting_box" id="item_trans_utama_kembali_spd_id">
+                            <div class="o_setting_right_pane">
+                                <div class="row">
+                                    <div class="text-muted col-lg-8">
+                                        Uang Transportasi Utama Kembali
+                                    </div>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="item_trans_utama_kembali_spd_id" required="1"
+                                            class="o_light_label"
+                                            context="{'default_company_id': company_id}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 o_setting_box" id="item_airport_tax_spd_id">
+                            <div class="o_setting_right_pane">
+                                <div class="row">
+                                    <div class="text-muted col-lg-8">
+                                        Airport Tax
+                                    </div>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="item_airport_tax_spd_id" required="1"
+                                            class="o_light_label"
+                                            context="{'default_company_id': company_id}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 o_setting_box" id="item_fiskal_spd_id">
+                            <div class="o_setting_right_pane">
+                                <div class="row">
+                                    <div class="text-muted col-lg-8">
+                                        Fiskal
+                                    </div>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="item_fiskal_spd_id" required="1"
+                                            class="o_light_label"
+                                            context="{'default_company_id': company_id}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 o_setting_box" id="item_penjamuan_spd_id">
+                            <div class="o_setting_right_pane">
+                                <div class="row">
+                                    <div class="text-muted col-lg-8">
+                                        Biaya Penjamuan
+                                    </div>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="item_penjamuan_spd_id" required="1"
+                                            class="o_light_label"
+                                            context="{'default_company_id': company_id}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 o_setting_box" id="item_lainnya_spd_id">
+                            <div class="o_setting_right_pane">
+                                <div class="row">
+                                    <div class="text-muted col-lg-8">
+                                        Biaya Lainnya
+                                    </div>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="item_lainnya_spd_id" required="1"
+                                            class="o_light_label"
+                                            context="{'default_company_id': company_id}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Memo Pembayaran</h2>
+                    <div class="row mt16 o_settings_container" title="Memo Pembayaran">
+                        <div class="col-12 col-md-6 o_setting_box" id="item_uang_saku_spd_id">
+                            <div class="o_setting_right_pane">
+                                <div class="row">
+                                    <div class="text-muted col-lg-8">
+                                        Limit Nominal Memo Pembayaran
+                                    </div>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="limit_memo_pembayaran" required="1"
+                                            class="o_light_label"
+                                            context="{'default_company_id': company_id}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="memo_pembayaran_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <table class='table table-sm table-borderless'>
+                            <colgroup>
+                                <col width='20%'/>
+                                <col width='2%'/>
+                                <col width='78%'/>
+                            </colgroup>
+                            <tr>
+                                <td class='align-middle'>Nomor</td>
+                                <td class='align-middle'>:</td>
+                                <td class='align-middle'>
+                                    <t t-esc="o.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class='align-middle'>Tanggal</td>
+                                <td class='align-middle'>:</td>
+                                <td class='align-middle'>
+                                    <t t-esc="o._convert_to_id_month(o.tanggal, 'B')"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class='align-middle'>Kepada</td>
+                                <td class='align-middle'>:</td>
+                                <td class='align-middle'>
+                                    <t t-esc="o.to_employee_id.job_id.name"/> <t t-esc="o.company_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class='align-middle'>Dari</td>
+                                <td class='align-middle'>:</td>
+                                <td class='align-middle'>
+                                    <t t-esc="o.from_employee_id.department_kelolaan_id.name"/> <t t-esc="o.company_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class='align-middle'>Perihal</td>
+                                <td class='align-middle'>:</td>
+                                <td class='align-middle'>
+                                    <t t-esc="o.perihal"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class='align-middle'>Pengeluaran</td>
+                                <td class='align-middle'>:</td>
+                                <td class='align-middle'>
+                                    <t t-esc="o.journal_id.name"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <hr class='border-2'/>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                Dengan hormat,
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                Bersama ini kami sampaikan permohonan pengeluaran dana sebesar
+                                <t t-esc="o.total_pembayaran" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                Dari <t t-esc="o.journal_id.name"/> per <t t-esc="o._convert_to_id_month(o.tgl_saldo, 'B')"/>
+                                sebesar <t t-esc="o.saldo_bank" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                Dengan perincian sebagai berikut:
+                            </div>
+                        </div>
+                        <t t-set="no" t-value="1"/>
+                        <table class="table table-sm table-bordered mt-2">
+                            <colgroup>
+                                <col width='5%'/>
+                                <col width='65%'/>
+                                <col width='30%'/>
+                            </colgroup>
+                            <tr t-foreach="o.invoice_ids" t-as="invoice">
+                                <td class='align-middle'>
+                                    <t t-esc="no"/>
+                                </td>
+                                <td class='align-middle'>
+                                    <t t-out="invoice.narration"/>
+                                </td>
+                                <td class='text-end align-middle'>
+                                    <t t-esc="invoice.amount_total" t-options='{"widget": "monetary", "display_currency": invoice.currency_id}'/>
+                                </td>
+                                <t t-set='no' t-value='no+1'/>
+                            </tr>
+                            <tr>
+                                <td colspan='2' class='align-middle'/>
+                                <td class="text-end align-middle">
+                                    <t t-esc="o.total_pembayaran" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="row">
+                            <div class="col-12">
+                                Demikian permohonan ini kami buat agar dapat ditindaklanjuti. Atas perhatian dan kerjasamanya kami ucapkan terima kasih.
+                            </div>
+                        </div>
+                        <t t-call="mum_budget.tandatangan_memo_pembayaran"/>
+                        
+                    </div>
+                    <div style="page-break-before: always;"/>
+
+                    <style>
+                        table.table-mum-border>thead>tr>th,
+                        table.table-mum-border>tbody>tr>td{
+                            border : 1px solid black;
+                            padding : 2px;
+                        }
+        
+                    </style>
+                    <div class="row">
+                        <table class="table table-mum-border">
+                            <thead>
+                                <tr>
+                                    <th>No Rek</th>
+                                    <th>Nama Rek</th>
+                                    <th>Nominal</th>
+                                    <th>Ket</th>
+                                    <th>Kd. Clearing</th>
+                                    <th>Nama Bank</th>
+                                    <th>Remark</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.invoice_ids" t-as="invoice">
+                                    <td>
+                                        <t t-esc="invoice.partner_bank_id.acc_number"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="invoice.partner_bank_id.acc_holder_name or invoice.partner_bank_id.partner_id.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="invoice.amount_total" t-options='{"widget": "monetary", "display_currency": invoice.currency_id}'/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="invoice.narration"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="invoice.partner_bank_id.bank_id.domestic_bank"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="invoice.partner_bank_id.bank_id.name"/>
+                                    </td>
+                                    <td>
+                                        <!-- <t t-esc="expression"/> -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="tandatangan_memo_pembayaran" name="Tandatangan Memo Pembayaran">
+        <t t-if="o.melebihi_limit">
+            <table class="table table-sm table-borderless mt-5">
+                <tr>
+                    <td>Hormat Kami,</td>
+                </tr>
+                <tr style='height:120px;'>
+                    <td/>
+                </tr>
+                <tr>
+                    <td>
+                        <t t-esc="o.kadiv_employee_id.name"/>
+                        <br/>
+                        <t t-esc="o.kadiv_employee_id.job_id.name"/>
+                    </td>
+                </tr>
+            </table>
+            <div class="row">
+                <div class="col">
+                    Persetujuan Manajemen dan Direksi
+                </div>
+            </div>
+            <table class="table table-sm table-bordered">
+                <thead>
+                    <tr>
+                        <th class='align-middle border border-dark' rowspan='2'>No</th>
+                        <th class='align-middle border border-dark' rowspan='2'>Nama</th>
+                        <th class='align-middle border border-dark' colspan='3'>Persetujuan</th>
+                        <th class='align-middle border border-dark' rowspan='2'>Tandatangan</th>
+                    </tr>
+                    <tr>
+                        <th class='align-middle border border-dark'>Ya</th>
+                        <th class='align-middle border border-dark'>Tidak</th>
+                        <th class='align-middle border border-dark'>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="height:80px;">
+                        <td class='align-middle border border-dark'>1</td>
+                        <td class='align-middle border border-dark'>
+                            <t t-esc="o.dirut_employee_id.name"/>
+                            <br/>
+                            <t t-esc="o.dirut_employee_id.job_id.name"/>
+                        </td>
+                        <td class=' border border-dark'/>
+                        <td class=' border border-dark'/>
+                        <td class=' border border-dark'/>
+                        <td class=' border border-dark'/>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-8"/>
+                <div class="col-4">
+                    <table class="table table-sm text-center">
+                        <tr style='height:80px;'>
+                            <td class='border border-dark' />
+                            <td class='border border-dark' />
+                            <td class='border border-dark' />
+                        </tr>
+                        <tr>
+                            <td class='border border-dark' >
+                                <t t-esc="o.trops_employee_id.inisial"/>
+                            </td>
+                            <td class='border border-dark' >
+                                <t t-esc="o.anggaran_employee_id.inisial"/>
+                            </td>
+                            <td class='border border-dark' >
+                                <t t-esc="o.kabag_employee_id.inisial"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </t>
+        <t t-else="">
+            <table class="table table-sm table-borderless mt-5">
+                <tr>
+                    <td>Hormat Kami,</td>
+                </tr>
+                <tr style='height:120px;'>
+                    <td/>
+                </tr>
+                <tr>
+                    <td>
+                        <t t-esc="o.kabag_employee_id.name"/>
+                        <br/>
+                        <t t-esc="o.kabag_employee_id.job_id.name"/>
+                    </td>
+                </tr>
+            </table>
+            <div class="row">
+                <div class="col">
+                    Persetujuan Manajemen dan Direksi
+                </div>
+            </div>
+            <table class="table table-sm table-bordered">
+                <thead>
+                    <tr>
+                        <th class='align-middle border border-dark' rowspan='2'>No</th>
+                        <th class='align-middle border border-dark' rowspan='2'>Nama</th>
+                        <th class='align-middle border border-dark' colspan='3'>Persetujuan</th>
+                        <th class='align-middle border border-dark' rowspan='2'>Tandatangan</th>
+                    </tr>
+                    <tr>
+                        <th class='align-middle border border-dark'>Ya</th>
+                        <th class='align-middle border border-dark'>Tidak</th>
+                        <th class='align-middle border border-dark'>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="height:80px;">
+                        <td class='align-middle border border-dark'>1</td>
+                        <td class='align-middle border border-dark'>
+                            <t t-esc="o.kadiv_employee_id.name"/>
+                            <br/>
+                            <t t-esc="o.kadiv_employee_id.job_id.name"/>
+                        </td>
+                        <td class=' border border-dark'/>
+                        <td class=' border border-dark'/>
+                        <td class=' border border-dark'/>
+                        <td class=' border border-dark'/>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-8"/>
+                <div class="col-4">
+                    <table class="table table-sm text-center">
+                        <tr style='height:80px;'>
+                            <td class='border border-dark' />
+                            <td class='border border-dark' />
+                        </tr>
+                        <tr>
+                            <td class='border border-dark' >
+                                <t t-esc="o.trops_employee_id.inisial"/>
+                            </td>
+                            <td class='border border-dark' >
+                                <t t-esc="o.anggaran_employee_id.inisial"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="memo_pembayaran_report_combine">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_memo_pembayaran_combine" model="ir.actions.report">
+        <field name="name">Memo Pembayaran Combine</field>
+        <field name="binding_model_id" ref="model_memo_pembayaran" />
+        <field name="model">memo.pembayaran</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mum_budget.memo_pembayaran_report_combine</field>
+        <field name="report_file">mum_budget.memo_pembayaran_report_combine</field>
+    </record>
+
+    <record id="action_report_memo_pembayaran" model="ir.actions.report">
+        <field name="name">Memo Pembayaran</field>
+        <field name="binding_model_id" ref="model_memo_pembayaran" />
+        <field name="model">memo.pembayaran</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mum_budget.memo_pembayaran_report</field>
+        <field name="report_file">mum_budget.memo_pembayaran_report</field>
+    </record>
+
+
+
+</odoo>

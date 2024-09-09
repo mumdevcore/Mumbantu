@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_expense_sheet_view_form" model="ir.ui.view">
+        <field name="name">hr.expense.sheet.view.form</field>
+        <field name="model">hr.expense.sheet</field>
+        <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form"/>
+        <field name="arch" type="xml">
+            
+            <button name='reset_expense_sheets' position='attributes'>
+                <attribute name='attrs'>
+                    {'invisible': ['|', ('can_reset', '=', False), ('state', 'not in', ['submit', 'cancel', 'approval_1', 'approve'])]}
+                </attribute>
+            </button>
+
+            <button name='action_sheet_move_create' position='attributes'>
+                <attribute name='groups'>
+                    mum_budget.group_budget_accounting
+                </attribute>
+            </button>
+
+            <button name='approve_expense_sheets' position='attributes'>
+                <attribute name="attrs">{'invisible': ['|', ('can_approve', '=', False), ('state', '!=', 'approval_1')]}</attribute>
+            </button>
+
+            <button name='approve_expense_sheets' position='after'>]
+                <button string="Approve" name="button_approve_1" attrs="{'invisible': ['|', ('can_approve', '=', False), ('state', '!=', 'submit')]}" type="object" class="oe_highlight"/>
+            </button>
+            
+            <field name="name" position='attributes'>
+                <attribute name='readonly'>1</attribute>
+            </field>
+            
+            <field name="employee_id" position='after'>
+                <field name="tipe_expense" invisible='1' />
+                <!-- <field name="wilayah" /> -->
+                <field name="date" />
+                <field name="date_approve" readonly='1' />
+                <field name="divisi_id" />
+                <field name="anggaran_bulanan_divisi_id" />
+                <field name="program_kerja_id" />
+                <field name="description" />
+            </field>
+
+            <field name='expense_line_ids' position='attributes'>
+                <attribute name='context'>
+                    {
+                        'form_view_ref' : 'hr_expense.hr_expense_view_form_without_header',
+                        'default_company_id': company_id,
+                        'default_employee_id': employee_id,
+                        'default_payment_mode': payment_mode or 'own_account',
+                        'default_program_kerja_id': program_kerja_id,
+                    }
+                </attribute>
+                <!-- Kalo error template template apalah itu, attribute widget ini biangnya. -->
+                <attribute name="widget" eval='False'/>
+            </field>
+
+            <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='name']" position="after">
+                <field name="program_kerja_id" />
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page name='attachment' string='Lampiran'>
+                    <group>
+                        <group>
+                            <label for='source_attachment_ids' string="Reimbursment/Petty Cash"/>
+							<div>
+								<field name="source_attachment_ids" nolabel='1' widget='many2many_attachment_preview'/>
+							</div>
+                            <label for='invoice_attachment_ids' string="Invoice/Kwitansi"/>
+                            <div>
+                                <field name="has_invoice" nolabel='1' />
+                                <field name="invoice_attachment_ids" nolabel='1' widget='many2many_attachment_preview' attrs="{'invisible' : [('has_invoice', '=', False)]}" />
+                            </div>
+
+                            <label for='faktur_attachment_ids' string="Faktur Pajak &amp;/ NPWP"/>
+                            <div>
+                                <field name="has_faktur_npwp" nolabel='1' />
+                                <field name="faktur_attachment_ids" nolabel='1' widget='many2many_attachment_preview' attrs="{'invisible' : [('has_faktur_npwp', '=', False)]}" />
+                            </div>
+
+                            <label for='spk_attachment_ids' string="SPK &amp;/ PKS"/>
+                            <div>
+                                <field name="has_spk_pks" nolabel='1' />
+                                <field name="spk_attachment_ids" widget='many2many_attachment_preview' nolabel='1' attrs="{'invisible' : [('has_spk_pks', '=', False)]}" />
+                            </div>
+
+                            <label for='memo_attachment_ids' string="Memo Persetujuan"/>
+                            <div>
+                                <field name="has_memo" nolabel='1' />
+                                <field name="memo_attachment_ids" widget='many2many_attachment_preview' nolabel='1' attrs="{'invisible' : [('has_memo', '=', False)]}" />
+                            </div>
+                            <label for='surat_penawaran_attachment_ids' string="Surat Penawaran"/>
+                            <div>
+                                <field name="has_surat_penawaran" nolabel='1' />
+                                <field name="surat_penawaran_attachment_ids" widget='many2many_attachment_preview' nolabel='1' attrs="{'invisible' : [('has_surat_penawaran', '=', False)]}" />
+                            </div>
+                        </group>
+                        <group>
+                            <label for='form_pengadaan_attachment_ids' string="Form Pengadaan"/>
+                            <div>
+                                <field name="has_form_pengadaan" nolabel='1' />
+                                <field name="form_pengadaan_attachment_ids" widget='many2many_attachment_preview' nolabel='1' attrs="{'invisible' : [('has_form_pengadaan', '=', False)]}" />
+                            </div>
+
+                            <label for='tanda_terima_attachment_ids' string="Tanda Terima / BAST"/>
+                            <div>
+                                <field name="has_tanda_terima" nolabel='1' />
+                                <field name="tanda_terima_attachment_ids" widget='many2many_attachment_preview' nolabel='1' attrs="{'invisible' : [('has_tanda_terima', '=', False)]}" />  
+                            </div>
+
+                            <label for='no_rekening_attachment_ids' string="No Rekening / Virtual Account"/>
+                            <div>
+                                <field name="has_no_rekening" nolabel='1' />
+                                <field name="no_rekening_attachment_ids" widget='many2many_attachment_preview' nolabel='1' attrs="{'invisible' : [('has_no_rekening', '=', False)]}" />
+                            </div>
+
+                            <label for='lainnya_attachment_ids' string="Lainnya"/>
+                            <div>
+                                <field name="has_lainnya" nolabel='1' />
+                                <field name="lainnya_attachment_ids" widget='many2many_attachment_preview' nolabel='1' attrs="{'invisible' : [('has_lainnya', '=', False)]}" />
+                            </div>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_expense_sheet_view_tree" model="ir.ui.view">
+        <field name="name">hr.expense.sheet.view.tree</field>
+        <field name="model">hr.expense.sheet</field>
+        <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_tree"/>
+        <field name="arch" type="xml">
+            <field name='name' position='after'>
+                <field name='date_approve'/>
+            </field>
+        </field>
+    </record>
+
+    <record id="action_hr_expense_reimbursment" model="ir.actions.act_window">
+        <field name="name">Reimbursment</field>
+        <field name="res_model">hr.expense.sheet</field>
+        <field name="view_mode">tree,form</field>
+        <field name='context'>
+            {
+                'default_tipe_expense' : 'reimbursment'
+            }
+        </field>
+        <field name='domain'>[('tipe_expense', '=', 'reimbursment')]</field>
+        
+    </record>
+
+    <record id="action_hr_expense_petty_cash" model="ir.actions.act_window">
+        <field name="name">Petty Cash</field>
+        <field name="res_model">hr.expense.sheet</field>
+        <field name="view_mode">tree,form</field>
+        <field name='context'>
+            {
+                'default_tipe_expense' : 'petty_cash'
+            }
+        </field>
+        <field name='domain'>[('tipe_expense', '=', 'petty_cash')]</field>
+        
+    </record>
+    
+
+</odoo>
+<!--  -->

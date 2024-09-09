@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Anggaran Bulanan Perusahaan -->
+    <record id="anggran_bulanan_view_tree" model="ir.ui.view">
+        <field name="name">anggaran.bulanan.view.tree</field>
+        <field name="model">anggaran.divisi</field>
+        <field name="arch" type="xml">
+            <tree delete='0'>
+                <field name="name" />
+                <field name="month_id" />
+                <field name="tahun" />
+                <field name="planned_amount" />
+                <field name="practical_amount" />
+                <field name="company_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="aggaran_bulanan_view_form" model="ir.ui.view">
+        <field name="name">anggaran.bulanan.view.form</field>
+        <field name="model">anggaran.divisi</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Open" name="button_open" states='draft' type="object" class="oe_highlight"/>
+                    <button string="Close" name="button_close" states='open' type="object" class="oe_highlight"/>
+                    <button string="Re-Open" name="button_reopen" states='done' type="object"/>
+                    <field name="state" widget='statusbar' statusbar_visible='draft,open' />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <!-- <button name="action_show_details_ro" type="object" class="oe_stat_button" icon="fa-pencil">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="employee_kpi_line_count" widget="statinfo" nolabel="1" string="RO Count"/>
+                                </span>
+                                <span class="o_stat_text">Detail RO</span>
+                            </div>
+                        </button> -->
+
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly='1'/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="crossovered_budget_id" />
+                        <field name="divisi_id" />
+                        <field name="month_id" />
+                        <field name="tahun" />
+                        <field name="planned_amount" />
+                        <field name="practical_amount" />
+                        <field name="company_id" />
+                    </group>
+                    
+                    <notebook>
+                        <page name="divisi" string="Anggaran Divisi">
+                            <field name="budget_divisi_ids">
+                                <tree editable='bottom'>
+                                    <field name="divisi_id" domain="[('divisi', '=', True)]" />
+                                    <field name="name" />
+                                    <field name="month_id" />
+                                    <field name="tahun" />
+                                    <field name="total_anggaran" />
+                                    <field name="pengajuan_anggaran" />
+                                    <field name="realisasi_anggaran" />
+                                    <field name="sisa_anggaran" />
+                                    <field name="currency_id" />
+                                    <field name="company_id" />
+                                    <field name="state" />    
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_anggaran_divisi" model="ir.actions.act_window">
+        <field name="name">Anggaran Divisi</field>
+        <field name="res_model">anggaran.divisi</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    
+
+</odoo>

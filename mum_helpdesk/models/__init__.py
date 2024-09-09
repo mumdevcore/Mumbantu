@@ -3,3 +3,4 @@
 from . import category
 from . import ticket
 from . import stage
+from . import team
