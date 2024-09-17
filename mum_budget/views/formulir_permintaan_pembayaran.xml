@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="formulir_permintaan_pembayaran_view_tree" model="ir.ui.view">
+		<field name="name">formulir.permintaan.pembayaran.view.tree</field>
+		<field name="model">formulir.permintaan.pembayaran</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name" />
+				<field name="date" />
+				<field name="employee_id" />
+				<field name="job_id" />
+				<field name="bagian_id" />
+				<field name="nominal" />
+				<field name="perihal" />
+				<field name="state" />                
+			</tree>
+		</field>
+	</record>
+
+	<record id="formulir_permintaan_pembayaran_view_form" model="ir.ui.view">
+		<field name="name">formulir.permintaan.pembayaran.view.form</field>
+		<field name="model">formulir.permintaan.pembayaran</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<label for='name' string="Nomor Transaksi"/>
+					<div class="oe_title">
+						<field name="name" readonly='1' />
+					</div>
+					<group>
+						<group>
+							<field name="employee_id" />
+							<field name="job_id" />
+							<field name="bagian_id" />
+						
+						</group>
+						<group>
+							<field name="nominal" />
+							<field name="product_id" />
+							<field name="perihal" />
+							<field name="user_can_approve" invisibl='1' />
+							<field name="empl_approval1_id" invisibl='1' />
+							<field name="approval1_date" invisibl='1' />
+							<field name="empl_approval2_id" invisibl='1' />
+							<field name="approval2_date" invisibl='1' />
+							<field name="empl_approval3_id" invisibl='1' />
+							<field name="approval3_date" invisibl='1' />
+							<field name="currency_id" invisibl='1' />
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_formulir_permintaan_pembayaran" model="ir.actions.act_window">
+		<field name="name">Formulir Permintaan Pembayaran</field>
+		<field name="res_model">formulir.permintaan.pembayaran</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<!-- SETUP RECORD RULE UNTUK FORMULIR INI -->
+	
+
+</odoo>
