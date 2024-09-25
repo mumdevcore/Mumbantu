@@ -100,6 +100,9 @@ class EmployeeManagementKpi(models.Model):
 		return self.write({'state' : 'cancel'})
 	
 	def button_submit(self):
+		self.employee_manajemen_kpi_line_ids._onchange_grade_id()
+		self.employee_manajemen_kpi_line_ids._onchange_service_quality_id()
+		self.employee_manajemen_kpi_line_ids._onchange_absensi_id()
 		return self.write({'state' : 'approval_1'})
 	
 	def button_done(self):
