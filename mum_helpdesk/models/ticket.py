@@ -52,6 +52,10 @@ class HelpdeskTicket(models.Model):
     def _onchange_category_id(self):
         self.team_id = self.category_id and self.category_id.team_id or False
 
+    @api.onchange('team_id')
+    def _onchange_team_id(self):
+        self.user_id = self.team_id and self.team_id.alias_user_id or False
+
 
 
     #BUTTON METHOD

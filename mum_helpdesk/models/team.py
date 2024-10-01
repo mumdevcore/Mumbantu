@@ -49,44 +49,12 @@ class HelpdeskTicketTeam(models.Model):
 			]
 			for data in fetch_data
 		]
-		print(result)
-
 		for team in self:
 			team.new_ticket_count = sum(r[2] for r in result if r[0] == team.id and r[1] in stage_ids.filtered(lambda s:s.sequence == 1).ids)
 			team.in_progress_ticket_count = sum(r[2] for r in result if r[0] == team.id and r[1] in stage_ids.filtered(lambda s:s.sequence == 2).ids)
 			team.waiting_ticket_count = sum(r[2] for r in result if r[0] == team.id and r[1] in stage_ids.filtered(lambda s:s.sequence == 3).ids)
 			team.revision_ticket_count = sum(r[2] for r in result if r[0] == team.id and r[1] in stage_ids.filtered(lambda s:s.sequence == 200).ids)
 	
-	@api.depends("ticket_ids", "ticket_ids.stage_id")
-	def _compute_todo_tickets(self):
-		ticket_model = self.env["helpdesk.ticket"]
-		fetch_data = ticket_model.read_group(
-			[("team_id", "in", self.ids), ("closed", "=", False)],
-			["team_id", "user_id", "unattended", "priority"],
-			["team_id", "user_id", "unattended", "priority"],
-			lazy=False,
-		)
-		result = [
-			[
-				data["team_id"][0],
-				data["user_id"] and data["user_id"][0],
-				data["unattended"],
-				data["priority"],
-				data["__count"],
-			]
-			for data in fetch_data
-		]
-		for team in self:
-			team.todo_ticket_count = sum(r[4] for r in result if r[0] == team.id)
-			team.todo_ticket_count_unassigned = sum(
-				r[4] for r in result if r[0] == team.id and not r[1]
-			)
-			team.todo_ticket_count_unattended = sum(
-				r[4] for r in result if r[0] == team.id and r[2]
-			)
-			team.todo_ticket_count_high_priority = sum(
-				r[4] for r in result if r[0] == team.id and r[3] == "3"
-			)
 	#BUTTON METHOD
 	
 
